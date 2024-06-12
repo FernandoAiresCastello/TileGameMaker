@@ -131,7 +131,7 @@
 			this.LbCopyright.Name = "LbCopyright";
 			this.LbCopyright.Size = new System.Drawing.Size(686, 60);
 			this.LbCopyright.TabIndex = 3;
-			this.LbCopyright.Text = "☺ 2019-2024 \r\nDeveloped by Fernando Aires Castello";
+			this.LbCopyright.Text = "2019 - 2024 \r\nDeveloped by Fernando Aires Castello";
 			this.LbCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// pictureBox1
@@ -168,7 +168,7 @@
 			this.LbVersionBuild.Name = "LbVersionBuild";
 			this.LbVersionBuild.Size = new System.Drawing.Size(686, 20);
 			this.LbVersionBuild.TabIndex = 2;
-			this.LbVersionBuild.Text = "v0.1b";
+			this.LbVersionBuild.Text = "Pre-Alpha (0.1)";
 			this.LbVersionBuild.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// tableLayoutPanel3
