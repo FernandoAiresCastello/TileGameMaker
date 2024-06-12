@@ -18,11 +18,12 @@ debug
 *.dia~
 *.props
 *.lnk
+**/temp
 Debug
 Docs/Generated
-**/temp
-**/bookmarks.dat
-**/scratchpad.tgpro
+Builds/bookmarks.dat
+Builds/scratchpad.tgpro
+Builds/*.xml
 
 # Ignore the TypeScript compiler output folder for TileGameLibJS
 js
