@@ -1,5 +1,5 @@
 # Tile Game Maker
-Tile Game Maker is an IDE for quick and easy development of tile-based, pseudo-8-bit games.
+ Tile Game Maker is an IDE and C# framework for quick and easy development of tile-based, pseudo-8-bit games. 
 
 **Current version:** Pre-Alpha (0.1)
 
