@@ -254,7 +254,7 @@ namespace TileGameLib.Graphics
             if (o != null && (o.Visible || RenderInvisibleObjects))
             {
                 Tile tile = o.Animation.GetFrame(AnimationFrame);
-                if (tile != null)
+                if (tile != null && tile.Index >= 0 && tile.Index < Disp.Graphics.Tileset.Size)
                     Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, o.Transparent);
             }
         }
@@ -266,8 +266,8 @@ namespace TileGameLib.Graphics
             if (oob != null && (oob.Visible || RenderInvisibleObjects))
             {
                 Tile tile = Map.OutOfBoundsObject.Animation.GetFrame(AnimationFrame);
-                if (tile != null)
-                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, oob.Transparent);
+				if (tile != null && tile.Index >= 0 && tile.Index < Disp.Graphics.Tileset.Size)
+					Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, oob.Transparent);
             }
         }
     }

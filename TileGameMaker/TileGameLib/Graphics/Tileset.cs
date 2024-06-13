@@ -155,7 +155,7 @@ namespace TileGameLib.Graphics
             Pixels.Clear();
 
             int cols = width / 8;
-			int rows = width / 8;
+			int rows = height / 8;
             int col = 0;
             int row = 0;
 
