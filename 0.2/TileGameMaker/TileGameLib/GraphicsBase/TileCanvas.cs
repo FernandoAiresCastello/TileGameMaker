@@ -23,6 +23,11 @@ public class TileCanvas
 		Buffer = new PixelBuffer(cols * cellWidth, rows * cellHeight, color);
 	}
 
+	public void DrawColor(Color color, int col, int row)
+	{
+		DrawTile(new(CellWidth, CellHeight, color), col, row);
+	}
+
 	public void DrawTile(TileImage tile, int col, int row)
 	{
 		DrawFreeTile(tile, col * CellWidth, row * CellHeight);
@@ -35,9 +40,9 @@ public class TileCanvas
 		int bufX = initialX;
 		int bufY = initialY;
 
-		for (int imageY = 0; imageY < tile.Height; imageY++)
+		for (int imageY = 0; imageY < tile.Height && imageY < CellHeight; imageY++)
 		{
-			for (int imageX = 0; imageX < tile.Width; imageX++)
+			for (int imageX = 0; imageX < tile.Width && imageY < CellWidth; imageX++)
 			{
 				Color color = tile.GetPixel(imageX, imageY);
 				Buffer.SetPixel(bufX, bufY, color);

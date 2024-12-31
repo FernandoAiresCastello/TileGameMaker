@@ -11,14 +11,37 @@ public partial class TestWindow : Form
         InitializeComponent();
 
         int tileSize = 8;
+		int cols = 320 / tileSize;
+		int rows = 200 / tileSize;
 
-		display = new TileDisplay(320 / tileSize, 200 / tileSize, tileSize, tileSize, Color.Yellow)
+		display = new TileDisplay(cols, rows, tileSize, tileSize, Color.White)
 		{
 			Parent = RootPanel,
 			Zoom = 2
 		};
 
-		for (int i = 0; i < display.Canvas.Width && i < display.Canvas.Height; i++)
-            display.Image.SetPixel(i, i, Color.Black);
+		display.MouseClick += Display_MouseClick;
+		display.MouseDown += Display_MouseClick;
+		display.MouseMove += Display_MouseMove;
+	}
+
+	private void Display_MouseMove(object? sender, MouseEventArgs e)
+	{
+		if (e.Button == MouseButtons.Left)
+			PutPixel(e.Location);
+	}
+
+	private void Display_MouseClick(object? sender, MouseEventArgs e)
+	{
+		PutPixel(e.Location);
+	}
+
+	private void PutPixel(Point point)
+	{
+		Point cellPos = display.GetCellPos(point);
+		Text = string.Format("X:{0} Y:{1}", cellPos.X, cellPos.Y);
+
+		display.Canvas.DrawColor(Color.Black, cellPos.X, cellPos.Y);
+		display.Refresh();
 	}
 }

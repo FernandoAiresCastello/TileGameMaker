@@ -36,7 +36,7 @@
 			RootPanel.Dock = DockStyle.Fill;
 			RootPanel.Location = new Point(0, 0);
 			RootPanel.Name = "RootPanel";
-			RootPanel.Size = new Size(480, 334);
+			RootPanel.Size = new Size(646, 417);
 			RootPanel.TabIndex = 0;
 			// 
 			// TestWindow
@@ -44,7 +44,7 @@
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = SystemColors.Control;
-			ClientSize = new Size(480, 334);
+			ClientSize = new Size(646, 417);
 			Controls.Add(RootPanel);
 			Name = "TestWindow";
 			StartPosition = FormStartPosition.CenterScreen;
