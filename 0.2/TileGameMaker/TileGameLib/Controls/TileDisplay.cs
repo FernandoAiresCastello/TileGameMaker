@@ -8,7 +8,11 @@ public partial class TileDisplay : Control
 {
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public TileCanvas Canvas { get; set; }
-	public PixelBuffer Image => Canvas.Buffer;
+
+	public int Cols => Canvas.Cols;
+	public int Rows => Canvas.Rows;
+	public int CellWidth => Canvas.CellWidth;
+	public int CellHeight => Canvas.CellHeight;
 
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public bool ShowGrid { get; set; } = true;
@@ -21,7 +25,7 @@ public partial class TileDisplay : Control
 		set
 		{
 			gridColor = value;
-			MakeGrid();
+			CreateGrid();
 		}
 	}
 
@@ -67,8 +71,8 @@ public partial class TileDisplay : Control
 	{
 		return new Point
 		{
-			X = point.X / (Zoom * Canvas.CellWidth),
-			Y = point.Y / (Zoom * Canvas.CellHeight)
+			X = point.X / (Zoom * CellWidth),
+			Y = point.Y / (Zoom * CellHeight)
 		};
 	}
 
@@ -93,11 +97,11 @@ public partial class TileDisplay : Control
 	{
 		Size = new Size(Zoom * Canvas.Width, Zoom * Canvas.Height);
 
-		MakeGrid();
+		CreateGrid();
 		Refresh();
 	}
 
-	protected void MakeGrid()
+	protected void CreateGrid()
 	{
 		grid = new Bitmap(Width, Height);
 		using Graphics g = Graphics.FromImage(grid);
@@ -105,24 +109,12 @@ public partial class TileDisplay : Control
 
 		g.Clear(Color.FromArgb(0));
 
-		int incY = Zoom * Canvas.CellHeight;
+		int incY = Zoom * CellHeight;
 		for (int y = -1; y < Height; y += incY)
 			g.DrawLine(gridPen, 0, y, Width, y);
-		int incX = Zoom * Canvas.CellWidth;
+		int incX = Zoom * CellWidth;
 		for (int x = -1; x < Width; x += incX)
 			g.DrawLine(gridPen, x, 0, x, Height);
-
-		/*
-		if (AuxGridIntervalX > 0 && AuxGridIntervalY > 0)
-		{
-			using Pen altGridPen = new(AuxGridColor);
-			int altIncY = incY * AuxGridIntervalY;
-			for (int y = -1; y < Height; y += altIncY)
-				g.DrawLine(altGridPen, 0, y, Width, y);
-			int altIncX = incX * AuxGridIntervalX;
-			for (int x = -1; x < Width; x += altIncX)
-				g.DrawLine(altGridPen, x, 0, x, Height);
-		}*/
 	}
 
 	protected override void OnPaint(PaintEventArgs e)
@@ -141,7 +133,7 @@ public partial class TileDisplay : Control
 		g.CompositingQuality = CompositingQuality.HighSpeed;
 		g.CompositingMode = CompositingMode.SourceCopy;
 
-		g.DrawImage(Canvas.Bitmap, 0, 0, Zoom * Canvas.Width, Zoom * Canvas.Height);
+		g.DrawImage(Canvas.Buffer.Bitmap, 0, 0, Zoom * Canvas.Width, Zoom * Canvas.Height);
 	}
 
 	protected void PaintGrid(Graphics g)

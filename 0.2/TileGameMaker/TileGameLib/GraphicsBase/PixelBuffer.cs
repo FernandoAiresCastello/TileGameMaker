@@ -9,7 +9,7 @@ public class PixelBuffer
 	public int Width => FastBitmap.Width;
 	public int Height => FastBitmap.Height;
 
-	protected readonly FastBitmap FastBitmap;
+	protected FastBitmap FastBitmap;
 
 	public PixelBuffer(int width, int height, Color color)
 	{

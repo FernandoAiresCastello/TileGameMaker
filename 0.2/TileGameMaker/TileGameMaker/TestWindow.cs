@@ -22,18 +22,13 @@ public partial class TestWindow : Form
 
 		display.MouseClick += Display_MouseClick;
 		display.MouseDown += Display_MouseClick;
-		display.MouseMove += Display_MouseMove;
-	}
-
-	private void Display_MouseMove(object? sender, MouseEventArgs e)
-	{
-		if (e.Button == MouseButtons.Left)
-			PutPixel(e.Location);
+		display.MouseMove += Display_MouseClick;
 	}
 
 	private void Display_MouseClick(object? sender, MouseEventArgs e)
 	{
-		PutPixel(e.Location);
+		if (e.Button == MouseButtons.Left)
+			PutPixel(e.Location);
 	}
 
 	private void PutPixel(Point point)
