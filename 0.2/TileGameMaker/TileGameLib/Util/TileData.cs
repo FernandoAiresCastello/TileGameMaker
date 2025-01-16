@@ -26,6 +26,6 @@ public class TileData
 	public string GetString(string key) =>
 		Data.TryGetValue(key.ToLower(), out var value) ? value.ToString() : default;
 
-	public int? GetNumber(string key) =>
+	public int GetNumber(string key) =>
 		Data.TryGetValue(key.ToLower(), out var value) ? int.Parse(value.ToString()) : default;
 }

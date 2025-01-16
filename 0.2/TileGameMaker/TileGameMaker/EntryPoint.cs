@@ -1,3 +1,5 @@
+using TileGameMaker.Test;
+
 namespace TileGameMaker;
 
 internal static class EntryPoint

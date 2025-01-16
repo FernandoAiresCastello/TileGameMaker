@@ -1,6 +1,6 @@
-﻿namespace TileGameMaker
+﻿namespace TileGameLib.Controls
 {
-    partial class TestWindow
+    partial class ColorPaletteWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,24 +33,23 @@
 			// 
 			// RootPanel
 			// 
-			RootPanel.BorderStyle = BorderStyle.Fixed3D;
-			RootPanel.Location = new Point(12, 12);
+			RootPanel.Dock = DockStyle.Fill;
+			RootPanel.Location = new Point(0, 0);
 			RootPanel.Name = "RootPanel";
-			RootPanel.Size = new Size(213, 388);
+			RootPanel.Size = new Size(209, 303);
 			RootPanel.TabIndex = 0;
 			// 
-			// TestWindow
+			// ColorPaletteWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = SystemColors.Control;
-			ClientSize = new Size(621, 412);
+			ClientSize = new Size(209, 303);
 			Controls.Add(RootPanel);
-			FormBorderStyle = FormBorderStyle.FixedSingle;
+			FormBorderStyle = FormBorderStyle.FixedToolWindow;
 			MaximizeBox = false;
-			Name = "TestWindow";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "TileGameMaker - Test Window";
+			Name = "ColorPaletteWindow";
+			StartPosition = FormStartPosition.CenterParent;
 			ResumeLayout(false);
 		}
 
