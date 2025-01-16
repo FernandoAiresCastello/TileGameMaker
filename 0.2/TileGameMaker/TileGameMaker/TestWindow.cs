@@ -1,42 +1,43 @@
 using TileGameLib.Controls;
+using TileGameLib.GraphicsBase;
 
 namespace TileGameMaker;
 
 public partial class TestWindow : Form
 {
-    readonly TileDisplay display;
+	private readonly ColorPalettePanel PalettePanel;
+	private readonly TileDisplay Display;
+	private readonly TileCanvas Canvas;
 
-    public TestWindow()
-    {
-        InitializeComponent();
+	public TestWindow()
+	{
+		InitializeComponent();
 
-        int tileSize = 8;
-		int cols = 320 / tileSize;
-		int rows = 200 / tileSize;
+		int tileSize = 8;
+		int cols = 8;
+		int rows = 256 / cols;
 
-		display = new TileDisplay(cols, rows, tileSize, tileSize, Color.White)
+		PalettePanel = new ColorPalettePanel(cols, rows, tileSize, tileSize, 3)
 		{
-			Parent = RootPanel,
-			Zoom = 2
+			Parent = RootPanel
 		};
 
-		display.MouseClick += Display_MouseClick;
-		display.MouseDown += Display_MouseClick;
-		display.MouseMove += Display_MouseClick;
+		PalettePanel.SetColors
+		(
+			[
+				"000000", "808080", "ff0000", "ff8000", "00ff00", 
+				"0000ff", "ffff00", "00ffff", "ff00ff", "ffffff", 
+			]
+		);
+
+		Display = PalettePanel.Display;
+		Display.MouseClick += Panel_MouseClick;
+		Canvas = Display.Canvas;
 	}
 
-	private void Display_MouseClick(object? sender, MouseEventArgs e)
+	private void Panel_MouseClick(object? sender, MouseEventArgs e)
 	{
-		if (e.Button == MouseButtons.Left)
-			PutPixel(e.Location);
-	}
-
-	private void PutPixel(Point point)
-	{
-		Point cellPos = display.GetCellPos(point);
-		Text = string.Format("X:{0} Y:{1}", cellPos.X, cellPos.Y);
-
-		display.Canvas.DrawColor(Color.Black, cellPos.X, cellPos.Y);
-		display.Refresh();
+		int index = Display.GetCellIndex(e.Location);
+		Text = Canvas.Data(index).Get<Color>("color").ToString();
 	}
 }

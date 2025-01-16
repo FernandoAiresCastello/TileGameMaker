@@ -33,10 +33,10 @@
 			// 
 			// RootPanel
 			// 
-			RootPanel.Dock = DockStyle.Fill;
-			RootPanel.Location = new Point(0, 0);
+			RootPanel.BorderStyle = BorderStyle.Fixed3D;
+			RootPanel.Location = new Point(12, 12);
 			RootPanel.Name = "RootPanel";
-			RootPanel.Size = new Size(646, 417);
+			RootPanel.Size = new Size(213, 388);
 			RootPanel.TabIndex = 0;
 			// 
 			// TestWindow
@@ -44,8 +44,10 @@
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = SystemColors.Control;
-			ClientSize = new Size(646, 417);
+			ClientSize = new Size(621, 412);
 			Controls.Add(RootPanel);
+			FormBorderStyle = FormBorderStyle.FixedSingle;
+			MaximizeBox = false;
 			Name = "TestWindow";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "TileGameMaker - Test Window";

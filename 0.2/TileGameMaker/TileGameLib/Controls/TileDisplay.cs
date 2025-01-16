@@ -11,6 +11,7 @@ public partial class TileDisplay : Control
 
 	public int Cols => Canvas.Cols;
 	public int Rows => Canvas.Rows;
+	public int CellCount => Canvas.CellCount;
 	public int CellWidth => Canvas.CellWidth;
 	public int CellHeight => Canvas.CellHeight;
 
@@ -82,7 +83,7 @@ public partial class TileDisplay : Control
 		return (cellPos.Y * Canvas.Cols) + cellPos.X;
 	}
 
-	protected void TileDisplay_ParentChanged(object? sender, EventArgs e)
+	protected void TileDisplay_ParentChanged(object sender, EventArgs e)
 	{
 		if (Parent == null)
 			return;
