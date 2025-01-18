@@ -2,6 +2,9 @@
 
 namespace TileGameLib.GraphicsBase;
 
+/// <summary>
+///		An off-screen graphical object that stores a bitmap, and can be used to set or get individual pixels.
+/// </summary>
 public class PixelBuffer
 {
 	public Bitmap Bitmap => FastBitmap.Bitmap;

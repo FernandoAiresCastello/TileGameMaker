@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace TileGameLib.GraphicsBase;
 
+/// <summary>
+///		An off-screen graphical object designed to quickly access and modify individual pixels.
+/// </summary>
 public class FastBitmap : IDisposable
 {
 	public Bitmap Bitmap { get; private set; }

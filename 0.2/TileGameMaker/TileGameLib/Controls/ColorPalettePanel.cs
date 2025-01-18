@@ -1,63 +1,64 @@
-﻿using System.ComponentModel;
-using TileGameLib.GraphicsBase;
+﻿using TileGameLib.Util;
 
 namespace TileGameLib.Controls;
 
-public partial class ColorPalettePanel : UserControl
+/// <summary>
+///		A panel that displays a grid of colors from a <see cref="ColorPalette"/>.
+/// </summary>
+public partial class ColorPalettePanel : TileDisplayPanelBase
 {
-	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public TileDisplay Display { get; private set; }
+	private const string ColorDataKey = "color";
 
-	private List<Color> Colors { get; set; }
-
-	private readonly TileCanvas Canvas;
-
-	public ColorPalettePanel(int cols, int rows, int cellWidth, int cellHeight, int zoom)
+	/// <param name="cols">Number of columns</param>
+	/// <param name="rows">Number of rows</param>
+	/// <param name="cellWidth">Width of grid cells</param>
+	/// <param name="cellHeight">Height of grid cells</param>
+	/// <param name="zoom">Magnification factor</param>
+	/// <param name="emptyColor">Default color for empty cells</param>
+	public ColorPalettePanel(int cols, int rows, int cellWidth, int cellHeight, int zoom, Color emptyColor) :
+		base(cols, rows, cellWidth, cellHeight, zoom, emptyColor)
 	{
-		InitializeComponent();
-
-		Display = new TileDisplay(cols, rows, cellWidth, cellHeight, Color.White)
-		{
-			Parent = RootPanel,
-			Zoom = zoom,
-		};
-
-		Canvas = Display.Canvas;
-		Dock = DockStyle.Fill;
 	}
+
+	private ColorPalette Colors { get; set; } = new();
 
 	public void SetColors(List<Color> colors)
 	{
-		Colors = colors;
+		Colors.SetColors(colors);
 		UpdateDisplay();
 	}
 
 	public void SetColors(List<string> hexColors)
 	{
-		Colors = [];
-
-		foreach (string hexColor in hexColors)
-		{
-			string hex = hexColor;
-
-			if (hex.StartsWith('#'))
-				hex = hex[1..];
-			else if (hex.StartsWith("0x"))
-				hex = hex[2..];
-
-			Colors.Add(ColorTranslator.FromHtml("#" + hex));
-		}
-
+		Colors.SetColors(hexColors);
 		UpdateDisplay();
 	}
 
+	public void LoadColors(string path)
+	{
+		Colors.Load(path);
+		UpdateDisplay();
+	}
+
+	public Color? GetColorAtCellIndex(int cellIndex) => 
+		Canvas.Data(cellIndex).Get<Color?>(ColorDataKey);
+
+	public Color? GetColorAtCellPos(Point cellPos) => 
+		Canvas.Data(cellPos).Get<Color?>(ColorDataKey);
+
+	public Color? GetColorAtMousePos(Point mousePos) =>
+		GetColorAtCellIndex(GetCellIndex(mousePos));
+
 	private void UpdateDisplay()
 	{
-		for (int i = 0; i < Colors.Count && i < Display.CellCount; i++)
+		for (int i = 0; i < Colors.Count && i < Canvas.CellCount; i++)
 		{
-			Color color = Colors[i];
-			Canvas.DrawColor(color, i);
-			Canvas.Data(i).Set("color", color);
+			Color? color = Colors.Get(i);
+			if (color == null)
+				continue;
+
+			Canvas.DrawColor(color.Value, i);
+			Canvas.Data(i).Set(ColorDataKey, color.Value);
 		}
 	}
 }

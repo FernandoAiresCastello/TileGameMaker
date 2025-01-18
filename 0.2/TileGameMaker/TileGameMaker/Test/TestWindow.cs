@@ -1,5 +1,6 @@
 ﻿using TileGameLib.Controls;
 using TileGameLib.ExtensionMethods;
+using TileGameLib.GraphicsBase;
 
 namespace TileGameMaker.Test;
 
@@ -47,25 +48,40 @@ public partial class TestWindow : Form
 
 	private void BtnColorPalette_Click(object sender, EventArgs e)
 	{
-		ColorPaletteWindow wnd = new();
-		wnd.SetColors(["000000", "ff0000", "ff8000", "00ff00", "0000ff", "ffff00", "00ffff", "ff00ff"]);
-		wnd.OnColorClicked = ColorClicked;
+		int tileSize = 8;
+		int cols = 16;
+		int rows = 256 / cols;
+		int zoom = 2;
+
+		ColorPaletteWindow wnd = new(cols, rows, tileSize, tileSize, zoom, Color.White)
+		{
+			DefaultTitle = "Color Palette",
+			OnColorClicked = ColorClicked
+		};
+
+		wnd.LoadColors("test/palettes/atari_800.pal");
 		wnd.ShowDialog(this);
 	}
 
 	private void ColorClicked(Form wnd, Color? color, MouseButtons button)
 	{
-		if (!color.HasValue)
-			return;
-
-		if (button == MouseButtons.Left)
+		if (color.HasValue && button == MouseButtons.Left)
+		{
 			LeftDrawingColor = color.Value;
-		else if (button == MouseButtons.Right)
+			wnd.Close();
+		}
+		else if (color.HasValue && button == MouseButtons.Right)
+		{
 			RightDrawingColor = color.Value;
-		else
-			return;
-
-		wnd.Close();
+			wnd.Close();
+		}
+		else if (button == MouseButtons.Middle)
+		{
+			if (color.HasValue)
+				MessageBox.Show($"This is RGB #{color.Value.ToHex()}");
+			else
+				MessageBox.Show($"This palette index is empty!");
+		}
 	}
 
 	private void BtnToggleGrid_Click(object sender, EventArgs e)
@@ -77,6 +93,12 @@ public partial class TestWindow : Form
 	private void BtnClear_Click(object sender, EventArgs e)
 	{
 		DrawingDisplay.Canvas.Clear(BackgroundColor);
+		DrawingDisplay.Refresh();
+	}
+
+	private void BtnFill_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.Canvas.Clear(LeftDrawingColor);
 		DrawingDisplay.Refresh();
 	}
 }

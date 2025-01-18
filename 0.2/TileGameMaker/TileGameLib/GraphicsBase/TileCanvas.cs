@@ -2,6 +2,11 @@
 
 namespace TileGameLib.GraphicsBase;
 
+/// <summary>
+///		Represents an off-screen graphical object where tile-based images can be drawn on a grid.
+///		Can also hold arbitrary data (<see cref="Dataset"/>) for each cell on the grid.
+///		To actually show this object on screen, a <see cref="TileDisplay"/> control is required.
+/// </summary>
 public class TileCanvas
 {
 	public readonly int Cols;
@@ -15,7 +20,7 @@ public class TileCanvas
 	public int Width => Buffer.Width;
 	public int Height => Buffer.Height;
 
-	private readonly TileData[,] TileData;
+	private readonly Dataset[,] TileData;
 
 	public TileCanvas(int cols, int rows, int cellWidth, int cellHeight, Color color)
 	{
@@ -26,7 +31,7 @@ public class TileCanvas
 		CellHeight = cellHeight;
 
 		Buffer = new PixelBuffer(cols * cellWidth, rows * cellHeight, color);
-		TileData = new TileData[Rows, Cols];
+		TileData = new Dataset[Rows, Cols];
 
 		for (int row = 0; row < rows; row++)
 			for (int col = 0; col < cols; col++)
@@ -80,7 +85,9 @@ public class TileCanvas
 		}
 	}
 
-	public TileData Data(int col, int row)
+	public Dataset Data(Point cellPos) => Data(cellPos.X, cellPos.Y);
+
+	public Dataset Data(int col, int row)
 	{
 		if (row >= 0 && col >= 0 && row < Rows && col < Cols)
 			return TileData[row, col];
@@ -88,7 +95,7 @@ public class TileCanvas
 		throw new Exception($"Cell position out of bounds. Col:{col} Row:{row}");
 	}
 
-	public TileData Data(int cellIndex)
+	public Dataset Data(int cellIndex)
 	{
 		int col = cellIndex % Cols;
 		int row = cellIndex / Cols;

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
-using TileGameLib.GraphicsBase;
 
-namespace TileGameLib.Controls;
+namespace TileGameLib.GraphicsBase;
 
+/// <summary>
+///		Low-level control for managing and displaying a <see cref="TileCanvas"/>.
+/// </summary>
 public partial class TileDisplay : Control
 {
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -89,7 +91,6 @@ public partial class TileDisplay : Control
 			return;
 
 		var panel = (Panel)Parent;
-
 		if (panel != null)
 			panel.AutoScroll = true;
 	}

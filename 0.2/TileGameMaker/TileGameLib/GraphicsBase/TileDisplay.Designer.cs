@@ -1,6 +1,6 @@
-﻿namespace TileGameLib.Controls
+﻿namespace TileGameLib.GraphicsBase
 {
-	partial class ColorPalettePanel
+	partial class TileDisplay
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -28,29 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			RootPanel = new Panel();
-			SuspendLayout();
-			// 
-			// RootPanel
-			// 
-			RootPanel.Dock = DockStyle.Fill;
-			RootPanel.Location = new Point(0, 0);
-			RootPanel.Name = "RootPanel";
-			RootPanel.Size = new Size(279, 354);
-			RootPanel.TabIndex = 0;
-			// 
-			// ColorPalettePanel
-			// 
-			AutoScaleDimensions = new SizeF(7F, 15F);
-			AutoScaleMode = AutoScaleMode.Font;
-			Controls.Add(RootPanel);
-			Name = "ColorPalettePanel";
-			Size = new Size(279, 354);
-			ResumeLayout(false);
+			components = new System.ComponentModel.Container();
 		}
 
 		#endregion
-
-		private Panel RootPanel;
 	}
 }

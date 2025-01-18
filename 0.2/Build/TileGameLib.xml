@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TileGameLib</name>
+    </assembly>
+    <members>
+        <member name="T:TileGameLib.Controls.ColorPalettePanel">
+            <summary>
+            	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Util.ColorPalette"/>.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPalettePanel.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+            <param name="cols">Number of columns</param>
+            <param name="rows">Number of rows</param>
+            <param name="cellWidth">Width of grid cells</param>
+            <param name="cellHeight">Height of grid cells</param>
+            <param name="zoom">Magnification factor</param>
+            <param name="emptyColor">Default color for empty cells</param>
+        </member>
+        <member name="T:TileGameLib.Controls.ColorPaletteWindow">
+            <summary>
+            	A window that displays a grid of colors from a <see cref="T:TileGameLib.Util.ColorPalette"/> and
+            	allows selection of a color with a mouse click.
+            </summary>
+        </member>
+        <member name="P:TileGameLib.Controls.ColorPaletteWindow.OnColorClicked">
+            <summary>
+            	Callback for when a color gets selected.
+            	The selected color and mouse button that was pressed, 
+            	along with a reference to this window, are passed as arguments.
+            </summary>
+        </member>
+        <member name="F:TileGameLib.Controls.ColorPaletteWindow.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPaletteWindow.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPaletteWindow.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Controls.TileDisplayPanelBase">
+            <summary>
+            	Base class for a panel that holds a <see cref="T:TileGameLib.GraphicsBase.TileDisplay"/>.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Controls.TileDisplayPanelBase.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            	Constructs the panel.
+            </summary>
+            <param name="cols">Number of columns</param>
+            <param name="rows">Number of rows</param>
+            <param name="cellWidth">Width of grid cells</param>
+            <param name="cellHeight">Height of grid cells</param>
+            <param name="zoom">Magnification factor</param>
+            <param name="backColor">Background color</param>
+        </member>
+        <member name="F:TileGameLib.Controls.TileDisplayPanelBase.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Controls.TileDisplayPanelBase.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TileGameLib.Controls.TileDisplayPanelBase.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.GraphicsBase.FastBitmap">
+            <summary>
+            	An off-screen graphical object designed to quickly access and modify individual pixels.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.GraphicsBase.PixelBuffer">
+            <summary>
+            	An off-screen graphical object that stores a bitmap, and can be used to set or get individual pixels.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.GraphicsBase.TileCanvas">
+            <summary>
+            	Represents an off-screen graphical object where tile-based images can be drawn on a grid.
+            	Can also hold arbitrary data (<see cref="T:TileGameLib.Util.Dataset"/>) for each cell on the grid.
+            	To actually show this object on screen, a <see cref="T:TileGameLib.GraphicsBase.TileDisplay"/> control is required.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.GraphicsBase.TileDisplay">
+            <summary>
+            	Low-level control for managing and displaying a <see cref="T:TileGameLib.GraphicsBase.TileCanvas"/>.
+            </summary>
+        </member>
+        <member name="F:TileGameLib.GraphicsBase.TileDisplay.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.GraphicsBase.TileDisplay.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TileGameLib.GraphicsBase.TileDisplay.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.GraphicsBase.TileImage">
+            <summary>
+            	Represents an image that can be manipulated pixel by pixel 
+            	and also load its pixel data from an image file.
+            </summary>
+            <param name="width">Width of the image, in pixels</param>
+            <param name="height">Height of the image, in pixels</param>
+            <param name="color">Default color of the image</param>
+        </member>
+        <member name="M:TileGameLib.GraphicsBase.TileImage.#ctor(System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            	Represents an image that can be manipulated pixel by pixel 
+            	and also load its pixel data from an image file.
+            </summary>
+            <param name="width">Width of the image, in pixels</param>
+            <param name="height">Height of the image, in pixels</param>
+            <param name="color">Default color of the image</param>
+        </member>
+        <member name="T:TileGameLib.Util.Dataset">
+            <summary>
+            	Collection of key-value pairs for storing arbitrary data.
+            </summary>
+        </member>
+    </members>
+</doc>

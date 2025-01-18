@@ -1,6 +1,9 @@
 ﻿namespace TileGameLib.Util;
 
-public class TileData
+/// <summary>
+///		Collection of key-value pairs for storing arbitrary data.
+/// </summary>
+public class Dataset
 {
 	private readonly Dictionary<string, object> Data = [];
 

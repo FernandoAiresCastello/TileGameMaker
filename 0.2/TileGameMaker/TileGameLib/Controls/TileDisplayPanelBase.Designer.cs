@@ -1,6 +1,6 @@
 ﻿namespace TileGameLib.Controls
 {
-	partial class TileDisplay
+	partial class TileDisplayPanelBase
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -28,9 +28,28 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
+			RootPanel = new Panel();
+			SuspendLayout();
+			// 
+			// RootPanel
+			// 
+			RootPanel.Dock = DockStyle.Fill;
+			RootPanel.Location = new Point(0, 0);
+			RootPanel.Name = "RootPanel";
+			RootPanel.Size = new Size(150, 150);
+			RootPanel.TabIndex = 1;
+			// 
+			// TiledDisplayControlBase
+			// 
+			AutoScaleDimensions = new SizeF(7F, 15F);
+			AutoScaleMode = AutoScaleMode.Font;
+			Controls.Add(RootPanel);
+			Name = "TiledDisplayControlBase";
+			ResumeLayout(false);
 		}
 
 		#endregion
+
+		private Panel RootPanel;
 	}
 }

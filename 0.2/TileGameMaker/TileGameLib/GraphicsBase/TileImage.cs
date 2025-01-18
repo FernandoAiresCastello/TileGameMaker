@@ -1,5 +1,12 @@
 ﻿namespace TileGameLib.GraphicsBase;
 
+/// <summary>
+///		Represents an image that can be manipulated pixel by pixel 
+///		and also load its pixel data from an image file.
+/// </summary>
+/// <param name="width">Width of the image, in pixels</param>
+/// <param name="height">Height of the image, in pixels</param>
+/// <param name="color">Default color of the image</param>
 public class TileImage(int width, int height, Color color) : 
 	PixelBuffer(width, height, color)
 {

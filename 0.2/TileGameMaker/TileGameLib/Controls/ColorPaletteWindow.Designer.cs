@@ -33,10 +33,10 @@
 			// 
 			// RootPanel
 			// 
-			RootPanel.Dock = DockStyle.Fill;
+			RootPanel.AutoSize = true;
 			RootPanel.Location = new Point(0, 0);
 			RootPanel.Name = "RootPanel";
-			RootPanel.Size = new Size(209, 303);
+			RootPanel.Size = new Size(209, 205);
 			RootPanel.TabIndex = 0;
 			// 
 			// ColorPaletteWindow
@@ -44,13 +44,14 @@
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = SystemColors.Control;
-			ClientSize = new Size(209, 303);
+			ClientSize = new Size(209, 205);
 			Controls.Add(RootPanel);
 			FormBorderStyle = FormBorderStyle.FixedToolWindow;
 			MaximizeBox = false;
 			Name = "ColorPaletteWindow";
 			StartPosition = FormStartPosition.CenterParent;
 			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion

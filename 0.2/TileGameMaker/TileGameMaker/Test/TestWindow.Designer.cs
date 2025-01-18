@@ -32,6 +32,7 @@
 			DrawingPanel = new Panel();
 			BtnToggleGrid = new Button();
 			BtnClear = new Button();
+			BtnFill = new Button();
 			SuspendLayout();
 			// 
 			// BtnColorPalette
@@ -72,11 +73,22 @@
 			BtnClear.UseVisualStyleBackColor = true;
 			BtnClear.Click += BtnClear_Click;
 			// 
+			// BtnFill
+			// 
+			BtnFill.Location = new Point(12, 99);
+			BtnFill.Name = "BtnFill";
+			BtnFill.Size = new Size(104, 23);
+			BtnFill.TabIndex = 4;
+			BtnFill.Text = "Fill";
+			BtnFill.UseVisualStyleBackColor = true;
+			BtnFill.Click += BtnFill_Click;
+			// 
 			// TestWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(659, 411);
+			Controls.Add(BtnFill);
 			Controls.Add(BtnClear);
 			Controls.Add(BtnToggleGrid);
 			Controls.Add(DrawingPanel);
@@ -95,5 +107,6 @@
 		private Panel DrawingPanel;
 		private Button BtnToggleGrid;
 		private Button BtnClear;
+		private Button BtnFill;
 	}
 }
