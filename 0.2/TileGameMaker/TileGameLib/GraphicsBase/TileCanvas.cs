@@ -11,6 +11,8 @@ public class TileCanvas
 {
 	public readonly int Cols;
 	public readonly int Rows;
+	public readonly int LastCol;
+	public readonly int LastRow;
 	public readonly int CellCount;
 	public readonly int CellWidth;
 	public readonly int CellHeight;
@@ -26,6 +28,8 @@ public class TileCanvas
 	{
 		Cols = cols;
 		Rows = rows;
+		LastCol = cols - 1;
+		LastRow = rows - 1;
 		CellCount = cols * rows;
 		CellWidth = cellWidth;
 		CellHeight = cellHeight;

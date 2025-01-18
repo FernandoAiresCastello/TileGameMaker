@@ -71,7 +71,7 @@ public partial class ColorPaletteWindow : Form
 
 	private void Panel_MouseMove(MouseButtons button, Point pos)
 	{
-		int cellIndex = PalettePanel.GetCellIndex(pos);
+		int cellIndex = PalettePanel.GetCellIndexFromMousePos(pos);
 		Text = $"Index: {cellIndex} (#{cellIndex:X2})";
 
 		Color? color = PalettePanel.GetColorAtMousePos(pos);

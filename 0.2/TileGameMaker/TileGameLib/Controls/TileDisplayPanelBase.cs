@@ -51,7 +51,6 @@ public partial class TileDisplayPanelBase : UserControl
 			OnMouseExit?.Invoke();
 	}
 
-	public int GetCellIndex(Point pos) => Display.GetCellIndex(pos);
-
-	public Point GetCellPos(Point pos) => Display.GetCellPos(pos);
+	public int GetCellIndexFromMousePos(Point pos) => Display.GetCellIndexFromMousePos(pos);
+	public Point GetCellPosFromMousePos(Point pos) => Display.GetCellPosFromMousePos(pos);
 }

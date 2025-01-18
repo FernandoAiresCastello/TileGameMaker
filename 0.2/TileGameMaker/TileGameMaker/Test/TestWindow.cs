@@ -24,6 +24,9 @@ public partial class TestWindow : Form
 		DrawingDisplay.MouseClick += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseDown += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseMove += DrawingDisplay_MouseClick;
+
+		DrawingDisplay.SetCellText(new Point(1, 1), "@");
+		DrawingDisplay.SetCellText(new Point(2, 2), "@");
 	}
 
 	private void DrawingDisplay_MouseClick(object? sender, MouseEventArgs e)
@@ -38,7 +41,7 @@ public partial class TestWindow : Form
 
 	private void DrawColoredTile(Point mousePos, Color color)
 	{
-		Point cellPos = DrawingDisplay.GetCellPos(mousePos);
+		Point cellPos = DrawingDisplay.GetCellPosFromMousePos(mousePos);
 		if (cellPos.IsOutside(0, 0, DrawingDisplay.Cols, DrawingDisplay.Rows))
 			return;
 

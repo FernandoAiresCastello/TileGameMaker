@@ -47,7 +47,7 @@ public partial class ColorPalettePanel : TileDisplayPanelBase
 		Canvas.Data(cellPos).Get<Color?>(ColorDataKey);
 
 	public Color? GetColorAtMousePos(Point mousePos) =>
-		GetColorAtCellIndex(GetCellIndex(mousePos));
+		GetColorAtCellIndex(GetCellIndexFromMousePos(mousePos));
 
 	private void UpdateDisplay()
 	{
