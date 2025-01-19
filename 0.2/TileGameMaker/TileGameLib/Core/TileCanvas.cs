@@ -4,7 +4,7 @@
 ///		Represents an off-screen graphical object where tile-based images can be drawn on a grid.
 ///		To actually show this object on screen, a <see cref="TileDisplay"/> control is required.
 /// </summary>
-public class TileCanvas(Size gridSize, Size cellSize, Color color)
+public class TileCanvas(Size gridSize, Size cellSize, Color backColor)
 {
 	public readonly int Cols = gridSize.Width;
 	public readonly int Rows = gridSize.Height;
@@ -15,14 +15,16 @@ public class TileCanvas(Size gridSize, Size cellSize, Color color)
 	public readonly int CellHeight = cellSize.Height;
 
 	public PixelBuffer Buffer { get; private set; } = 
-		new PixelBuffer(gridSize.Width * cellSize.Width, gridSize.Height * cellSize.Height, color);
+		new PixelBuffer(gridSize.Width * cellSize.Width, gridSize.Height * cellSize.Height, backColor);
 
 	public int Width => Buffer.Width;
 	public int Height => Buffer.Height;
 
-	public void Clear(Color color)
+	public Color BackColor = backColor;
+
+	public void Clear()
 	{
-		Buffer.Clear(color);
+		Buffer.Clear(BackColor);
 	}
 
 	public void DrawColor(Color color, int col, int row)

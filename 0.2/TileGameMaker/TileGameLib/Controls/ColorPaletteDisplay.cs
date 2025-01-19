@@ -6,13 +6,18 @@ namespace TileGameLib.Controls;
 /// <summary>
 ///		A panel that displays a grid of colors from a <see cref="ColorPalette"/>.
 /// </summary>
-/// <param name="bufSize">Size of the grid (number of columns and rows)</param>
+/// <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
+/// <param name="canvasGridSize">Size of the grid (number of columns and rows)</param>
 /// <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
 /// <param name="zoomLevel">Magnification factor</param>
 /// <param name="emptyColor">Default color for empty cells</param>
+/// <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
 
-public class ColorPaletteDisplay(Size bufSize, Size cellSize, int zoomLevel, Color emptyColor) :
-	TileDisplay(bufSize, cellSize, zoomLevel, emptyColor)
+public class ColorPaletteDisplay(
+	Size bufSize, Size canvasGridSize, Size cellSize,
+	Color emptyColor, Point viewOffset, int zoomLevel) :
+
+	TileDisplay(bufSize, canvasGridSize, cellSize, emptyColor, viewOffset, zoomLevel)
 {
 	private ColorPalette Colors { get; set; } = new();
 
@@ -34,13 +39,13 @@ public class ColorPaletteDisplay(Size bufSize, Size cellSize, int zoomLevel, Col
 		UpdateTiles();
 	}
 
-	public Color? GetColorAtCellIndex(int cellIndex) => 
+	public Color GetColorAtCellIndex(int cellIndex) => 
 		GetTile<SolidColorTile>(cellIndex).Color;
 
-	public Color? GetColorAtCellPos(Point cellPos) =>
+	public Color GetColorAtCellPos(Point cellPos) =>
 		GetTile<SolidColorTile>(cellPos).Color;
 
-	public Color? GetColorAtMousePos(Point mousePos) =>
+	public Color GetColorAtMousePos(Point mousePos) =>
 		GetColorAtCellIndex(GetCellIndexFromMousePos(mousePos));
 
 	private void UpdateTiles()

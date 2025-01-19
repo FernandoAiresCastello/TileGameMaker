@@ -11,7 +11,7 @@ namespace TileGameLib.Core;
 public class TileDisplay : Control
 {
 	//================================
-	//	Public data
+	//	Public
 	//================================
 
 	public int Cols => Canvas.Cols;
@@ -21,6 +21,15 @@ public class TileDisplay : Control
 	public int CellCount => Canvas.CellCount;
 	public int CellWidth => Canvas.CellWidth;
 	public int CellHeight => Canvas.CellHeight;
+
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public new Color BackColor
+	{
+		set => Canvas.BackColor = value;
+		get => Canvas.BackColor;
+	}
+
+	public Point TileBufferViewOffset => new(TileBufferViewOffsetX, TileBufferViewOffsetY);
 
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public bool ShowGrid { get; set; } = true;
@@ -54,11 +63,8 @@ public class TileDisplay : Control
 	public Color SelectionColor { get; set; } = Color.FromArgb(80, Color.Blue);
 
 	//================================
-	//	Private data
+	//	Private
 	//================================
-
-	private readonly TileCanvas Canvas;
-	private readonly TileBuffer Tiles;
 
 	private int zoom = 1;
 	private const int MinZoom = 1;
@@ -66,7 +72,11 @@ public class TileDisplay : Control
 
 	private Bitmap grid = new(1, 1);
 	private Color gridColor = Color.FromArgb(80, 128, 128, 128);
+	private int TileBufferViewOffsetX = 0;
+	private int TileBufferViewOffsetY = 0;
 
+	private readonly TileCanvas Canvas;
+	private readonly TileBuffer Tiles;
 	private readonly HashSet<Point> SelectedCells = [];
 	private readonly List<Tuple<string, Point>> TextOverlay = [];
 
@@ -74,7 +84,7 @@ public class TileDisplay : Control
 	//	Constructor
 	//================================
 
-	public TileDisplay(Size tileBufferSize, Size cellSize, int zoomLevel, Color defaultColor)
+	public TileDisplay(Size tileBufferSize, Size canvasGridSize, Size canvasCellSize, Color canvasColor, Point viewOffset, int zoomLevel)
 	{
 		ParentChanged += TileDisplay_ParentChanged;
 
@@ -83,25 +93,38 @@ public class TileDisplay : Control
 		DoubleBuffered = true;
 
 		Tiles = new TileBuffer(tileBufferSize);
-		Canvas = new TileCanvas(tileBufferSize, cellSize, defaultColor);
+		Canvas = new TileCanvas(canvasGridSize, canvasCellSize, canvasColor);
+		TileBufferViewOffsetX = viewOffset.X;
+		TileBufferViewOffsetY = viewOffset.Y;
 		zoom = zoomLevel;
 
 		UpdateSize();
 	}
 
 	//================================
-	//	Set tiles
+	//	Set/delete tiles
 	//================================
 
 	public void SetTile(Tile tile, int cellIndex) => Tiles.Set(tile, cellIndex);
-	public void SetTile(Tile tile, Point cellPos) => Tiles.Set(tile, cellPos);
 	public void SetTile(Tile tile, int col, int row) => Tiles.Set(tile, col, row);
+	public void SetTile(Tile tile, Point cellPos) => Tiles.Set(tile, cellPos);
+
+	public void DeleteTile(int cellIndex) => Tiles.Delete(cellIndex);
+	public void DeleteTile(int col, int row) => Tiles.Delete(col, row);
+	public void DeleteTile(Point cellPos) => Tiles.Delete(cellPos);
 
 	public void Fill(Tile tile)
 	{
-		for (int row = 0; row < Rows; row++)
-			for (int col = 0; col < Cols; col++)
+		for (int row = 0; row < Tiles.Rows; row++)
+			for (int col = 0; col < Tiles.Cols; col++)
 				SetTile(tile, col, row);
+	}
+
+	public void Clear()
+	{
+		for (int row = 0; row < Tiles.Rows; row++)
+			for (int col = 0; col < Tiles.Cols; col++)
+				DeleteTile(col, row);
 	}
 
 	//================================
@@ -124,15 +147,15 @@ public class TileDisplay : Control
 	{
 		return new Point
 		{
-			X = point.X / (Zoom * CellWidth),
-			Y = point.Y / (Zoom * CellHeight)
+			X = TileBufferViewOffsetX + (point.X / (Zoom * CellWidth)),
+			Y = TileBufferViewOffsetY + (point.Y / (Zoom * CellHeight))
 		};
 	}
 
 	public int GetCellIndexFromMousePos(Point point)
 	{
 		Point cellPos = GetCellPosFromMousePos(point);
-		return (cellPos.Y * Canvas.Cols) + cellPos.X;
+		return (cellPos.Y * Tiles.Cols) + cellPos.X;
 	}
 
 	//================================
@@ -162,6 +185,26 @@ public class TileDisplay : Control
 	public void SetTextOverlay(string text, Point cellPos) => TextOverlay.Add(new(text, cellPos));
 
 	//================================
+	//	Viewport
+	//================================
+
+	public void ScrollView(int dx, int dy)
+	{
+		TileBufferViewOffsetX += dx;
+		TileBufferViewOffsetY += dy;
+
+		Refresh();
+	}
+
+	public void SetView(int x, int y)
+	{
+		TileBufferViewOffsetX = x;
+		TileBufferViewOffsetY = y;
+
+		Refresh();
+	}
+
+	//================================
 	//	Grid
 	//================================
 
@@ -187,6 +230,8 @@ public class TileDisplay : Control
 
 	protected override void OnPaint(PaintEventArgs e)
 	{
+		Canvas.Clear();
+
 		DrawTiles();
 
 		Graphics g = e.Graphics;
@@ -215,9 +260,19 @@ public class TileDisplay : Control
 
 	private void DrawTiles()
 	{
-		for (int row = 0; row < Rows; row++)
-			for (int col = 0; col < Cols; col++)
-				GetTile(col, row).Draw(Canvas, col, row);
+		int canvasX = 0;
+		int canvasY = 0;
+
+		for (int tileBufRow = TileBufferViewOffsetY; tileBufRow < TileBufferViewOffsetY + Canvas.Rows; tileBufRow++)
+		{
+			for (int tileBufCol = TileBufferViewOffsetX; tileBufCol < TileBufferViewOffsetX + Canvas.Cols; tileBufCol++)
+			{
+				GetTile(tileBufCol, tileBufRow)?.Draw(Canvas, canvasX, canvasY);
+				canvasX++;
+			}
+			canvasX = 0;
+			canvasY++;
+		}
 	}
 
 	private void PaintCanvas(Graphics g)
@@ -250,10 +305,10 @@ public class TileDisplay : Control
 			string text = tuple.Item1;
 			Point cellPos = tuple.Item2;
 
-			int x = cellPos.X * Zoom * CellWidth;
-			int y = cellPos.Y * Zoom * CellHeight;
+			int x = (cellPos.X - TileBufferViewOffsetX) * Zoom * CellWidth;
+			int y = (cellPos.Y - TileBufferViewOffsetY) * Zoom * CellHeight;
 
-			using Font font = new("Arial", 8);
+			using Font font = new("Consolas", 8);
 			using Brush brush = new SolidBrush(Color.Black);
 			g.DrawString(text, font, brush, x, y);
 		}

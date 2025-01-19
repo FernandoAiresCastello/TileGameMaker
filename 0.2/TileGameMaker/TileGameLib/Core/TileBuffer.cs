@@ -43,8 +43,17 @@ public class TileBuffer
 				Tiles[col, row] = new();
 	}
 
+	//===============
+	//	Set
+	//===============
+
 	public void Set(Tile tile, Point cellPos) => Set(tile, cellPos.X, cellPos.Y);
-	public void Set(Tile tile, int col, int row) => Tiles[col, row] = tile;
+	
+	public void Set(Tile tile, int col, int row)
+	{
+		if (col >= 0 && row >= 0 && col < Cols && row < Rows)
+			Tiles[col, row] = tile;
+	}
 
 	public void Set(Tile tile, int cellIndex)
 	{
@@ -54,8 +63,39 @@ public class TileBuffer
 		Set(tile, col, row);
 	}
 
+	//===============
+	//	Delete
+	//===============
+
+	public void Delete(Point cellPos) => Delete(cellPos.X, cellPos.Y);
+
+	public void Delete(int col, int row)
+	{
+		if (col >= 0 && row >= 0 && col < Cols && row < Rows)
+			Tiles[col, row] = new();
+	}
+
+	public void Delete(int cellIndex)
+	{
+		int col = cellIndex % Cols;
+		int row = cellIndex / Cols;
+
+		Delete(col, row);
+	}
+
+	//===============
+	//	Get
+	//===============
+
 	public Tile At(Point cellPos) => At(cellPos.X, cellPos.Y);
-	public Tile At(int col, int row) => Tiles[col, row];
+
+	public Tile At(int col, int row)
+	{
+		if (col >= 0 && row >= 0 && col < Cols && row < Rows)
+			return Tiles[col, row];
+
+		return null;
+	}
 
 	public Tile At(int cellIndex)
 	{

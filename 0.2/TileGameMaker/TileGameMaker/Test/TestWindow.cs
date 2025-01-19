@@ -8,26 +8,48 @@ namespace TileGameMaker.Test;
 public partial class TestWindow : Form
 {
 	private readonly TileDisplay DrawingDisplay;
-	private Color BackgroundColor { get; set; } = Color.White;
+	private readonly ColorPaletteWindow PaletteWindow;
+
 	private Color LeftDrawingColor { get; set; } = Color.Black;
 	private Color RightDrawingColor { get; set; } = Color.White;
 
 	public TestWindow()
 	{
 		InitializeComponent();
+		KeyPreview = true;
+		KeyDown += TestWindow_KeyDown;
 
-		DrawingDisplay = new TileDisplay(
-			new Size(32, 24), new Size(8, 8), 2, BackgroundColor)
-		{
-			Parent = DrawingPanel
-		};
+		Size palWndBufSize = new(16, 16);
+		PaletteWindow = new(palWndBufSize, palWndBufSize, new(8, 8), Color.White, new Point(0, 0), 2);
+		PaletteWindow.LoadColors("test/palettes/atari_800.pal");
 
+		Size bufSize = new(32, 24);
+		DrawingDisplay = new TileDisplay(bufSize, bufSize, new Size(8, 8), Color.White, new Point(0, 0), 2);
 		DrawingDisplay.MouseClick += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseDown += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseMove += DrawingDisplay_MouseClick;
+		DrawingDisplay.Parent = DrawingPanel;
 
-		DrawingDisplay.SetTextOverlay("@", 1, 1);
+		DrawingDisplay.SetTextOverlay("Text", 2, 3);
 		DrawingDisplay.SetTextOverlay("#", 2, 1);
+
+		DrawingDisplay.SelectCellRegion(10, 10, 15, 15);
+	}
+
+	private void TestWindow_KeyDown(object? sender, KeyEventArgs e)
+	{
+		Keys key = e.KeyCode;
+
+		if (key == Keys.D)
+			DrawingDisplay.ScrollView(1, 0);
+		else if (key == Keys.A)
+			DrawingDisplay.ScrollView(-1, 0);
+		else if (key == Keys.W)
+			DrawingDisplay.ScrollView(0, -1);
+		else if (key == Keys.S)
+			DrawingDisplay.ScrollView(0, 1);
+		else if (key == Keys.Home)
+			DrawingDisplay.SetView(0, 0);
 	}
 
 	private void DrawingDisplay_MouseClick(object? sender, MouseEventArgs e)
@@ -37,7 +59,7 @@ public partial class TestWindow : Form
 		else if (e.Button == MouseButtons.Right)
 			SetColorTile(e.Location, RightDrawingColor);
 		else if (e.Button == MouseButtons.Middle)
-			SetColorTile(e.Location, BackgroundColor);
+			DeleteTile(e.Location);
 	}
 
 	private void SetColorTile(Point mousePos, Color color)
@@ -46,46 +68,49 @@ public partial class TestWindow : Form
 		if (cellPos.IsOutside(0, 0, DrawingDisplay.Cols, DrawingDisplay.Rows))
 			return;
 
-		DrawingDisplay.SetTile(new SolidColorTile(color), cellPos.X, cellPos.Y);
+		DrawingDisplay.SetTile(new SolidColorTile(color), cellPos);
 		DrawingDisplay.Refresh();
+	}
+
+	private void DeleteTile(Point mousePos)
+	{
+		Point cellPos = DrawingDisplay.GetCellPosFromMousePos(mousePos);
+		if (cellPos.IsOutside(0, 0, DrawingDisplay.Cols, DrawingDisplay.Rows))
+			return;
+
+		DrawingDisplay.DeleteTile(cellPos);
+		DrawingDisplay.Refresh();
+	}
+
+	private void BtnCanvasColor_Click(object sender, EventArgs e)
+	{
+		PaletteWindow.Title = "Select canvas color";
+		PaletteWindow.OnColorClicked = CanvasColorSelected;
+		PaletteWindow.ShowDialog(this);
 	}
 
 	private void BtnColorPalette_Click(object sender, EventArgs e)
 	{
-		int tileSize = 8;
-		int cols = 16;
-		int rows = 256 / cols;
-		int zoom = 2;
-
-		ColorPaletteWindow wnd = new(cols, rows, tileSize, tileSize, zoom, Color.White)
-		{
-			DefaultTitle = "Color Palette",
-			OnColorClicked = ColorClicked
-		};
-
-		wnd.LoadColors("test/palettes/atari_800.pal");
-		wnd.ShowDialog(this);
+		PaletteWindow.Title = "Select paint color";
+		PaletteWindow.OnColorClicked = PaintColorSelected;
+		PaletteWindow.ShowDialog(this);
 	}
 
-	private void ColorClicked(Form wnd, Color? color, MouseButtons button)
+	private void PaintColorSelected(Form wnd, Color color, MouseButtons button)
 	{
-		if (color.HasValue && button == MouseButtons.Left)
-		{
-			LeftDrawingColor = color.Value;
-			wnd.Close();
-		}
-		else if (color.HasValue && button == MouseButtons.Right)
-		{
-			RightDrawingColor = color.Value;
-			wnd.Close();
-		}
-		else if (button == MouseButtons.Middle)
-		{
-			if (color.HasValue)
-				MessageBox.Show($"This is RGB #{color.Value.ToHex()}");
-			else
-				MessageBox.Show($"This palette index is empty!");
-		}
+		if (button == MouseButtons.Left)
+			LeftDrawingColor = color;
+		else if (button == MouseButtons.Right)
+			RightDrawingColor = color;
+
+		wnd.Close();
+	}
+
+	private void CanvasColorSelected(Form wnd, Color color, MouseButtons button)
+	{
+		DrawingDisplay.BackColor = color;
+		DrawingDisplay.Refresh();
+		wnd.Close();
 	}
 
 	private void BtnToggleGrid_Click(object sender, EventArgs e)
@@ -96,7 +121,7 @@ public partial class TestWindow : Form
 
 	private void BtnClear_Click(object sender, EventArgs e)
 	{
-		DrawingDisplay.Fill(new SolidColorTile(BackgroundColor));
+		DrawingDisplay.Clear();
 		DrawingDisplay.Refresh();
 	}
 
@@ -104,5 +129,30 @@ public partial class TestWindow : Form
 	{
 		DrawingDisplay.Fill(new SolidColorTile(LeftDrawingColor));
 		DrawingDisplay.Refresh();
+	}
+
+	private void BtnNorth_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.ScrollView(0, -1);
+	}
+
+	private void BtnSouth_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.ScrollView(0, 1);
+	}
+
+	private void BtnWest_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.ScrollView(-1, 0);
+	}
+
+	private void BtnEast_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.ScrollView(1, 0);
+	}
+
+	private void BtnOrigin_Click(object sender, EventArgs e)
+	{
+		DrawingDisplay.SetView(0, 0);
 	}
 }

@@ -14,19 +14,19 @@ public partial class ColorPaletteWindow : Form
 	///		along with a reference to this window, are passed as arguments.
 	/// </summary>
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public Action<Form, Color?, MouseButtons> OnColorClicked { get; set; }
+	public Action<Form, Color, MouseButtons> OnColorClicked { get; set; }
 
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public string DefaultTitle;
+	public string Title;
 
 	private readonly ColorPaletteDisplay PaletteDisplay;
 
-	public ColorPaletteWindow(int cols, int rows, int cellWidth, int cellHeight, int zoom, Color emptyColor)
+	public ColorPaletteWindow(Size bufSize, Size canvasGridSize, Size canvasCellSize, Color emptyColor, Point viewOffset, int zoomLevel)
 	{
 		InitializeComponent();
 
 		PaletteDisplay = new ColorPaletteDisplay(
-			new Size(cols, rows), new Size(cellWidth, cellHeight), zoom, emptyColor)
+			bufSize, canvasGridSize, canvasCellSize, emptyColor, viewOffset, zoomLevel)
 		{
 			Parent = RootPanel,
 			Dock = DockStyle.Fill
@@ -53,24 +53,23 @@ public partial class ColorPaletteWindow : Form
 		int cellIndex = PaletteDisplay.GetCellIndexFromMousePos(e.Location);
 		Text = $"Index: {cellIndex} (#{cellIndex:X2})";
 
-		Color? color = PaletteDisplay.GetColorAtMousePos(e.Location);
-		if (color != null)
-			Text += $" | RGB: #{color.Value.ToHex()}";
+		Color color = PaletteDisplay.GetColorAtMousePos(e.Location);
+		Text += $" | RGB: #{color.ToHex()}";
 	}
 
 	private void PalettePanel_MouseClick(object sender, MouseEventArgs e)
 	{
-		Color? color = PaletteDisplay.GetColorAtMousePos(e.Location);
+		Color color = PaletteDisplay.GetColorAtMousePos(e.Location);
 		OnColorClicked?.Invoke(this, color, e.Button);
 	}
 
 	private void PalettePanel_MouseLeave(object sender, EventArgs e)
 	{
-		Text = DefaultTitle;
+		Text = Title;
 	}
 
 	private void ColorPaletteWindow_Shown(object sender, EventArgs e)
 	{
-		Text = DefaultTitle;
+		Text = Title;
 	}
 }
