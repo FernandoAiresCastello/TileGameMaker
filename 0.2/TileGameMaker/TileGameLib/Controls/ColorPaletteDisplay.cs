@@ -14,8 +14,7 @@ namespace TileGameLib.Controls;
 /// <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
 
 public class ColorPaletteDisplay(
-	Size bufSize, Size canvasGridSize, Size cellSize,
-	Color emptyColor, Point viewOffset, int zoomLevel) :
+	Size bufSize, Size canvasGridSize, Size cellSize, Color emptyColor, Point viewOffset, int zoomLevel) :
 
 	TileDisplay(bufSize, canvasGridSize, cellSize, emptyColor, viewOffset, zoomLevel)
 {

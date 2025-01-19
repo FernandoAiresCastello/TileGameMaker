@@ -22,6 +22,15 @@ public class TileDisplay : Control
 	public int CellWidth => Canvas.CellWidth;
 	public int CellHeight => Canvas.CellHeight;
 
+	[Browsable(false)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public new DockStyle Dock
+	{
+		get => base.Dock;
+		set => throw new InvalidOperationException("TileDisplay cannot be docked.");
+	}
+
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public new Color BackColor
 	{

@@ -20,8 +20,8 @@ public partial class TestWindow : Form
 		KeyDown += TestWindow_KeyDown;
 
 		Size palWndBufSize = new(16, 16);
-		PaletteWindow = new(palWndBufSize, palWndBufSize, new(8, 8), Color.White, new Point(0, 0), 2);
-		PaletteWindow.LoadColors("test/palettes/atari_800.pal");
+		PaletteWindow = new ColorPaletteWindow(palWndBufSize, palWndBufSize, new(8, 8), Color.White, new Point(0, 0), 2);
+		PaletteWindow.LoadColors("test/palettes/default_sort_hue.pal");
 
 		Size bufSize = new(32, 24);
 		DrawingDisplay = new TileDisplay(bufSize, bufSize, new Size(8, 8), Color.White, new Point(0, 0), 2);
@@ -99,18 +99,29 @@ public partial class TestWindow : Form
 	private void PaintColorSelected(Form wnd, Color color, MouseButtons button)
 	{
 		if (button == MouseButtons.Left)
+		{
 			LeftDrawingColor = color;
+			wnd.Close();
+		}
 		else if (button == MouseButtons.Right)
+		{
 			RightDrawingColor = color;
+			wnd.Close();
+		}
+		else if (button == MouseButtons.Middle)
+		{
 
-		wnd.Close();
+		}
 	}
 
 	private void CanvasColorSelected(Form wnd, Color color, MouseButtons button)
 	{
-		DrawingDisplay.BackColor = color;
-		DrawingDisplay.Refresh();
-		wnd.Close();
+		if (button == MouseButtons.Left)
+		{
+			DrawingDisplay.BackColor = color;
+			DrawingDisplay.Refresh();
+			wnd.Close();
+		}
 	}
 
 	private void BtnToggleGrid_Click(object sender, EventArgs e)

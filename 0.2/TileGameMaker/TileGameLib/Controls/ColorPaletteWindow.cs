@@ -25,22 +25,18 @@ public partial class ColorPaletteWindow : Form
 	{
 		InitializeComponent();
 
-		PaletteDisplay = new ColorPaletteDisplay(
-			bufSize, canvasGridSize, canvasCellSize, emptyColor, viewOffset, zoomLevel)
-		{
-			Parent = RootPanel,
-			Dock = DockStyle.Fill
-		};
+		Size = new Size(286, 309);
+		Padding = new Padding(5);
 
+		RootPanel.Dock = DockStyle.Fill;
+		RootPanel.BorderStyle = BorderStyle.Fixed3D;
+
+		PaletteDisplay = new ColorPaletteDisplay(bufSize, canvasGridSize, canvasCellSize, emptyColor, viewOffset, zoomLevel);
 		PaletteDisplay.MouseMove += PalettePanel_MouseMove;
 		PaletteDisplay.MouseClick += PalettePanel_MouseClick;
 		PaletteDisplay.MouseLeave += PalettePanel_MouseLeave;
-
-		Padding = new Padding(5);
-		RootPanel.Dock = DockStyle.Fill;
-		RootPanel.BorderStyle = BorderStyle.Fixed3D;
-		Size = new Size(286, 309);
-
+		PaletteDisplay.Parent = RootPanel;
+		
 		Shown += ColorPaletteWindow_Shown;
 	}
 
