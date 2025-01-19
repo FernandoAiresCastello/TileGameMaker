@@ -1,6 +1,6 @@
 ﻿using TileGameLib.ExtensionMethods;
 
-namespace TileGameLib.Util;
+namespace TileGameLib.Core;
 
 public class ColorPalette
 {

@@ -1,7 +1,7 @@
 ﻿using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace TileGameLib.GraphicsBase;
+namespace TileGameLib.Core;
 
 /// <summary>
 ///		An off-screen graphical object designed to quickly access and modify individual pixels.

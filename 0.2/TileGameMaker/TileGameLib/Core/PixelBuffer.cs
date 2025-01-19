@@ -1,6 +1,6 @@
 ﻿using System.Drawing.Imaging;
 
-namespace TileGameLib.GraphicsBase;
+namespace TileGameLib.Core;
 
 /// <summary>
 ///		An off-screen graphical object that stores a bitmap, and can be used to set or get individual pixels.

@@ -1,6 +1,6 @@
 ﻿using TileGameLib.Controls;
+using TileGameLib.Core;
 using TileGameLib.ExtensionMethods;
-using TileGameLib.GraphicsBase;
 
 namespace TileGameMaker.Test;
 
@@ -15,7 +15,8 @@ public partial class TestWindow : Form
 	{
 		InitializeComponent();
 
-		DrawingDisplay = new TileDisplay(32, 24, 8, 8, BackgroundColor)
+		DrawingDisplay = new TileDisplay(
+			new Size(32, 24), new Size(8, 8), 3, BackgroundColor)
 		{
 			Parent = DrawingPanel,
 			Zoom = 2

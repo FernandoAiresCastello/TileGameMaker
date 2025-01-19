@@ -1,4 +1,4 @@
-﻿namespace TileGameLib.GraphicsBase;
+﻿namespace TileGameLib.Core;
 
 /// <summary>
 ///		Represents an image that can be manipulated pixel by pixel 

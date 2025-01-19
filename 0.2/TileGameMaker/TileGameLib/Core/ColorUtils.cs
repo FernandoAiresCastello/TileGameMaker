@@ -1,4 +1,4 @@
-﻿namespace TileGameLib.Util;
+﻿namespace TileGameLib.Core;
 
 public static class ColorUtils
 {

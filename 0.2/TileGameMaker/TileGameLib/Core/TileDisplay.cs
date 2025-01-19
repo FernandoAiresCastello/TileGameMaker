@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
 
-namespace TileGameLib.GraphicsBase;
+namespace TileGameLib.Core;
 
 /// <summary>
 ///		UI control for managing and displaying a <see cref="TileCanvas"/>.
 ///		Can optionally display a grid, cell selection, and cell text on top of the canvas.
 /// </summary>
-public partial class TileDisplay : Control
+public class TileDisplay : Control
 {
 	//================================
 	//	Public data
 	//================================
 
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public TileCanvas Canvas { get; set; }
+	public TileCanvas Canvas { get; private set; }
 
 	public int Cols => Canvas.Cols;
 	public int Rows => Canvas.Rows;
@@ -62,8 +62,10 @@ public partial class TileDisplay : Control
 	protected int zoom = 1;
 	protected const int MinZoom = 1;
 	protected const int MaxZoom = 10;
+
 	protected Bitmap grid = new(1, 1);
 	protected Color gridColor = Color.FromArgb(80, 128, 128, 128);
+
 	protected readonly HashSet<Point> SelectedCells = [];
 	protected readonly List<Tuple<Point, string>> CellText = [];
 
@@ -71,16 +73,17 @@ public partial class TileDisplay : Control
 	//	Constructor
 	//================================
 
-	public TileDisplay(int cols, int rows, int cellWidth, int cellHeight, Color color)
+	public TileDisplay(Size gridSize, Size cellSize, int zoomLevel, Color color)
 	{
-		InitializeComponent();
-
 		ParentChanged += TileDisplay_ParentChanged;
 
 		Margin = new Padding(0);
 		Padding = new Padding(0);
 		DoubleBuffered = true;
-		Canvas = new TileCanvas(cols, rows, cellWidth, cellHeight, color);
+		Canvas = new TileCanvas(
+			gridSize.Width, gridSize.Height, cellSize.Width, cellSize.Height, color);
+
+		zoom = zoomLevel;
 
 		UpdateSize();
 	}
