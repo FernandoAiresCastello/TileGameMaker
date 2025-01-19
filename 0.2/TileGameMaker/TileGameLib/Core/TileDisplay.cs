@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using TileGameLib.Core.TileTypes;
 
 namespace TileGameLib.Core;
@@ -100,6 +101,7 @@ public class TileDisplay : Control
 		Margin = new Padding(0);
 		Padding = new Padding(0);
 		DoubleBuffered = true;
+		base.Dock = DockStyle.None;
 
 		Tiles = new TileBuffer(tileBufferSize);
 		Canvas = new TileCanvas(canvasGridSize, canvasCellSize, canvasColor);
@@ -323,6 +325,12 @@ public class TileDisplay : Control
 		}
 	}
 
+	//================================
+	//	Public utility functions
+	//================================
+
+	public void SaveImage(string filename, ImageFormat format) => 
+		Canvas.SaveImage(filename, format);
 
 	//================================
 	//	Internal utility functions

@@ -9,8 +9,8 @@
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
             <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
-            <param name="canvasGridSize">Size of the grid (number of columns and rows)</param>
-            <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
+            <param name="canvasSize">Size of the canvas (number of columns and rows)</param>
+            <param name="cellSize">Size of each canvas grid cell (width and height in pixels)</param>
             <param name="zoomLevel">Magnification factor</param>
             <param name="emptyColor">Default color for empty cells</param>
             <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
@@ -20,8 +20,8 @@
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
             <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
-            <param name="canvasGridSize">Size of the grid (number of columns and rows)</param>
-            <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
+            <param name="canvasSize">Size of the canvas (number of columns and rows)</param>
+            <param name="cellSize">Size of each canvas grid cell (width and height in pixels)</param>
             <param name="zoomLevel">Magnification factor</param>
             <param name="emptyColor">Default color for empty cells</param>
             <param name="viewOffset">Tile buffer offset from which it will be drawn</param>

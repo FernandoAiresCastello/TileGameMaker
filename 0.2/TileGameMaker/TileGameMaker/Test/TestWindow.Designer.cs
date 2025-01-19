@@ -40,6 +40,7 @@
 			TxtDebug = new TextBox();
 			BtnOrigin = new Button();
 			BtnCanvasColor = new Button();
+			BtnSaveImage = new Button();
 			SuspendLayout();
 			// 
 			// BtnColorPalette
@@ -96,7 +97,7 @@
 			// 
 			// BtnNorth
 			// 
-			BtnNorth.Location = new Point(49, 187);
+			BtnNorth.Location = new Point(49, 331);
 			BtnNorth.Name = "BtnNorth";
 			BtnNorth.Size = new Size(33, 23);
 			BtnNorth.TabIndex = 5;
@@ -107,7 +108,7 @@
 			// 
 			// BtnSouth
 			// 
-			BtnSouth.Location = new Point(49, 233);
+			BtnSouth.Location = new Point(49, 377);
 			BtnSouth.Name = "BtnSouth";
 			BtnSouth.Size = new Size(33, 23);
 			BtnSouth.TabIndex = 6;
@@ -118,7 +119,7 @@
 			// 
 			// BtnEast
 			// 
-			BtnEast.Location = new Point(82, 210);
+			BtnEast.Location = new Point(82, 354);
 			BtnEast.Name = "BtnEast";
 			BtnEast.Size = new Size(33, 23);
 			BtnEast.TabIndex = 7;
@@ -129,7 +130,7 @@
 			// 
 			// BtnWest
 			// 
-			BtnWest.Location = new Point(16, 210);
+			BtnWest.Location = new Point(16, 354);
 			BtnWest.Name = "BtnWest";
 			BtnWest.Size = new Size(33, 23);
 			BtnWest.TabIndex = 8;
@@ -152,7 +153,7 @@
 			// 
 			// BtnOrigin
 			// 
-			BtnOrigin.Location = new Point(49, 210);
+			BtnOrigin.Location = new Point(49, 354);
 			BtnOrigin.Name = "BtnOrigin";
 			BtnOrigin.Size = new Size(33, 23);
 			BtnOrigin.TabIndex = 10;
@@ -172,11 +173,23 @@
 			BtnCanvasColor.UseVisualStyleBackColor = true;
 			BtnCanvasColor.Click += BtnCanvasColor_Click;
 			// 
+			// BtnSaveImage
+			// 
+			BtnSaveImage.Location = new Point(11, 170);
+			BtnSaveImage.Name = "BtnSaveImage";
+			BtnSaveImage.Size = new Size(104, 23);
+			BtnSaveImage.TabIndex = 12;
+			BtnSaveImage.TabStop = false;
+			BtnSaveImage.Text = "Save image";
+			BtnSaveImage.UseVisualStyleBackColor = true;
+			BtnSaveImage.Click += BtnSaveImage_Click;
+			// 
 			// TestWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(659, 488);
+			Controls.Add(BtnSaveImage);
 			Controls.Add(BtnCanvasColor);
 			Controls.Add(BtnOrigin);
 			Controls.Add(TxtDebug);
@@ -212,5 +225,6 @@
 		private TextBox TxtDebug;
 		private Button BtnOrigin;
 		private Button BtnCanvasColor;
+		private Button BtnSaveImage;
 	}
 }

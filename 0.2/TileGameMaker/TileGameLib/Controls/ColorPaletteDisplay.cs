@@ -7,18 +7,22 @@ namespace TileGameLib.Controls;
 ///		A panel that displays a grid of colors from a <see cref="ColorPalette"/>.
 /// </summary>
 /// <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
-/// <param name="canvasGridSize">Size of the grid (number of columns and rows)</param>
-/// <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
+/// <param name="canvasSize">Size of the canvas (number of columns and rows)</param>
+/// <param name="cellSize">Size of each canvas grid cell (width and height in pixels)</param>
 /// <param name="zoomLevel">Magnification factor</param>
 /// <param name="emptyColor">Default color for empty cells</param>
 /// <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
 
 public class ColorPaletteDisplay(
-	Size bufSize, Size canvasGridSize, Size cellSize, Color emptyColor, Point viewOffset, int zoomLevel) :
+	Size bufSize, Size canvasSize, Size cellSize, Color emptyColor, Point viewOffset, int zoomLevel) :
 
-	TileDisplay(bufSize, canvasGridSize, cellSize, emptyColor, viewOffset, zoomLevel)
+	TileDisplay(bufSize, canvasSize, cellSize, emptyColor, viewOffset, zoomLevel)
 {
 	private ColorPalette Colors { get; set; } = new();
+
+	public Color GetColorAtCellIndex(int cellIndex) => GetTile<SolidColorTile>(cellIndex).Color;
+	public Color GetColorAtCellPos(Point cellPos) => GetTile<SolidColorTile>(cellPos).Color;
+	public Color GetColorAtMousePos(Point mousePos) => GetColorAtCellIndex(GetCellIndexFromMousePos(mousePos));
 
 	public void SetColors(List<Color> colors)
 	{
@@ -37,15 +41,6 @@ public class ColorPaletteDisplay(
 		Colors.Load(path);
 		UpdateTiles();
 	}
-
-	public Color GetColorAtCellIndex(int cellIndex) => 
-		GetTile<SolidColorTile>(cellIndex).Color;
-
-	public Color GetColorAtCellPos(Point cellPos) =>
-		GetTile<SolidColorTile>(cellPos).Color;
-
-	public Color GetColorAtMousePos(Point mousePos) =>
-		GetColorAtCellIndex(GetCellIndexFromMousePos(mousePos));
 
 	private void UpdateTiles()
 	{

@@ -1,4 +1,5 @@
-﻿using TileGameLib.Controls;
+﻿using System.Drawing.Imaging;
+using TileGameLib.Controls;
 using TileGameLib.Core;
 using TileGameLib.Core.TileTypes;
 using TileGameLib.ExtensionMethods;
@@ -29,11 +30,6 @@ public partial class TestWindow : Form
 		DrawingDisplay.MouseDown += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseMove += DrawingDisplay_MouseClick;
 		DrawingDisplay.Parent = DrawingPanel;
-
-		DrawingDisplay.SetTextOverlay("Text", 2, 3);
-		DrawingDisplay.SetTextOverlay("#", 2, 1);
-
-		DrawingDisplay.SelectCellRegion(10, 10, 15, 15);
 	}
 
 	private void TestWindow_KeyDown(object? sender, KeyEventArgs e)
@@ -165,5 +161,14 @@ public partial class TestWindow : Form
 	private void BtnOrigin_Click(object sender, EventArgs e)
 	{
 		DrawingDisplay.SetView(0, 0);
+	}
+
+	private void BtnSaveImage_Click(object sender, EventArgs e)
+	{
+		SaveFileDialog dialog = new();
+		if (dialog.ShowDialog(this) != DialogResult.OK)
+			return;
+
+		DrawingDisplay.SaveImage(dialog.FileName, ImageFormat.Png);
 	}
 }

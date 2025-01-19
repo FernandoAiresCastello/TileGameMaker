@@ -21,10 +21,8 @@ public class PixelBuffer
 		Clear(color);
 	}
 
-	public void SaveImage(string file, ImageFormat format)
-	{
+	public void SaveImage(string file, ImageFormat format) => 
 		Bitmap.Save(file, format);
-	}
 
 	public void Clear(Color color)
 	{

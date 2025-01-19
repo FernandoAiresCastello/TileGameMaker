@@ -1,4 +1,6 @@
-﻿namespace TileGameLib.Core;
+﻿using System.Drawing.Imaging;
+
+namespace TileGameLib.Core;
 
 /// <summary>
 ///		Represents an off-screen graphical object where tile-based images can be drawn on a grid.
@@ -68,4 +70,7 @@ public class TileCanvas(Size gridSize, Size cellSize, Color backColor)
 			bufX = initialX;
 		}
 	}
+
+	public void SaveImage(string filename, ImageFormat format) => 
+		Buffer.SaveImage(filename, format);
 }
