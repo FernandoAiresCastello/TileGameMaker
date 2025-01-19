@@ -4,17 +4,18 @@
 ///		Represents an off-screen graphical object where tile-based images can be drawn on a grid.
 ///		To actually show this object on screen, a <see cref="TileDisplay"/> control is required.
 /// </summary>
-public class TileCanvas(int cols, int rows, int cellWidth, int cellHeight, Color color)
+public class TileCanvas(Size gridSize, Size cellSize, Color color)
 {
-	public readonly int Cols = cols;
-	public readonly int Rows = rows;
-	public readonly int LastCol = cols - 1;
-	public readonly int LastRow = rows - 1;
-	public readonly int CellCount = cols * rows;
-	public readonly int CellWidth = cellWidth;
-	public readonly int CellHeight = cellHeight;
+	public readonly int Cols = gridSize.Width;
+	public readonly int Rows = gridSize.Height;
+	public readonly int LastCol = gridSize.Width - 1;
+	public readonly int LastRow = gridSize.Height - 1;
+	public readonly int CellCount = gridSize.Width * gridSize.Height;
+	public readonly int CellWidth = cellSize.Width;
+	public readonly int CellHeight = cellSize.Height;
 
-	public PixelBuffer Buffer { get; private set; } = new PixelBuffer(cols * cellWidth, rows * cellHeight, color);
+	public PixelBuffer Buffer { get; private set; } = 
+		new PixelBuffer(gridSize.Width * cellSize.Width, gridSize.Height * cellSize.Height, color);
 
 	public int Width => Buffer.Width;
 	public int Height => Buffer.Height;

@@ -7,6 +7,8 @@ public class ColorPalette
 	public List<Color> Colors { get; private set; } = [];
 
 	public int Count => Colors.Count;
+	
+	public void RemoveAll() => Colors.Clear();
 
 	public void Add(Color color) => Colors.Add(color);
 	public void Add(string hexColor)
@@ -21,7 +23,7 @@ public class ColorPalette
 		Add(ColorTranslator.FromHtml("#" + hex));
 	}
 
-	public void Set(int index, Color color) => Colors[index] = color;
+	public void Set(int index, Color color) =>Colors[index] = color;
 	public void Set(int index, string hexColor)
 	{
 		Set(index, ColorUtils.FromHex(hexColor).Value);
@@ -34,21 +36,12 @@ public class ColorPalette
 			Add(hexColor);
 	}
 
-	public Color? Get(int index)
+	public Color Get(int index)
 	{
-		if (index >= 0 && index < Colors.Count)
-			return Colors[index];
-
-		return null;
+		return Colors[index];
 	}
 
-	public string GetHex(int index)
-	{
-		if (index >= 0 && index < Colors.Count)
-			return Colors[index].ToHex();
-
-		return null;
-	}
+	public string GetHex(int index) => Get(index).ToHex();
 
 	public void Load(string path)
 	{
@@ -59,10 +52,5 @@ public class ColorPalette
 			if (!string.IsNullOrWhiteSpace(line))
 				Add(line);
 		}
-	}
-
-	public void RemoveAll()
-	{
-		Colors.Clear();
 	}
 }

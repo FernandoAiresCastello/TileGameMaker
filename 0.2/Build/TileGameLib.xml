@@ -8,7 +8,7 @@
             <summary>
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
-            <param name="gridSize">Size of the grid (number of columns and rows)</param>
+            <param name="bufSize">Size of the grid (number of columns and rows)</param>
             <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
             <param name="zoomLevel">Magnification factor</param>
             <param name="emptyColor">Default color for empty cells</param>
@@ -17,7 +17,7 @@
             <summary>
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
-            <param name="gridSize">Size of the grid (number of columns and rows)</param>
+            <param name="bufSize">Size of the grid (number of columns and rows)</param>
             <param name="cellSize">Size of each grid cell (width and height in pixels)</param>
             <param name="zoomLevel">Magnification factor</param>
             <param name="emptyColor">Default color for empty cells</param>
@@ -71,6 +71,12 @@
             	A container for tile objects.
             </summary>
         </member>
+        <member name="M:TileGameLib.Core.TileBuffer.#ctor(System.Drawing.Size)">
+            <summary>
+            	Constructs a new TileBuffer
+            </summary>
+            <param name="size">Number of tile columns and rows</param>
+        </member>
         <member name="M:TileGameLib.Core.TileBuffer.#ctor(System.Int32,System.Int32)">
             <summary>
             	Constructs a new TileBuffer
@@ -84,7 +90,7 @@
             	To actually show this object on screen, a <see cref="T:TileGameLib.Core.TileDisplay"/> control is required.
             </summary>
         </member>
-        <member name="M:TileGameLib.Core.TileCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color)">
+        <member name="M:TileGameLib.Core.TileCanvas.#ctor(System.Drawing.Size,System.Drawing.Size,System.Drawing.Color)">
             <summary>
             	Represents an off-screen graphical object where tile-based images can be drawn on a grid.
             	To actually show this object on screen, a <see cref="T:TileGameLib.Core.TileDisplay"/> control is required.
