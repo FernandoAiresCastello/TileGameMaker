@@ -24,6 +24,18 @@ public class ColorPaletteDisplay(
 	public Color GetColorAtCellPos(Point cellPos) => GetTile<SolidColorTile>(cellPos).Color;
 	public Color GetColorAtMousePos(Point mousePos) => GetColorAtCellIndex(GetCellIndexFromMousePos(mousePos));
 
+	public new void Update()
+	{
+		UpdateTiles();
+		Refresh();
+	}
+
+	public void SetColors(ColorPalette colors)
+	{
+		Colors = colors;
+		UpdateTiles();
+	}
+
 	public void SetColors(List<Color> colors)
 	{
 		Colors.SetColors(colors);

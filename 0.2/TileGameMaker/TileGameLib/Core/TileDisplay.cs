@@ -84,6 +84,7 @@ public class TileDisplay : Control
 	private Color gridColor = Color.FromArgb(80, 128, 128, 128);
 	private int TileBufferViewOffsetX = 0;
 	private int TileBufferViewOffsetY = 0;
+	private Font TextOverlayFont = new("Consolas", 9);
 
 	private readonly TileCanvas Canvas;
 	private readonly TileBuffer Tiles;
@@ -177,6 +178,7 @@ public class TileDisplay : Control
 	public void SelectCell(Point cellPos) => SelectedCells.Add(cellPos);
 
 	public void SelectAllCells() => SelectCellRegion(0, 0, LastCol, LastRow);
+	public void UnselectAllCells() => SelectedCells.Clear();
 
 	public void SelectCellRegion(int x1, int y1, int x2, int y2) => 
 		SelectCellRegion(new Point(x1, y1), new Point(x2, y2));
@@ -192,8 +194,21 @@ public class TileDisplay : Control
 	//	Text overlay
 	//================================
 
-	public void SetTextOverlay(string text, int x, int y) => TextOverlay.Add(new(text, new Point(x, y)));
-	public void SetTextOverlay(string text, Point cellPos) => TextOverlay.Add(new(text, cellPos));
+	public void SetTextOverlayFont(Font font) => TextOverlayFont = font;
+
+	public void SetTextOverlay(string text, int x, int y) => 
+		TextOverlay.Add(new(text, new Point(x, y)));
+
+	public void SetTextOverlay(string text, Point cellPos) => 
+		TextOverlay.Add(new(text, cellPos));
+
+	public bool HasTextOverlay(Point cellPos) => 
+		TextOverlay.Find(t => t.Item2 == cellPos) == default;
+
+	public void RemoveTextOverlay(Point cellPos) =>
+		TextOverlay.RemoveAll(t => t.Item2 == cellPos);
+
+	public void RemoveAllTextOverlay() => TextOverlay.Clear();
 
 	//================================
 	//	Viewport
@@ -319,9 +334,8 @@ public class TileDisplay : Control
 			int x = (cellPos.X - TileBufferViewOffsetX) * Zoom * CellWidth;
 			int y = (cellPos.Y - TileBufferViewOffsetY) * Zoom * CellHeight;
 
-			using Font font = new("Consolas", 8);
 			using Brush brush = new SolidBrush(Color.Black);
-			g.DrawString(text, font, brush, x, y);
+			g.DrawString(text, TextOverlayFont, brush, x, y);
 		}
 	}
 

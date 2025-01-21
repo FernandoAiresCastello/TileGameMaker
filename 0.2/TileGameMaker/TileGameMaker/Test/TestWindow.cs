@@ -3,10 +3,11 @@ using TileGameLib.Controls;
 using TileGameLib.Core;
 using TileGameLib.Core.TileTypes;
 using TileGameLib.ExtensionMethods;
+using TileGameMaker.Core;
 
 namespace TileGameMaker.Test;
 
-public partial class TestWindow : Form
+public partial class TestWindow : WindowBase
 {
 	private readonly TileDisplay DrawingDisplay;
 	private readonly ColorPaletteWindow PaletteWindow;
@@ -14,9 +15,10 @@ public partial class TestWindow : Form
 	private Color LeftDrawingColor { get; set; } = Color.Black;
 	private Color RightDrawingColor { get; set; } = Color.White;
 
-	public TestWindow()
+	public TestWindow(TileGameMakerApp app) : base(app)
 	{
 		InitializeComponent();
+
 		KeyPreview = true;
 		KeyDown += TestWindow_KeyDown;
 
@@ -32,7 +34,7 @@ public partial class TestWindow : Form
 		DrawingDisplay.Parent = DrawingPanel;
 	}
 
-	private void TestWindow_KeyDown(object? sender, KeyEventArgs e)
+	private void TestWindow_KeyDown(object sender, KeyEventArgs e)
 	{
 		Keys key = e.KeyCode;
 
@@ -48,7 +50,7 @@ public partial class TestWindow : Form
 			DrawingDisplay.SetView(0, 0);
 	}
 
-	private void DrawingDisplay_MouseClick(object? sender, MouseEventArgs e)
+	private void DrawingDisplay_MouseClick(object sender, MouseEventArgs e)
 	{
 		if (e.Button == MouseButtons.Left)
 			SetColorTile(e.Location, LeftDrawingColor);

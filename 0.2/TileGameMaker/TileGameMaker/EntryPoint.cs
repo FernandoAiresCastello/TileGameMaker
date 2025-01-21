@@ -1,4 +1,5 @@
-using TileGameMaker.Test;
+using TileGameMaker.Core;
+using TileGameMaker.StandaloneTools;
 
 namespace TileGameMaker;
 
@@ -8,6 +9,11 @@ internal static class EntryPoint
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        Application.Run(new TestWindow());
-    }
+
+        TileGameMakerApp app = new();
+        //TestWindow testWindow = new(app);
+        //Application.Run(testWindow);
+        ColorPaletteEditorWindow wnd = new(app);
+		Application.Run(wnd);
+	}
 }
