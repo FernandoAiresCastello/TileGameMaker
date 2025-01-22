@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Test
 {
-	partial class ImageTileTestWindow
+	partial class AnimatedTileTestWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -40,6 +40,7 @@
 			BtnOrigin = new Button();
 			BtnCanvasColor = new Button();
 			BtnSaveImage = new Button();
+			BtnToggleAnim = new Button();
 			SuspendLayout();
 			// 
 			// DrawingPanel
@@ -90,7 +91,7 @@
 			BtnNorth.Size = new Size(33, 23);
 			BtnNorth.TabIndex = 5;
 			BtnNorth.TabStop = false;
-			BtnNorth.Text = "N";
+			BtnNorth.Text = "W";
 			BtnNorth.UseVisualStyleBackColor = true;
 			BtnNorth.Click += BtnNorth_Click;
 			// 
@@ -101,7 +102,7 @@
 			BtnSouth.Size = new Size(33, 23);
 			BtnSouth.TabIndex = 6;
 			BtnSouth.TabStop = false;
-			BtnSouth.Text = "S";
+			BtnSouth.Text = "D";
 			BtnSouth.UseVisualStyleBackColor = true;
 			BtnSouth.Click += BtnSouth_Click;
 			// 
@@ -112,7 +113,7 @@
 			BtnEast.Size = new Size(33, 23);
 			BtnEast.TabIndex = 7;
 			BtnEast.TabStop = false;
-			BtnEast.Text = "E";
+			BtnEast.Text = "S";
 			BtnEast.UseVisualStyleBackColor = true;
 			BtnEast.Click += BtnEast_Click;
 			// 
@@ -123,7 +124,7 @@
 			BtnWest.Size = new Size(33, 23);
 			BtnWest.TabIndex = 8;
 			BtnWest.TabStop = false;
-			BtnWest.Text = "W";
+			BtnWest.Text = "A";
 			BtnWest.UseVisualStyleBackColor = true;
 			BtnWest.Click += BtnWest_Click;
 			// 
@@ -172,11 +173,23 @@
 			BtnSaveImage.UseVisualStyleBackColor = true;
 			BtnSaveImage.Click += BtnSaveImage_Click;
 			// 
-			// ImageTileTestWindow
+			// BtnToggleAnim
+			// 
+			BtnToggleAnim.Location = new Point(12, 227);
+			BtnToggleAnim.Name = "BtnToggleAnim";
+			BtnToggleAnim.Size = new Size(104, 40);
+			BtnToggleAnim.TabIndex = 13;
+			BtnToggleAnim.TabStop = false;
+			BtnToggleAnim.Text = "Animation \r\non / off";
+			BtnToggleAnim.UseVisualStyleBackColor = true;
+			BtnToggleAnim.Click += BtnToggleAnim_Click;
+			// 
+			// AnimatedTileTestWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(659, 488);
+			Controls.Add(BtnToggleAnim);
 			Controls.Add(BtnSaveImage);
 			Controls.Add(BtnCanvasColor);
 			Controls.Add(BtnOrigin);
@@ -191,8 +204,8 @@
 			Controls.Add(DrawingPanel);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MaximizeBox = false;
-			Name = "ImageTileTestWindow";
-			Text = "TileGameMaker - Test Window";
+			Name = "AnimatedTileTestWindow";
+			Text = "Test Window - Animated Image Tiles";
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -210,5 +223,6 @@
 		private Button BtnOrigin;
 		private Button BtnCanvasColor;
 		private Button BtnSaveImage;
+		private Button BtnToggleAnim;
 	}
 }

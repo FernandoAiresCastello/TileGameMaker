@@ -38,9 +38,9 @@
 			BtnEast = new Button();
 			BtnWest = new Button();
 			TxtDebug = new TextBox();
-			BtnOrigin = new Button();
 			BtnCanvasColor = new Button();
 			BtnSaveImage = new Button();
+			BtnOrigin = new Button();
 			SuspendLayout();
 			// 
 			// BtnColorPalette
@@ -102,7 +102,7 @@
 			BtnNorth.Size = new Size(33, 23);
 			BtnNorth.TabIndex = 5;
 			BtnNorth.TabStop = false;
-			BtnNorth.Text = "N";
+			BtnNorth.Text = "W";
 			BtnNorth.UseVisualStyleBackColor = true;
 			BtnNorth.Click += BtnNorth_Click;
 			// 
@@ -113,7 +113,7 @@
 			BtnSouth.Size = new Size(33, 23);
 			BtnSouth.TabIndex = 6;
 			BtnSouth.TabStop = false;
-			BtnSouth.Text = "S";
+			BtnSouth.Text = "D";
 			BtnSouth.UseVisualStyleBackColor = true;
 			BtnSouth.Click += BtnSouth_Click;
 			// 
@@ -124,7 +124,7 @@
 			BtnEast.Size = new Size(33, 23);
 			BtnEast.TabIndex = 7;
 			BtnEast.TabStop = false;
-			BtnEast.Text = "E";
+			BtnEast.Text = "S";
 			BtnEast.UseVisualStyleBackColor = true;
 			BtnEast.Click += BtnEast_Click;
 			// 
@@ -135,7 +135,7 @@
 			BtnWest.Size = new Size(33, 23);
 			BtnWest.TabIndex = 8;
 			BtnWest.TabStop = false;
-			BtnWest.Text = "W";
+			BtnWest.Text = "A";
 			BtnWest.UseVisualStyleBackColor = true;
 			BtnWest.Click += BtnWest_Click;
 			// 
@@ -150,17 +150,6 @@
 			TxtDebug.Size = new Size(638, 65);
 			TxtDebug.TabIndex = 9;
 			TxtDebug.TabStop = false;
-			// 
-			// BtnOrigin
-			// 
-			BtnOrigin.Location = new Point(49, 354);
-			BtnOrigin.Name = "BtnOrigin";
-			BtnOrigin.Size = new Size(33, 23);
-			BtnOrigin.TabIndex = 10;
-			BtnOrigin.TabStop = false;
-			BtnOrigin.Text = "O";
-			BtnOrigin.UseVisualStyleBackColor = true;
-			BtnOrigin.Click += BtnOrigin_Click;
 			// 
 			// BtnCanvasColor
 			// 
@@ -184,7 +173,18 @@
 			BtnSaveImage.UseVisualStyleBackColor = true;
 			BtnSaveImage.Click += BtnSaveImage_Click;
 			// 
-			// TestWindow
+			// BtnOrigin
+			// 
+			BtnOrigin.Location = new Point(49, 354);
+			BtnOrigin.Name = "BtnOrigin";
+			BtnOrigin.Size = new Size(33, 23);
+			BtnOrigin.TabIndex = 10;
+			BtnOrigin.TabStop = false;
+			BtnOrigin.Text = "O";
+			BtnOrigin.UseVisualStyleBackColor = true;
+			BtnOrigin.Click += BtnOrigin_Click;
+			// 
+			// SolidColorTileTestWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
@@ -204,9 +204,8 @@
 			Controls.Add(BtnColorPalette);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MaximizeBox = false;
-			Name = "TestWindow";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "TileGameMaker - Test Window";
+			Name = "SolidColorTileTestWindow";
+			Text = "Test Window - Solid Color Tiles";
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -223,8 +222,8 @@
 		private Button BtnEast;
 		private Button BtnWest;
 		private TextBox TxtDebug;
-		private Button BtnOrigin;
 		private Button BtnCanvasColor;
 		private Button BtnSaveImage;
+		private Button BtnOrigin;
 	}
 }

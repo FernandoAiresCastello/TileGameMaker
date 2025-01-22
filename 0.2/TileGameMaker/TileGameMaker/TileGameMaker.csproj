@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Test\ImageTileTestWindow.cs">
+    <Compile Update="Test\AnimatedTileTestWindow.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

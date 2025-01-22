@@ -1,6 +1,6 @@
 ﻿namespace TileGameLib.Core.TileTypes;
 
-public class Tile()
+public class Tile
 {
 	public Dataset Data { get; set; } = new();
 

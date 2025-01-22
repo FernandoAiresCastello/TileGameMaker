@@ -127,11 +127,11 @@ public class TileDisplay : Control
 	public void DeleteTile(int col, int row) => Tiles.Delete(col, row);
 	public void DeleteTile(Point cellPos) => Tiles.Delete(cellPos);
 
-	public void Fill(Tile tile)
+	public void Fill(Func<Tile> tileGenerator)
 	{
 		for (int row = 0; row < Tiles.Rows; row++)
 			for (int col = 0; col < Tiles.Cols; col++)
-				SetTile(tile, col, row);
+				SetTile(tileGenerator(), col, row);
 	}
 
 	public void Clear()

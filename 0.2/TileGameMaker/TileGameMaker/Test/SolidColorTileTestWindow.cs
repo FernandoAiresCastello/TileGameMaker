@@ -136,7 +136,7 @@ public partial class SolidColorTileTestWindow : WindowBase
 
 	private void BtnFill_Click(object sender, EventArgs e)
 	{
-		DrawingDisplay.Fill(new SolidColorTile(LeftDrawingColor));
+		DrawingDisplay.Fill(() => new SolidColorTile(LeftDrawingColor));
 		DrawingDisplay.Refresh();
 	}
 

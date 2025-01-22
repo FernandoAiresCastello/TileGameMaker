@@ -11,8 +11,10 @@ internal static class EntryPoint
         ApplicationConfiguration.Initialize();
 
         TileGameMakerApp app = new();
-        ImageTileTestWindow testWindow = new(app);
+
+        AnimatedTileTestWindow testWindow = new(app);
         Application.Run(testWindow);
+
         //ColorPaletteWindow wnd = new(app);
 		//Application.Run(wnd);
 	}

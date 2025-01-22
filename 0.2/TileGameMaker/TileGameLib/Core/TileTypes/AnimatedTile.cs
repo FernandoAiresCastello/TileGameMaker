@@ -3,8 +3,8 @@
 public class AnimatedTile : Tile
 {
 	public List<TileImage> Images { get; set; } = [];
-	public int CurrentFrame { get; set; } = 0;
-	public bool AnimationEnabled = true;
+	public static int CurrentFrame { get; set; } = 0;
+	public static bool AnimationEnabled { get; set; } = true;
 
 	public AnimatedTile() {}
 	public AnimatedTile(List<TileImage> images) => Images = images;
@@ -14,5 +14,9 @@ public class AnimatedTile : Tile
 		canvas.DrawTile(Images[CurrentFrame % Images.Count], col, row);
 	}
 
-	public void NextFrame() => CurrentFrame++;
+	public static void NextFrame()
+	{
+		if (AnimationEnabled)
+			CurrentFrame++;
+	}
 }

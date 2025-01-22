@@ -7,13 +7,13 @@ using TileGameMaker.Core;
 
 namespace TileGameMaker.Test;
 
-public partial class ImageTileTestWindow : WindowBase
+public partial class AnimatedTileTestWindow : WindowBase
 {
 	private readonly TileDisplay DrawingDisplay;
 	private readonly ColorPickerWindow PaletteWindow;
-	private readonly AnimatedTile Tile;
+	private readonly TileImage Image1, Image2;
 
-	public ImageTileTestWindow(TileGameMakerApp app) : base(app)
+	public AnimatedTileTestWindow(TileGameMakerApp app) : base(app)
 	{
 		InitializeComponent();
 
@@ -32,11 +32,17 @@ public partial class ImageTileTestWindow : WindowBase
 		DrawingDisplay.MouseMove += DrawingDisplay_MouseClick;
 		DrawingDisplay.Parent = DrawingPanel;
 
-		Tile = new AnimatedTile([
-			new("test/images/brick_1.png"), 
-			new("test/images/brick_2.png")]);
+		DrawingDisplay.BeginAutoRefresh(500, AnimatedTile.NextFrame);
 
-		DrawingDisplay.BeginAutoRefresh(500, Tile.NextFrame);
+		Image1 = new TileImage("test/images/brick_1.png");
+		Image2 = new TileImage("test/images/brick_2.png");
+	}
+
+	private AnimatedTile CreateNewAnimatedTile()
+	{
+		AnimatedTile tile = new([Image1, Image2]);
+		tile.Data.Set("GUID", Guid.NewGuid().ToString());
+		return tile;
 	}
 
 	private void TestWindow_KeyDown(object sender, KeyEventArgs e)
@@ -57,11 +63,13 @@ public partial class ImageTileTestWindow : WindowBase
 
 	private void DrawingDisplay_MouseClick(object sender, MouseEventArgs e)
 	{
+		Point cellPos = DrawingDisplay.GetCellPosFromMousePos(e.Location);
+		string guid = DrawingDisplay.GetTile(cellPos)?.Data.GetString("GUID");
+		TxtDebug.Text = $"Cell:{cellPos} | ID:{guid}";
+
 		if (e.Button == MouseButtons.Left)
-			SetAnimatedTile(e.Location, Tile);
+			SetAnimatedTile(e.Location, CreateNewAnimatedTile());
 		else if (e.Button == MouseButtons.Right)
-			SetColorTile(e.Location, DrawingDisplay.BackColor);
-		else if (e.Button == MouseButtons.Middle)
 			DeleteTile(e.Location);
 	}
 
@@ -72,16 +80,6 @@ public partial class ImageTileTestWindow : WindowBase
 			return;
 
 		DrawingDisplay.SetTile(tile, cellPos);
-		DrawingDisplay.Refresh();
-	}
-
-	private void SetColorTile(Point mousePos, Color color)
-	{
-		Point cellPos = DrawingDisplay.GetCellPosFromMousePos(mousePos);
-		if (cellPos.IsOutside(0, 0, DrawingDisplay.Cols, DrawingDisplay.Rows))
-			return;
-
-		DrawingDisplay.SetTile(new SolidColorTile(color), cellPos);
 		DrawingDisplay.Refresh();
 	}
 
@@ -118,6 +116,11 @@ public partial class ImageTileTestWindow : WindowBase
 		DrawingDisplay.Refresh();
 	}
 
+	private void BtnToggleAnim_Click(object sender, EventArgs e)
+	{
+		AnimatedTile.AnimationEnabled = !AnimatedTile.AnimationEnabled;
+	}
+
 	private void BtnClear_Click(object sender, EventArgs e)
 	{
 		DrawingDisplay.Clear();
@@ -126,7 +129,7 @@ public partial class ImageTileTestWindow : WindowBase
 
 	private void BtnFill_Click(object sender, EventArgs e)
 	{
-		DrawingDisplay.Fill(Tile);
+		DrawingDisplay.Fill(CreateNewAnimatedTile);
 		DrawingDisplay.Refresh();
 	}
 
