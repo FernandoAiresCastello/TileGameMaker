@@ -1,6 +1,6 @@
 ﻿namespace TileGameLib.Controls
 {
-    partial class ColorPaletteWindow
+    partial class ColorPickerWindow
     {
         /// <summary>
         ///  Required designer variable.

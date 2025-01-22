@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\ColorPaletteWindow.cs">
+    <Compile Update="Controls\ColorPickerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -7,15 +7,13 @@ using TileGameMaker.Core;
 
 namespace TileGameMaker.Test;
 
-public partial class TestWindow : WindowBase
+public partial class ImageTileTestWindow : WindowBase
 {
 	private readonly TileDisplay DrawingDisplay;
-	private readonly ColorPaletteWindow PaletteWindow;
+	private readonly ColorPickerWindow PaletteWindow;
+	private readonly AnimatedTile Tile;
 
-	private Color LeftDrawingColor { get; set; } = Color.Black;
-	private Color RightDrawingColor { get; set; } = Color.White;
-
-	public TestWindow(TileGameMakerApp app) : base(app)
+	public ImageTileTestWindow(TileGameMakerApp app) : base(app)
 	{
 		InitializeComponent();
 
@@ -23,15 +21,22 @@ public partial class TestWindow : WindowBase
 		KeyDown += TestWindow_KeyDown;
 
 		Size palWndBufSize = new(16, 16);
-		PaletteWindow = new ColorPaletteWindow(palWndBufSize, palWndBufSize, new(8, 8), Color.White, new Point(0, 0), 2);
+		PaletteWindow = new ColorPickerWindow(palWndBufSize, palWndBufSize, new(8, 8), Color.White, new Point(0, 0), 2);
 		PaletteWindow.LoadColors("test/palettes/default_sort_hue.pal");
 
 		Size bufSize = new(32, 24);
-		DrawingDisplay = new TileDisplay(bufSize, bufSize, new Size(8, 8), Color.White, new Point(0, 0), 2);
+		Size canvasCellSize = new(8, 8);
+		DrawingDisplay = new TileDisplay(bufSize, bufSize, canvasCellSize, Color.White, new Point(0, 0), 2);
 		DrawingDisplay.MouseClick += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseDown += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseMove += DrawingDisplay_MouseClick;
 		DrawingDisplay.Parent = DrawingPanel;
+
+		Tile = new AnimatedTile([
+			new("test/images/brick_1.png"), 
+			new("test/images/brick_2.png")]);
+
+		DrawingDisplay.BeginAutoRefresh(500, Tile.NextFrame);
 	}
 
 	private void TestWindow_KeyDown(object sender, KeyEventArgs e)
@@ -53,11 +58,21 @@ public partial class TestWindow : WindowBase
 	private void DrawingDisplay_MouseClick(object sender, MouseEventArgs e)
 	{
 		if (e.Button == MouseButtons.Left)
-			SetColorTile(e.Location, LeftDrawingColor);
+			SetAnimatedTile(e.Location, Tile);
 		else if (e.Button == MouseButtons.Right)
-			SetColorTile(e.Location, RightDrawingColor);
+			SetColorTile(e.Location, DrawingDisplay.BackColor);
 		else if (e.Button == MouseButtons.Middle)
 			DeleteTile(e.Location);
+	}
+
+	private void SetAnimatedTile(Point mousePos, AnimatedTile tile)
+	{
+		Point cellPos = DrawingDisplay.GetCellPosFromMousePos(mousePos);
+		if (cellPos.IsOutside(0, 0, DrawingDisplay.Cols, DrawingDisplay.Rows))
+			return;
+
+		DrawingDisplay.SetTile(tile, cellPos);
+		DrawingDisplay.Refresh();
 	}
 
 	private void SetColorTile(Point mousePos, Color color)
@@ -87,31 +102,6 @@ public partial class TestWindow : WindowBase
 		PaletteWindow.ShowDialog(this);
 	}
 
-	private void BtnColorPalette_Click(object sender, EventArgs e)
-	{
-		PaletteWindow.Title = "Select paint color";
-		PaletteWindow.OnColorClicked = PaintColorSelected;
-		PaletteWindow.ShowDialog(this);
-	}
-
-	private void PaintColorSelected(Form wnd, Color color, MouseButtons button)
-	{
-		if (button == MouseButtons.Left)
-		{
-			LeftDrawingColor = color;
-			wnd.Close();
-		}
-		else if (button == MouseButtons.Right)
-		{
-			RightDrawingColor = color;
-			wnd.Close();
-		}
-		else if (button == MouseButtons.Middle)
-		{
-
-		}
-	}
-
 	private void CanvasColorSelected(Form wnd, Color color, MouseButtons button)
 	{
 		if (button == MouseButtons.Left)
@@ -136,7 +126,7 @@ public partial class TestWindow : WindowBase
 
 	private void BtnFill_Click(object sender, EventArgs e)
 	{
-		DrawingDisplay.Fill(new SolidColorTile(LeftDrawingColor));
+		DrawingDisplay.Fill(Tile);
 		DrawingDisplay.Refresh();
 	}
 

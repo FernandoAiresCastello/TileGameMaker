@@ -4,7 +4,7 @@
         <name>TileGameLib</name>
     </assembly>
     <members>
-        <member name="T:TileGameLib.Controls.ColorPaletteDisplay">
+        <member name="T:TileGameLib.Controls.ColorPickerDisplay">
             <summary>
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
@@ -15,7 +15,7 @@
             <param name="emptyColor">Default color for empty cells</param>
             <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
         </member>
-        <member name="M:TileGameLib.Controls.ColorPaletteDisplay.#ctor(System.Drawing.Size,System.Drawing.Size,System.Drawing.Size,System.Drawing.Color,System.Drawing.Point,System.Int32)">
+        <member name="M:TileGameLib.Controls.ColorPickerDisplay.#ctor(System.Drawing.Size,System.Drawing.Size,System.Drawing.Size,System.Drawing.Color,System.Drawing.Point,System.Int32)">
             <summary>
             	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
             </summary>
@@ -26,30 +26,30 @@
             <param name="emptyColor">Default color for empty cells</param>
             <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
         </member>
-        <member name="T:TileGameLib.Controls.ColorPaletteWindow">
+        <member name="T:TileGameLib.Controls.ColorPickerWindow">
             <summary>
             	A window that displays a grid of colors and allows selection of a color with a mouse click.
             </summary>
         </member>
-        <member name="P:TileGameLib.Controls.ColorPaletteWindow.OnColorClicked">
+        <member name="P:TileGameLib.Controls.ColorPickerWindow.OnColorClicked">
             <summary>
             	Callback for when a color gets selected.
             	The selected color and mouse button that was pressed, 
             	along with a reference to this window, are passed as arguments.
             </summary>
         </member>
-        <member name="F:TileGameLib.Controls.ColorPaletteWindow.components">
+        <member name="F:TileGameLib.Controls.ColorPickerWindow.components">
             <summary>
              Required designer variable.
             </summary>
         </member>
-        <member name="M:TileGameLib.Controls.ColorPaletteWindow.Dispose(System.Boolean)">
+        <member name="M:TileGameLib.Controls.ColorPickerWindow.Dispose(System.Boolean)">
             <summary>
              Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:TileGameLib.Controls.ColorPaletteWindow.InitializeComponent">
+        <member name="M:TileGameLib.Controls.ColorPickerWindow.InitializeComponent">
             <summary>
              Required method for Designer support - do not modify
              the contents of this method with the code editor.
@@ -111,15 +111,8 @@
             	Represents an image that can be manipulated pixel by pixel 
             	and also load its pixel data from an image file.
             </summary>
-            <param name="width">Width of the image, in pixels</param>
-            <param name="height">Height of the image, in pixels</param>
-            <param name="color">Default color of the image</param>
         </member>
         <member name="M:TileGameLib.Core.TileImage.#ctor(System.Int32,System.Int32,System.Drawing.Color)">
-            <summary>
-            	Represents an image that can be manipulated pixel by pixel 
-            	and also load its pixel data from an image file.
-            </summary>
             <param name="width">Width of the image, in pixels</param>
             <param name="height">Height of the image, in pixels</param>
             <param name="color">Default color of the image</param>

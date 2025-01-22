@@ -11,7 +11,7 @@ public partial class ColorPaletteWindow : WindowBase
 	private const int PaletteSize = 256;
 
 	private readonly ColorPalette Palette;
-	private readonly ColorPaletteDisplay PaletteDisplay;
+	private readonly ColorPickerDisplay PaletteDisplay;
 	private readonly Color BlankColor = Color.White;
 	private Color CopiedColor;
 	
@@ -30,7 +30,7 @@ public partial class ColorPaletteWindow : WindowBase
 		CopiedColor = BlankColor;
 		KeyPreview = true;
 
-		PaletteDisplay = new ColorPaletteDisplay(
+		PaletteDisplay = new ColorPickerDisplay(
 			new Size(16, 16), new Size(16, 16),
 			new Size(8, 8), Color.White, new Point(0, 0), 3);
 

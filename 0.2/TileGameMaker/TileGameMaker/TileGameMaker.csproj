@@ -14,6 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Test\ImageTileTestWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="box_drag.cur">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -14,10 +14,10 @@ public class PixelBuffer
 
 	protected FastBitmap FastBitmap;
 
+	public PixelBuffer() {}
 	public PixelBuffer(int width, int height, Color color)
 	{
 		FastBitmap = new FastBitmap(width, height);
-
 		Clear(color);
 	}
 

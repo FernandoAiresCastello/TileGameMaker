@@ -1,5 +1,5 @@
 using TileGameMaker.Core;
-using TileGameMaker.StandaloneTools;
+using TileGameMaker.Test;
 
 namespace TileGameMaker;
 
@@ -11,9 +11,9 @@ internal static class EntryPoint
         ApplicationConfiguration.Initialize();
 
         TileGameMakerApp app = new();
-        //TestWindow testWindow = new(app);
-        //Application.Run(testWindow);
-        ColorPaletteWindow wnd = new(app);
-		Application.Run(wnd);
+        ImageTileTestWindow testWindow = new(app);
+        Application.Run(testWindow);
+        //ColorPaletteWindow wnd = new(app);
+		//Application.Run(wnd);
 	}
 }

@@ -6,7 +6,7 @@ namespace TileGameLib.Controls;
 /// <summary>
 ///		A window that displays a grid of colors and allows selection of a color with a mouse click.
 /// </summary>
-public partial class ColorPaletteWindow : Form
+public partial class ColorPickerWindow : Form
 {
 	/// <summary>
 	///		Callback for when a color gets selected.
@@ -19,9 +19,9 @@ public partial class ColorPaletteWindow : Form
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public string Title;
 
-	private readonly ColorPaletteDisplay PaletteDisplay;
+	private readonly ColorPickerDisplay PaletteDisplay;
 
-	public ColorPaletteWindow(Size bufSize, Size canvasGridSize, Size canvasCellSize, Color emptyColor, Point viewOffset, int zoomLevel)
+	public ColorPickerWindow(Size bufSize, Size canvasGridSize, Size canvasCellSize, Color emptyColor, Point viewOffset, int zoomLevel)
 	{
 		InitializeComponent();
 
@@ -31,7 +31,7 @@ public partial class ColorPaletteWindow : Form
 		RootPanel.Dock = DockStyle.Fill;
 		RootPanel.BorderStyle = BorderStyle.Fixed3D;
 
-		PaletteDisplay = new ColorPaletteDisplay(bufSize, canvasGridSize, canvasCellSize, emptyColor, viewOffset, zoomLevel);
+		PaletteDisplay = new ColorPickerDisplay(bufSize, canvasGridSize, canvasCellSize, emptyColor, viewOffset, zoomLevel);
 		PaletteDisplay.MouseMove += PalettePanel_MouseMove;
 		PaletteDisplay.MouseClick += PalettePanel_MouseClick;
 		PaletteDisplay.MouseLeave += PalettePanel_MouseLeave;

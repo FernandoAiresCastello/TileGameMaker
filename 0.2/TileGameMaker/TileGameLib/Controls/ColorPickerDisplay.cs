@@ -13,7 +13,7 @@ namespace TileGameLib.Controls;
 /// <param name="emptyColor">Default color for empty cells</param>
 /// <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
 
-public class ColorPaletteDisplay(
+public class ColorPickerDisplay(
 	Size bufSize, Size canvasSize, Size cellSize, Color emptyColor, Point viewOffset, int zoomLevel) :
 
 	TileDisplay(bufSize, canvasSize, cellSize, emptyColor, viewOffset, zoomLevel)

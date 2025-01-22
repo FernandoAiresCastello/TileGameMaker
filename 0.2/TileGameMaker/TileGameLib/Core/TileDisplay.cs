@@ -2,6 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using TileGameLib.Core.TileTypes;
+using Timer = System.Windows.Forms.Timer;
 
 namespace TileGameLib.Core;
 
@@ -90,6 +91,7 @@ public class TileDisplay : Control
 	private readonly TileBuffer Tiles;
 	private readonly HashSet<Point> SelectedCells = [];
 	private readonly List<Tuple<string, Point>> TextOverlay = [];
+	private readonly Timer AutoRefreshTimer = new();
 
 	//================================
 	//	Constructor
@@ -352,6 +354,22 @@ public class TileDisplay : Control
 
 	public void SaveImage(string filename, ImageFormat format) => 
 		Canvas.SaveImage(filename, format);
+
+	public void BeginAutoRefresh(int intervalMillis, Action callback)
+	{
+		AutoRefreshTimer.Interval = intervalMillis;
+		AutoRefreshTimer.Tick += (s, e) =>
+		{
+			callback();
+			Refresh();
+		};
+		AutoRefreshTimer.Start();
+	}
+
+	public void StopAutoRefresh()
+	{
+		AutoRefreshTimer.Stop();
+	}
 
 	//================================
 	//	Internal utility functions

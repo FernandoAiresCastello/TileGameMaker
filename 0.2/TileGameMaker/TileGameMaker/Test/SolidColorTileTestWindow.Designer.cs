@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Test
 {
-	partial class TestWindow
+	partial class SolidColorTileTestWindow
 	{
 		/// <summary>
 		/// Required designer variable.
