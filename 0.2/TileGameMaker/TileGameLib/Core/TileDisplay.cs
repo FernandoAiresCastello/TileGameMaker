@@ -202,8 +202,15 @@ public class TileDisplay : Control
 	public void SetTextOverlay(string text, Point cellPos) => 
 		TextOverlay.Add(new(text, cellPos));
 
-	public bool HasTextOverlay(Point cellPos) => 
-		TextOverlay.Find(t => t.Item2 == cellPos) == default;
+	public string GetTextOverlay(Point cellPos) =>
+		TextOverlay.Find(t => t.Item2 == cellPos).Item1;
+
+	public bool HasTextOverlay(Point cellPos)
+	{
+		var obj = TextOverlay.FindAll(t => t.Item2 == cellPos);
+
+		return obj.Count > 0;
+	}
 
 	public void RemoveTextOverlay(Point cellPos) =>
 		TextOverlay.RemoveAll(t => t.Item2 == cellPos);

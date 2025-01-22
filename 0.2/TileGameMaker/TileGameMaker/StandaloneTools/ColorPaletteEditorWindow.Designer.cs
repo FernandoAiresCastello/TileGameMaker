@@ -35,6 +35,14 @@
 			BtnSave = new ToolStripMenuItem();
 			viewToolStripMenuItem = new ToolStripMenuItem();
 			BtnGrid = new ToolStripMenuItem();
+			editToolStripMenuItem = new ToolStripMenuItem();
+			BtnCopy = new ToolStripMenuItem();
+			BtnPaste = new ToolStripMenuItem();
+			BtnSetBlank = new ToolStripMenuItem();
+			TxtRgb = new TextBox();
+			label1 = new Label();
+			label2 = new Label();
+			TxtIndex = new TextBox();
 			menuStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -50,7 +58,7 @@
 			// 
 			// menuStrip1
 			// 
-			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem });
+			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem, editToolStripMenuItem });
 			menuStrip1.Location = new Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
 			menuStrip1.Size = new Size(621, 24);
@@ -68,7 +76,7 @@
 			// 
 			BtnLoad.Name = "BtnLoad";
 			BtnLoad.ShortcutKeys = Keys.Control | Keys.O;
-			BtnLoad.Size = new Size(180, 22);
+			BtnLoad.Size = new Size(143, 22);
 			BtnLoad.Text = "Load";
 			BtnLoad.Click += BtnLoad_Click;
 			// 
@@ -76,8 +84,9 @@
 			// 
 			BtnSave.Name = "BtnSave";
 			BtnSave.ShortcutKeys = Keys.Control | Keys.S;
-			BtnSave.Size = new Size(180, 22);
+			BtnSave.Size = new Size(143, 22);
 			BtnSave.Text = "Save";
+			BtnSave.Click += BtnSave_Click;
 			// 
 			// viewToolStripMenuItem
 			// 
@@ -93,15 +102,88 @@
 			BtnGrid.CheckState = CheckState.Checked;
 			BtnGrid.Name = "BtnGrid";
 			BtnGrid.ShortcutKeys = Keys.Control | Keys.G;
-			BtnGrid.Size = new Size(180, 22);
+			BtnGrid.Size = new Size(138, 22);
 			BtnGrid.Text = "Grid";
 			BtnGrid.Click += BtnGrid_Click;
+			// 
+			// editToolStripMenuItem
+			// 
+			editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnCopy, BtnPaste, BtnSetBlank });
+			editToolStripMenuItem.Name = "editToolStripMenuItem";
+			editToolStripMenuItem.Size = new Size(39, 20);
+			editToolStripMenuItem.Text = "Edit";
+			// 
+			// BtnCopy
+			// 
+			BtnCopy.Name = "BtnCopy";
+			BtnCopy.ShortcutKeys = Keys.Control | Keys.C;
+			BtnCopy.Size = new Size(180, 22);
+			BtnCopy.Text = "Copy";
+			BtnCopy.Click += BtnCopy_Click;
+			// 
+			// BtnPaste
+			// 
+			BtnPaste.Name = "BtnPaste";
+			BtnPaste.ShortcutKeys = Keys.Control | Keys.V;
+			BtnPaste.Size = new Size(180, 22);
+			BtnPaste.Text = "Paste";
+			BtnPaste.Click += BtnPaste_Click;
+			// 
+			// BtnSetBlank
+			// 
+			BtnSetBlank.Name = "BtnSetBlank";
+			BtnSetBlank.ShortcutKeys = Keys.Delete;
+			BtnSetBlank.Size = new Size(180, 22);
+			BtnSetBlank.Text = "Delete";
+			BtnSetBlank.Click += BtnSetBlank_Click;
+			// 
+			// TxtRgb
+			// 
+			TxtRgb.CharacterCasing = CharacterCasing.Upper;
+			TxtRgb.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			TxtRgb.Location = new Point(467, 54);
+			TxtRgb.MaxLength = 6;
+			TxtRgb.Name = "TxtRgb";
+			TxtRgb.Size = new Size(83, 25);
+			TxtRgb.TabIndex = 2;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new Point(464, 34);
+			label1.Name = "label1";
+			label1.Size = new Size(29, 15);
+			label1.TabIndex = 3;
+			label1.Text = "RGB";
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new Point(412, 34);
+			label2.Name = "label2";
+			label2.Size = new Size(36, 15);
+			label2.TabIndex = 5;
+			label2.Text = "Index";
+			// 
+			// TxtIndex
+			// 
+			TxtIndex.CharacterCasing = CharacterCasing.Upper;
+			TxtIndex.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			TxtIndex.Location = new Point(415, 54);
+			TxtIndex.MaxLength = 6;
+			TxtIndex.Name = "TxtIndex";
+			TxtIndex.Size = new Size(46, 25);
+			TxtIndex.TabIndex = 4;
 			// 
 			// ColorPaletteEditorWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(621, 435);
+			Controls.Add(label2);
+			Controls.Add(TxtIndex);
+			Controls.Add(label1);
+			Controls.Add(TxtRgb);
 			Controls.Add(PalettePanel);
 			Controls.Add(menuStrip1);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -124,5 +206,13 @@
 		private ToolStripMenuItem BtnSave;
 		private ToolStripMenuItem viewToolStripMenuItem;
 		private ToolStripMenuItem BtnGrid;
+		private TextBox TxtRgb;
+		private Label label1;
+		private Label label2;
+		private TextBox TxtIndex;
+		private ToolStripMenuItem editToolStripMenuItem;
+		private ToolStripMenuItem BtnCopy;
+		private ToolStripMenuItem BtnPaste;
+		private ToolStripMenuItem BtnSetBlank;
 	}
 }

@@ -6,6 +6,10 @@ public class ColorPalette
 {
 	public List<Color> Colors { get; private set; } = [];
 
+	public ColorPalette() {}
+	public ColorPalette(Color color, int count) => Add(color, count);
+	public ColorPalette(string colorString, int count) => Add(colorString, count);
+
 	public int Count => Colors.Count;
 	
 	public void RemoveAll() => Colors.Clear();
@@ -62,7 +66,7 @@ public class ColorPalette
 			Add(colorString);
 	}
 
-	public void Set(int index, Color color) =>Colors[index] = color;
+	public void Set(int index, Color color) => Colors[index] = color;
 	public void Set(int index, string hexColor)
 	{
 		Set(index, ColorUtils.FromHex(hexColor).Value);
