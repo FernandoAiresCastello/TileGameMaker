@@ -4,7 +4,7 @@ public partial class WindowBase : Form
 {
 	protected readonly TileGameMakerApp App;
 
-	protected WindowBase()
+	private WindowBase()
 	{
 		InitializeComponent();
 	}
@@ -12,6 +12,10 @@ public partial class WindowBase : Form
 	public WindowBase(TileGameMakerApp app)
 	{
 		InitializeComponent();
+		
 		App = app;
+		StartPosition = FormStartPosition.CenterScreen;
+		FormBorderStyle = FormBorderStyle.FixedSingle;
+		MaximizeBox = false;
 	}
 }

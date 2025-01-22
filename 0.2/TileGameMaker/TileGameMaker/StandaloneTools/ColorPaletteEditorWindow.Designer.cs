@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.StandaloneTools
 {
-	partial class ColorPaletteWindow
+	partial class ColorPaletteEditorWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -37,13 +37,18 @@
 			BtnGrid = new ToolStripMenuItem();
 			editToolStripMenuItem = new ToolStripMenuItem();
 			BtnCopy = new ToolStripMenuItem();
+			BtnCut = new ToolStripMenuItem();
 			BtnPaste = new ToolStripMenuItem();
 			BtnSetBlank = new ToolStripMenuItem();
 			TxtRgb = new TextBox();
 			label1 = new Label();
 			label2 = new Label();
 			TxtIndex = new TextBox();
+			statusStrip1 = new StatusStrip();
+			LbInfo = new ToolStripStatusLabel();
+			BtnNew = new ToolStripMenuItem();
 			menuStrip1.SuspendLayout();
+			statusStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// PalettePanel
@@ -67,7 +72,7 @@
 			// 
 			// fileToolStripMenuItem
 			// 
-			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnLoad, BtnSave });
+			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnNew, BtnLoad, BtnSave });
 			fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			fileToolStripMenuItem.Size = new Size(37, 20);
 			fileToolStripMenuItem.Text = "File";
@@ -76,7 +81,7 @@
 			// 
 			BtnLoad.Name = "BtnLoad";
 			BtnLoad.ShortcutKeys = Keys.Control | Keys.O;
-			BtnLoad.Size = new Size(143, 22);
+			BtnLoad.Size = new Size(180, 22);
 			BtnLoad.Text = "Load";
 			BtnLoad.Click += BtnLoad_Click;
 			// 
@@ -84,7 +89,7 @@
 			// 
 			BtnSave.Name = "BtnSave";
 			BtnSave.ShortcutKeys = Keys.Control | Keys.S;
-			BtnSave.Size = new Size(143, 22);
+			BtnSave.Size = new Size(180, 22);
 			BtnSave.Text = "Save";
 			BtnSave.Click += BtnSave_Click;
 			// 
@@ -108,7 +113,7 @@
 			// 
 			// editToolStripMenuItem
 			// 
-			editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnCopy, BtnPaste, BtnSetBlank });
+			editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnCopy, BtnCut, BtnPaste, BtnSetBlank });
 			editToolStripMenuItem.Name = "editToolStripMenuItem";
 			editToolStripMenuItem.Size = new Size(39, 20);
 			editToolStripMenuItem.Text = "Edit";
@@ -120,6 +125,14 @@
 			BtnCopy.Size = new Size(144, 22);
 			BtnCopy.Text = "Copy";
 			BtnCopy.Click += BtnCopy_Click;
+			// 
+			// BtnCut
+			// 
+			BtnCut.Name = "BtnCut";
+			BtnCut.ShortcutKeys = Keys.Control | Keys.X;
+			BtnCut.Size = new Size(144, 22);
+			BtnCut.Text = "Cut";
+			BtnCut.Click += BtnCut_Click;
 			// 
 			// BtnPaste
 			// 
@@ -172,14 +185,41 @@
 			TxtIndex.Location = new Point(415, 54);
 			TxtIndex.MaxLength = 6;
 			TxtIndex.Name = "TxtIndex";
+			TxtIndex.ReadOnly = true;
 			TxtIndex.Size = new Size(46, 25);
 			TxtIndex.TabIndex = 4;
 			// 
-			// ColorPaletteWindow
+			// statusStrip1
+			// 
+			statusStrip1.Items.AddRange(new ToolStripItem[] { LbInfo });
+			statusStrip1.Location = new Point(0, 435);
+			statusStrip1.Name = "statusStrip1";
+			statusStrip1.Size = new Size(561, 22);
+			statusStrip1.SizingGrip = false;
+			statusStrip1.TabIndex = 6;
+			statusStrip1.Text = "statusStrip1";
+			// 
+			// LbInfo
+			// 
+			LbInfo.ForeColor = Color.DimGray;
+			LbInfo.Name = "LbInfo";
+			LbInfo.Size = new Size(28, 17);
+			LbInfo.Text = "Info";
+			// 
+			// BtnNew
+			// 
+			BtnNew.Name = "BtnNew";
+			BtnNew.ShortcutKeys = Keys.Control | Keys.N;
+			BtnNew.Size = new Size(180, 22);
+			BtnNew.Text = "New";
+			BtnNew.Click += BtnNew_Click;
+			// 
+			// ColorPaletteEditorWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(561, 435);
+			ClientSize = new Size(561, 457);
+			Controls.Add(statusStrip1);
 			Controls.Add(label2);
 			Controls.Add(TxtIndex);
 			Controls.Add(label1);
@@ -189,10 +229,12 @@
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MainMenuStrip = menuStrip1;
 			MaximizeBox = false;
-			Name = "ColorPaletteWindow";
+			Name = "ColorPaletteEditorWindow";
 			Text = "Color Palette";
 			menuStrip1.ResumeLayout(false);
 			menuStrip1.PerformLayout();
+			statusStrip1.ResumeLayout(false);
+			statusStrip1.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -214,5 +256,9 @@
 		private ToolStripMenuItem BtnCopy;
 		private ToolStripMenuItem BtnPaste;
 		private ToolStripMenuItem BtnSetBlank;
+		private StatusStrip statusStrip1;
+		private ToolStripStatusLabel LbInfo;
+		private ToolStripMenuItem BtnCut;
+		private ToolStripMenuItem BtnNew;
 	}
 }

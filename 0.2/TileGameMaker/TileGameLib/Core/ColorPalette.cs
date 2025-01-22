@@ -13,6 +13,12 @@ public class ColorPalette
 	public int Count => Colors.Count;
 	
 	public void RemoveAll() => Colors.Clear();
+	
+	public void Reset(Color color, int count)
+	{
+		Colors.Clear();
+		Add(color, count);
+	}
 
 	public void Add(Color color) => Colors.Add(color);
 	public void Add(string colorString)
