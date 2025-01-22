@@ -5,22 +5,28 @@ using TileGameMaker.Core;
 
 namespace TileGameMaker.StandaloneTools;
 
-public partial class ColorPaletteEditorWindow : WindowBase
+public partial class ColorPaletteWindow : WindowBase
 {
 	private const int InvalidColorIndex = -1;
+	private const int PaletteSize = 256;
 
 	private readonly ColorPalette Palette;
 	private readonly ColorPaletteDisplay PaletteDisplay;
 	private readonly Color BlankColor = Color.White;
 	private Color CopiedColor;
-
+	
 	private int ColorIndex { get; set; } = InvalidColorIndex;
+	private int DraggedIndex { get; set; } = InvalidColorIndex;
 
-	public ColorPaletteEditorWindow(TileGameMakerApp app) : base(app)
+	private readonly Cursor DraggingCursor;
+
+	public ColorPaletteWindow(TileGameMakerApp app) : base(app)
 	{
 		InitializeComponent();
 
-		Palette = new ColorPalette(BlankColor, 256);
+		DraggingCursor = new Cursor("box_drag.cur");
+
+		Palette = new ColorPalette(BlankColor, PaletteSize);
 		CopiedColor = BlankColor;
 		KeyPreview = true;
 
@@ -31,7 +37,10 @@ public partial class ColorPaletteEditorWindow : WindowBase
 		PaletteDisplay.SetColors(Palette);
 
 		PaletteDisplay.Parent = PalettePanel;
-		PaletteDisplay.MouseDown += PaletteDisplay_MouseClick;
+		PaletteDisplay.Cursor = Cursors.Default;
+		PaletteDisplay.MouseDown += PaletteDisplay_MouseDown;
+		PaletteDisplay.MouseUp += PaletteDisplay_MouseUp;
+		PaletteDisplay.MouseMove += PaletteDisplay_MouseMove;
 
 		TxtRgb.KeyPress += TxtRgb_KeyPress;
 		TxtRgb.KeyUp += TxtRgb_KeyUp;
@@ -57,13 +66,35 @@ public partial class ColorPaletteEditorWindow : WindowBase
 		PaletteDisplay.Update();
 	}
 
-	private void PaletteDisplay_MouseClick(object sender, MouseEventArgs e)
+	private void PaletteDisplay_MouseDown(object sender, MouseEventArgs e)
 	{
 		PaletteDisplay.Focus();
 
 		Point cellPos = PaletteDisplay.GetCellPosFromMousePos(e.Location);
 		int cellIndex = PaletteDisplay.GetCellIndexFromMousePos(e.Location);
 
+		if (e.Button == MouseButtons.Left)
+			SelectColorWithMouse(cellPos, cellIndex);
+		if (e.Button == MouseButtons.Right)
+			BeginDragColor(cellIndex);
+	}
+
+	private void PaletteDisplay_MouseUp(object sender, MouseEventArgs e)
+	{
+		PaletteDisplay.Focus();
+		int cellIndex = PaletteDisplay.GetCellIndexFromMousePos(e.Location);
+		EndDragColor(cellIndex);
+		PaletteDisplay.Cursor = Cursors.Default;
+	}
+
+	private void PaletteDisplay_MouseMove(object sender, MouseEventArgs e)
+	{
+		if (e.Button == MouseButtons.Right)
+			PaletteDisplay.Cursor = DraggingCursor;
+	}
+
+	private void SelectColorWithMouse(Point cellPos, int cellIndex)
+	{
 		bool hasOverlay = PaletteDisplay.HasTextOverlay(cellPos);
 
 		PaletteDisplay.UnselectAllCells();
@@ -86,13 +117,44 @@ public partial class ColorPaletteEditorWindow : WindowBase
 		PaletteDisplay.Refresh();
 	}
 
+	private void BeginDragColor(int cellIndex)
+	{
+		if (cellIndex == InvalidColorIndex)
+			return;
+
+		DraggedIndex = cellIndex;
+	}
+
+	private void EndDragColor(int cellIndex)
+	{
+		if (cellIndex < 0 || cellIndex >= Palette.Count || 
+			DraggedIndex < 0 || DraggedIndex >= Palette.Count)
+			return;
+
+		Color originalDraggedColor = Palette.Get(DraggedIndex);
+		Color targetColor = Palette.Get(cellIndex);
+
+		Palette.Set(cellIndex, originalDraggedColor);
+		Palette.Set(DraggedIndex, targetColor);
+		PaletteDisplay.Update();
+
+		DraggedIndex = InvalidColorIndex;
+	}
+
 	private void BtnLoad_Click(object sender, EventArgs e)
 	{
 		OpenFileDialog dialog = new();
 		if (dialog.ShowDialog(this) != DialogResult.OK)
 			return;
 
-		Palette.Load(dialog.FileName);
+		PaletteDisplay.UnselectAllCells();
+		PaletteDisplay.RemoveAllTextOverlay();
+
+		ColorIndex = InvalidColorIndex;
+		TxtIndex.Text = "";
+		TxtRgb.Text = "";
+
+		Palette.Load(dialog.FileName, PaletteSize, BlankColor);
 		PaletteDisplay.Update();
 	}
 

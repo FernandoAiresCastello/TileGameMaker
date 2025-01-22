@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.StandaloneTools
 {
-	partial class ColorPaletteEditorWindow
+	partial class ColorPaletteWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -61,7 +61,7 @@
 			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem, editToolStripMenuItem });
 			menuStrip1.Location = new Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
-			menuStrip1.Size = new Size(621, 24);
+			menuStrip1.Size = new Size(561, 24);
 			menuStrip1.TabIndex = 1;
 			menuStrip1.Text = "menuStrip1";
 			// 
@@ -117,7 +117,7 @@
 			// 
 			BtnCopy.Name = "BtnCopy";
 			BtnCopy.ShortcutKeys = Keys.Control | Keys.C;
-			BtnCopy.Size = new Size(180, 22);
+			BtnCopy.Size = new Size(144, 22);
 			BtnCopy.Text = "Copy";
 			BtnCopy.Click += BtnCopy_Click;
 			// 
@@ -125,7 +125,7 @@
 			// 
 			BtnPaste.Name = "BtnPaste";
 			BtnPaste.ShortcutKeys = Keys.Control | Keys.V;
-			BtnPaste.Size = new Size(180, 22);
+			BtnPaste.Size = new Size(144, 22);
 			BtnPaste.Text = "Paste";
 			BtnPaste.Click += BtnPaste_Click;
 			// 
@@ -133,7 +133,7 @@
 			// 
 			BtnSetBlank.Name = "BtnSetBlank";
 			BtnSetBlank.ShortcutKeys = Keys.Delete;
-			BtnSetBlank.Size = new Size(180, 22);
+			BtnSetBlank.Size = new Size(144, 22);
 			BtnSetBlank.Text = "Delete";
 			BtnSetBlank.Click += BtnSetBlank_Click;
 			// 
@@ -175,11 +175,11 @@
 			TxtIndex.Size = new Size(46, 25);
 			TxtIndex.TabIndex = 4;
 			// 
-			// ColorPaletteEditorWindow
+			// ColorPaletteWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(621, 435);
+			ClientSize = new Size(561, 435);
 			Controls.Add(label2);
 			Controls.Add(TxtIndex);
 			Controls.Add(label1);
@@ -189,8 +189,8 @@
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MainMenuStrip = menuStrip1;
 			MaximizeBox = false;
-			Name = "ColorPaletteEditorWindow";
-			Text = "Color Palette Editor";
+			Name = "ColorPaletteWindow";
+			Text = "Color Palette";
 			menuStrip1.ResumeLayout(false);
 			menuStrip1.PerformLayout();
 			ResumeLayout(false);

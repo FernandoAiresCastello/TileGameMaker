@@ -13,7 +13,7 @@ internal static class EntryPoint
         TileGameMakerApp app = new();
         //TestWindow testWindow = new(app);
         //Application.Run(testWindow);
-        ColorPaletteEditorWindow wnd = new(app);
+        ColorPaletteWindow wnd = new(app);
 		Application.Run(wnd);
 	}
 }

@@ -97,6 +97,17 @@ public class ColorPalette
 		}
 	}
 
+	public void Load(string path, int fixedSize, Color blankColor)
+	{
+		Load(path);
+
+		if (Colors.Count < fixedSize)
+		{
+			int count = fixedSize - Colors.Count;
+			Add(blankColor, count);
+		}
+	}
+
 	public void Save(string path)
 	{
 		List<string> lines = [];
