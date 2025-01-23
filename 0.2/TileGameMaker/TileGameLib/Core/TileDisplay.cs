@@ -23,6 +23,7 @@ public class TileDisplay : Control
 	public int CellCount => Canvas.CellCount;
 	public int CellWidth => Canvas.CellWidth;
 	public int CellHeight => Canvas.CellHeight;
+	public Rectangle CellRange => Canvas.CellRange;
 
 	[Browsable(false)]
 	[EditorBrowsable(EditorBrowsableState.Never)]

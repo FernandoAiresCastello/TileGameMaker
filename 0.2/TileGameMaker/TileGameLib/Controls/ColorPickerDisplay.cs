@@ -15,7 +15,6 @@ namespace TileGameLib.Controls;
 
 public class ColorPickerDisplay(
 	Size bufSize, Size canvasSize, Size cellSize, Color emptyColor, Point viewOffset, int zoomLevel) :
-
 	TileDisplay(bufSize, canvasSize, cellSize, emptyColor, viewOffset, zoomLevel)
 {
 	private ColorPalette Colors { get; set; } = new();

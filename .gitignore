@@ -21,9 +21,6 @@ debug
 **/temp
 Debug
 Docs/Generated
-Builds/bookmarks.dat
-Builds/scratchpad.tgpro
-Builds/*.xml
 
 # Ignore the TypeScript compiler output folder for TileGameLibJS
 js

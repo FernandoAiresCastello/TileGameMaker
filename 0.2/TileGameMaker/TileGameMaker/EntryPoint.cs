@@ -18,7 +18,11 @@ internal static class EntryPoint
         //ColorPaletteEditorWindow wnd = new(app);
         //Application.Run(wnd);
 
-        TilePainterWindow wnd = new(app);
+        //int tileSize = 16;
+        //TilePainterWindow wnd = new(app, new Size(tileSize, tileSize), new Size(8, 8), 3);
+        //Application.Run(wnd);
+
+        Mono8x8TilePainterWindow wnd = new(app);
 		Application.Run(wnd);
 	}
 }

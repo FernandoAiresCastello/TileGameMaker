@@ -15,6 +15,7 @@ public class TileCanvas(Size gridSize, Size cellSize, Color backColor)
 	public readonly int CellCount = gridSize.Width * gridSize.Height;
 	public readonly int CellWidth = cellSize.Width;
 	public readonly int CellHeight = cellSize.Height;
+	public readonly Rectangle CellRange = new(0, 0, gridSize.Width, gridSize.Height);
 
 	public PixelBuffer Buffer { get; private set; } = 
 		new PixelBuffer(gridSize.Width * cellSize.Width, gridSize.Height * cellSize.Height, backColor);
