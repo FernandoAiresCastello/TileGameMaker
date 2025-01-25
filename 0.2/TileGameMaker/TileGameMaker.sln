@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameMaker", "TileGameMaker\TileGameMaker.csproj", "{41B12C96-3996-41EC-ACAF-7E363E02A831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameLib", "TileGameLib\TileGameLib.csproj", "{F7D24954-0F71-4D9D-B924-0807A82E0533}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameLib", "..\..\..\TileGameLib\TileGameLib for C#\0.1\TileGameLib\TileGameLib.csproj", "{CF3915EE-DE27-4347-A033-D7DA7649A2A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{41B12C96-3996-41EC-ACAF-7E363E02A831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41B12C96-3996-41EC-ACAF-7E363E02A831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41B12C96-3996-41EC-ACAF-7E363E02A831}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7D24954-0F71-4D9D-B924-0807A82E0533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7D24954-0F71-4D9D-B924-0807A82E0533}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7D24954-0F71-4D9D-B924-0807A82E0533}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7D24954-0F71-4D9D-B924-0807A82E0533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3915EE-DE27-4347-A033-D7DA7649A2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3915EE-DE27-4347-A033-D7DA7649A2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3915EE-DE27-4347-A033-D7DA7649A2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3915EE-DE27-4347-A033-D7DA7649A2A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

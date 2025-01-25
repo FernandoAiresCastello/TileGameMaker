@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TileGameLib\TileGameLib.csproj" />
+    <ProjectReference Include="..\..\..\..\TileGameLib\TileGameLib for C#\0.1\TileGameLib\TileGameLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
