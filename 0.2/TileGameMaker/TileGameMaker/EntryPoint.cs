@@ -1,5 +1,5 @@
+using TileGameLib.Core;
 using TileGameMaker.Core;
-using TileGameMaker.StandaloneTools;
 
 namespace TileGameMaker;
 
@@ -22,7 +22,9 @@ internal static class EntryPoint
         //TilePainterWindow wnd = new(app, new Size(tileSize, tileSize), new Size(8, 8), 3);
         //Application.Run(wnd);
 
-        Mono8x8TilePainterWindow wnd = new(app);
-		Application.Run(wnd);
+        //Mono8x8TilePainterWindow wnd = new(app);
+        //Application.Run(wnd);
+
+        PixelFont8x8 font = new();
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System.Drawing.Imaging;
 using TileGameLib.Controls;
-using TileGameLib.Core;
 using TileGameLib.Core.TileTypes;
 using TileGameLib.ExtensionMethods;
 using TileGameMaker.Core;
