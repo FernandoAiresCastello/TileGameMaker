@@ -37,15 +37,15 @@
 			// 
 			menuStrip1.Location = new Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
-			menuStrip1.Size = new Size(575, 24);
+			menuStrip1.Size = new Size(531, 24);
 			menuStrip1.TabIndex = 0;
 			menuStrip1.Text = "menuStrip1";
 			// 
 			// statusStrip1
 			// 
-			statusStrip1.Location = new Point(0, 476);
+			statusStrip1.Location = new Point(0, 440);
 			statusStrip1.Name = "statusStrip1";
-			statusStrip1.Size = new Size(575, 22);
+			statusStrip1.Size = new Size(531, 22);
 			statusStrip1.SizingGrip = false;
 			statusStrip1.TabIndex = 1;
 			statusStrip1.Text = "statusStrip1";
@@ -62,7 +62,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(575, 498);
+			ClientSize = new Size(531, 462);
 			Controls.Add(EditorPanel);
 			Controls.Add(statusStrip1);
 			Controls.Add(menuStrip1);

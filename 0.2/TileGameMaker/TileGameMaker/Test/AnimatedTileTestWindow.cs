@@ -25,7 +25,7 @@ public partial class AnimatedTileTestWindow : WindowBase
 		PaletteWindow.LoadColors("test/palettes/default_sort_hue.pal");
 
 		Size bufSize = new(32, 24);
-		Size canvasCellSize = new(8, 8);
+		Size canvasCellSize = new(16, 16);
 		DrawingDisplay = new TileDisplay(bufSize, bufSize, canvasCellSize, Color.White, new Point(0, 0), 2);
 		DrawingDisplay.MouseClick += DrawingDisplay_MouseClick;
 		DrawingDisplay.MouseDown += DrawingDisplay_MouseClick;
