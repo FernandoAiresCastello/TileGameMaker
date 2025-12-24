@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
+using TileGameLib.Core;
 using Timer = System.Windows.Forms.Timer;
 
-namespace TileGameLib;
+namespace TileGameLib.Controls;
 
 public partial class TileBoardDisplay : PixelCanvasDisplay
 {

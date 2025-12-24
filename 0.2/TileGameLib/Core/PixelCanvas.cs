@@ -1,7 +1,7 @@
 ﻿using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace TileGameLib;
+namespace TileGameLib.Core;
 
 public sealed class PixelCanvas(int width, int height) : IDisposable
 {

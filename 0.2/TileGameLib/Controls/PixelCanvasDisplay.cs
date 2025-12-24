@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
+using TileGameLib.Core;
 
-namespace TileGameLib;
+namespace TileGameLib.Controls;
 
 public partial class PixelCanvasDisplay : UserControl
 {
@@ -40,8 +41,8 @@ public partial class PixelCanvasDisplay : UserControl
 
 	public int GetSnappedX(int x) => x / (Zoom * 8) * 8;
 	public int GetSnappedY(int y) => y / (Zoom * 8) * 8;
-	public int GetTiledX(int x) => x / (Zoom * 8);
-	public int GetTiledY(int y) => y / (Zoom * 8);
+	public int GetTileX(int x) => x / (Zoom * 8);
+	public int GetTileY(int y) => y / (Zoom * 8);
 
 	protected override void OnPaint(PaintEventArgs e)
 	{

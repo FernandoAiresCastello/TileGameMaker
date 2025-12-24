@@ -1,4 +1,5 @@
-using TileGameLib;
+using TileGameLib.Controls;
+using TileGameLib.Core;
 
 namespace TileGameMaker;
 
@@ -17,7 +18,7 @@ public partial class MainWindow : Form
 		charset = new();
 		charset.Load("charset.dat");
 
-		display = new TileBoardDisplay(256 / 8, 192 / 8, charset, palette, 400, PnlDisplay);
+		display = new TileBoardDisplay(160 / 8, 144 / 8, charset, palette, 400, PnlDisplay);
 		display.Zoom = 3;
 
 		Tile tile = new Tile();
@@ -33,8 +34,8 @@ public partial class MainWindow : Form
 
 	private void Display_MouseDown(object? sender, MouseEventArgs e)
 	{
-		int x = display.GetTiledX(e.X);
-		int y = display.GetTiledY(e.Y);
+		int x = display.GetTileX(e.X);
+		int y = display.GetTileY(e.Y);
 
 		display.Canvas.DrawSolidPixelBlock(x, y, 0xff0000);
 
@@ -43,6 +44,6 @@ public partial class MainWindow : Form
 
 	private void Display_MouseMove(object? sender, MouseEventArgs e)
 	{
-		Text = display.GetTiledX(e.X) + ", " + display.GetTiledY(e.Y);
+		Text = display.GetTileX(e.X) + ", " + display.GetTileY(e.Y);
 	}
 }

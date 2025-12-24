@@ -1,4 +1,4 @@
-﻿namespace TileGameLib;
+﻿namespace TileGameLib.Core;
 
 public class Palette
 {

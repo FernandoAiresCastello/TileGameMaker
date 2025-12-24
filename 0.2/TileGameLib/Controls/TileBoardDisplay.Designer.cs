@@ -1,6 +1,6 @@
-﻿namespace TileGameLib
+﻿namespace TileGameLib.Controls
 {
-	partial class PixelCanvasDisplay
+	partial class TileBoardDisplay
 	{
 		/// <summary> 
 		/// Required designer variable.
