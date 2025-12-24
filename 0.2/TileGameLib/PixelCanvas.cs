@@ -32,9 +32,25 @@ public sealed class PixelCanvas : IDisposable
 	}
 
 	/// <summary>
+	///		Draws a solid 8x8 pixel block with the given color
+	/// </summary>
+	public void DrawSolidPixelBlock(int x, int y, int color)
+	{
+		DrawDirectPixelBlock(Charset.FilledChar, x, y, color);
+	}
+
+	/// <summary>
+	///		Draws a solid 8x8 pixel block with the given palette color index
+	/// </summary>
+	public void DrawSolidPixelBlock(Palette palette, int x, int y, int colorIndex)
+	{
+		DrawDirectPixelBlock(Charset.FilledChar, x, y, palette.GetColor(colorIndex));
+	}
+
+	/// <summary>
 	///		Draws the given 8x8 pixel block
 	/// </summary>
-	public void DrawPixelBlock(string bits, int x, int y, int color1, int color0)
+	public void DrawDirectPixelBlock(string bits, int x, int y, int color1, int color0)
 	{
 		x *= 8;
 		y *= 8;
@@ -55,7 +71,7 @@ public sealed class PixelCanvas : IDisposable
 	/// <summary>
 	///		Draws the given 8x8 pixel block
 	/// </summary>
-	public void DrawPixelBlock(string bits, int x, int y, int color1)
+	public void DrawDirectPixelBlock(string bits, int x, int y, int color1)
 	{
 		x *= 8;
 		y *= 8;
@@ -79,7 +95,7 @@ public sealed class PixelCanvas : IDisposable
 	/// </summary>
 	public void DrawPixelBlock(Charset charset, Palette palette, int charIndex, int x, int y, int palIndex1, int palIndex0)
 	{
-		DrawPixelBlock(charset.GetChar(charIndex), x, y, palette.GetColor(palIndex1), palette.GetColor(palIndex0));
+		DrawDirectPixelBlock(charset.GetChar(charIndex), x, y, palette.GetColor(palIndex1), palette.GetColor(palIndex0));
 	}
 
 	/// <summary>
@@ -87,7 +103,7 @@ public sealed class PixelCanvas : IDisposable
 	/// </summary>
 	public void DrawPixelBlock(Charset charset, Palette palette, int charIndex, int x, int y, int palIndex1)
 	{
-		DrawPixelBlock(charset.GetChar(charIndex), x, y, palette.GetColor(palIndex1));
+		DrawDirectPixelBlock(charset.GetChar(charIndex), x, y, palette.GetColor(palIndex1));
 	}
 
 	/// <summary>
@@ -96,7 +112,7 @@ public sealed class PixelCanvas : IDisposable
 	public void DrawString(Charset charset, Palette palette, string text, int x, int y, int palIndex1, int palIndex0)
 	{
 		foreach (char charIndex in text)
-			DrawPixelBlock(charset.GetChar(charIndex), x++, y, palette.GetColor(palIndex1), palette.GetColor(palIndex0));
+			DrawDirectPixelBlock(charset.GetChar(charIndex), x++, y, palette.GetColor(palIndex1), palette.GetColor(palIndex0));
 	}
 
 	/// <summary>
@@ -105,7 +121,7 @@ public sealed class PixelCanvas : IDisposable
 	public void DrawString(Charset charset, Palette palette, string text, int x, int y, int palIndex1)
 	{
 		foreach (char charIndex in text)
-			DrawPixelBlock(charset.GetChar(charIndex), x++, y, palette.GetColor(palIndex1));
+			DrawDirectPixelBlock(charset.GetChar(charIndex), x++, y, palette.GetColor(palIndex1));
 	}
 
 	/// <summary>

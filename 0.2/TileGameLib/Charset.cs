@@ -3,7 +3,9 @@
 public class Charset
 {
 	public const int Size = 512;
-	public readonly string BlankChar = new('0', 64);
+
+	public static readonly string BlankChar = new('0', 64);
+	public static readonly string FilledChar = new('1', 64);
 
 	private readonly List<string> chars = [];
 

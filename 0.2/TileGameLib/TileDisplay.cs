@@ -4,22 +4,22 @@ namespace TileGameLib;
 
 public partial class TileDisplay : UserControl
 {
-	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public bool Stretch { get; set; } = false;
-
-	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public int Zoom { get; set; } = 1;
-
-	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public bool ShowGrid { get; set; } = true;
-
 	// Canvas
 	public PixelCanvas Canvas => canvas;
 	private readonly PixelCanvas canvas;
 
+	// Display mode
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public bool Stretch { get; set; } = false;
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public int Zoom { get; set; } = 1;
+
 	// Grid
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public bool ShowGrid { get; set; } = true;
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	public Color GridColor { get; set; } = Color.FromArgb(30, 255, 255, 255);
 	private readonly Bitmap gridBitmap;
-	private Pen gridPen = new(Color.FromArgb(40, 255, 255, 255));
 
 	public TileDisplay(int canvasWidth, int canvasHeight, Control parent)
 	{
@@ -38,6 +38,11 @@ public partial class TileDisplay : UserControl
 		canvas.Dispose();
 	}
 
+	public int GetSnappedX(int x) => x / (Zoom * 8) * 8;
+	public int GetSnappedY(int y) => y / (Zoom * 8) * 8;
+	public int GetTiledX(int x) => x / (Zoom * 8);
+	public int GetTiledY(int y) => y / (Zoom * 8);
+
 	protected override void OnPaint(PaintEventArgs e)
 	{
 		base.OnPaint(e);
@@ -50,7 +55,7 @@ public partial class TileDisplay : UserControl
 		else
 			e.Graphics.DrawImage(canvas.GetBitmap(), 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
 
-		if (ShowGrid)
+		if (ShowGrid && !Stretch)
 		{
 			DrawGrid();
 
@@ -59,14 +64,16 @@ public partial class TileDisplay : UserControl
 			e.Graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
 			e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
 
-			if (!Stretch)
-				e.Graphics.DrawImage(gridBitmap, 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
+			e.Graphics.DrawImage(gridBitmap, 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
 		}
 	}
 
 	private void DrawGrid()
 	{
 		Graphics g = Graphics.FromImage(gridBitmap);
+		g.Clear(Color.FromArgb(0, 0, 0, 0));
+
+		using Pen gridPen = new(GridColor);
 
 		for (int x = 0; x < gridBitmap.Width; x += 8)
 			g.DrawLine(gridPen, x, 0, x, gridBitmap.Height);
