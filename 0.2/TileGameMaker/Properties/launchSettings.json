@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TileGameMaker": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)Build/"
+    }
+  }
+}
