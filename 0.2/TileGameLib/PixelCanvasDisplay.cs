@@ -2,11 +2,11 @@
 
 namespace TileGameLib;
 
-public partial class TileDisplay : UserControl
+public partial class PixelCanvasDisplay : UserControl
 {
 	// Canvas
 	public PixelCanvas Canvas => canvas;
-	private readonly PixelCanvas canvas;
+	protected readonly PixelCanvas canvas;
 
 	// Display mode
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -21,7 +21,7 @@ public partial class TileDisplay : UserControl
 	public Color GridColor { get; set; } = Color.FromArgb(30, 255, 255, 255);
 	private readonly Bitmap gridBitmap;
 
-	public TileDisplay(int canvasWidth, int canvasHeight, Control parent)
+	public PixelCanvasDisplay(int canvasWidth, int canvasHeight, Control parent)
 	{
 		InitializeComponent();
 
@@ -33,7 +33,7 @@ public partial class TileDisplay : UserControl
 		gridBitmap = new Bitmap(canvasWidth, canvasHeight);
 	}
 
-	~TileDisplay()
+	~PixelCanvasDisplay()
 	{
 		canvas.Dispose();
 	}

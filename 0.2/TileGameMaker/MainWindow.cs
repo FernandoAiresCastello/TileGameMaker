@@ -4,7 +4,7 @@ namespace TileGameMaker;
 
 public partial class MainWindow : Form
 {
-	private readonly TileDisplay display;
+	private readonly PixelCanvasDisplay display;
 	private readonly Palette palette;
 	private readonly Charset charset;
 
@@ -17,7 +17,7 @@ public partial class MainWindow : Form
 		charset = new();
 		charset.Load("charset.dat");
 
-		display = new TileDisplay(256, 192, PnlDisplay);
+		display = new PixelCanvasDisplay(256, 192, PnlDisplay);
 		display.Zoom = 3;
 
 		PixelCanvas canvas = display.Canvas;

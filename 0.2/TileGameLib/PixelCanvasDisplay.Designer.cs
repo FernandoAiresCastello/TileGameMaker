@@ -1,6 +1,6 @@
 ﻿namespace TileGameLib
 {
-	partial class TileDisplay
+	partial class PixelCanvasDisplay
 	{
 		/// <summary> 
 		/// Required designer variable.
