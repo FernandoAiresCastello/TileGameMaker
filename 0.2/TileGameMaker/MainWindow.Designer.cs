@@ -33,18 +33,18 @@
 			// 
 			// PnlDisplay
 			// 
+			PnlDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			PnlDisplay.BorderStyle = BorderStyle.Fixed3D;
-			PnlDisplay.Dock = DockStyle.Fill;
-			PnlDisplay.Location = new Point(0, 0);
+			PnlDisplay.Location = new Point(12, 12);
 			PnlDisplay.Name = "PnlDisplay";
-			PnlDisplay.Size = new Size(862, 620);
-			PnlDisplay.TabIndex = 0;
+			PnlDisplay.Size = new Size(825, 589);
+			PnlDisplay.TabIndex = 1;
 			// 
 			// MainWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(862, 620);
+			ClientSize = new Size(849, 613);
 			Controls.Add(PnlDisplay);
 			Name = "MainWindow";
 			StartPosition = FormStartPosition.CenterScreen;

@@ -4,7 +4,7 @@ namespace TileGameMaker;
 
 public partial class MainWindow : Form
 {
-	private readonly PixelCanvasDisplay display;
+	private readonly TileBoardDisplay display;
 	private readonly Palette palette;
 	private readonly Charset charset;
 
@@ -17,11 +17,13 @@ public partial class MainWindow : Form
 		charset = new();
 		charset.Load("charset.dat");
 
-		display = new PixelCanvasDisplay(256, 192, PnlDisplay);
+		display = new TileBoardDisplay(256 / 8, 192 / 8, charset, palette, 400, PnlDisplay);
 		display.Zoom = 3;
 
-		PixelCanvas canvas = display.Canvas;
-		canvas.Clear(0x608060);
+		Tile tile = new Tile();
+		tile.AddChar('-', 0, 15);
+		tile.AddChar('+', 0, 15);
+		display.Board.Fill(tile);
 
 		Resize += (s, e) => display.Invalidate();
 

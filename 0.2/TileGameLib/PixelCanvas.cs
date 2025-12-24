@@ -3,21 +3,13 @@ using System.Runtime.InteropServices;
 
 namespace TileGameLib;
 
-public sealed class PixelCanvas : IDisposable
+public sealed class PixelCanvas(int width, int height) : IDisposable
 {
-	public int Width { get; }
-	public int Height { get; }
+	public int Width { get; } = width;
+	public int Height { get; } = height;
 
-	private readonly int[] pixels;
-	private readonly Bitmap bitmap;
-
-	public PixelCanvas(int width, int height)
-	{
-		Width = width;
-		Height = height;
-		pixels = new int[width * height];
-		bitmap = new(width, height, PixelFormat.Format32bppArgb);
-	}
+	private readonly int[] pixels = new int[width * height];
+	private readonly Bitmap bitmap = new(width, height, PixelFormat.Format32bppArgb);
 
 	/// <summary>
 	///		Sets a pixel using a color in the format 0xRRGGBB.
@@ -52,15 +44,15 @@ public sealed class PixelCanvas : IDisposable
 	/// </summary>
 	public void DrawDirectPixelBlock(string bits, int x, int y, int color1, int color0)
 	{
-		x *= 8;
-		y *= 8;
+		x *= Tile.Width;
+		y *= Tile.Height;
 
 		int i = 0;
 
-		for (int row = 0; row < 8; row++)
+		for (int row = 0; row < Tile.Height; row++)
 		{
 			int py = y + row;
-			for (int col = 0; col < 8; col++, i++)
+			for (int col = 0; col < Tile.Width; col++, i++)
 			{
 				int px = x + col;
 				SetPixel(px, py, bits[i] == '1' ? color1 : color0);
@@ -73,15 +65,15 @@ public sealed class PixelCanvas : IDisposable
 	/// </summary>
 	public void DrawDirectPixelBlock(string bits, int x, int y, int color1)
 	{
-		x *= 8;
-		y *= 8;
+		x *= Tile.Width;
+		y *= Tile.Height;
 
 		int i = 0;
 
-		for (int row = 0; row < 8; row++)
+		for (int row = 0; row < Tile.Height; row++)
 		{
 			int py = y + row;
-			for (int col = 0; col < 8; col++, i++)
+			for (int col = 0; col < Tile.Width; col++, i++)
 			{
 				int px = x + col;
 				if (bits[i] == '1')

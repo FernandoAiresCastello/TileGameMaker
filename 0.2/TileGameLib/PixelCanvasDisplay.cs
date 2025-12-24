@@ -18,7 +18,7 @@ public partial class PixelCanvasDisplay : UserControl
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public bool ShowGrid { get; set; } = true;
 	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-	public Color GridColor { get; set; } = Color.FromArgb(30, 255, 255, 255);
+	public Color GridColor { get; set; } = Color.FromArgb(80, 128, 128, 128);
 	private readonly Bitmap gridBitmap;
 
 	public PixelCanvasDisplay(int canvasWidth, int canvasHeight, Control parent)
