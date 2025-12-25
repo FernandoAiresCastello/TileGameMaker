@@ -25,6 +25,11 @@ public class Charset
 		return chars[index];
 	}
 
+	public void SetChar(int index, string bits)
+	{
+		chars[index] = bits;
+	}
+
 	public void Load(string path)
 	{
 		string[] lines = File.ReadAllLines(path);
