@@ -37,36 +37,38 @@
 			// 
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(371, 25);
+			toolStrip1.Size = new Size(297, 25);
 			toolStrip1.TabIndex = 0;
 			toolStrip1.Text = "toolStrip1";
 			// 
 			// statusStrip1
 			// 
-			statusStrip1.Location = new Point(0, 355);
+			statusStrip1.Location = new Point(0, 324);
 			statusStrip1.Name = "statusStrip1";
-			statusStrip1.Size = new Size(371, 22);
+			statusStrip1.Size = new Size(297, 22);
+			statusStrip1.SizingGrip = false;
 			statusStrip1.TabIndex = 1;
 			statusStrip1.Text = "statusStrip1";
 			// 
 			// PnlDisplay
 			// 
+			PnlDisplay.BorderStyle = BorderStyle.Fixed3D;
 			PnlDisplay.Dock = DockStyle.Fill;
 			PnlDisplay.Location = new Point(0, 25);
 			PnlDisplay.Name = "PnlDisplay";
-			PnlDisplay.Size = new Size(371, 330);
+			PnlDisplay.Size = new Size(297, 299);
 			PnlDisplay.TabIndex = 2;
 			// 
 			// Tile8x8Editor
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(371, 377);
+			ClientSize = new Size(297, 346);
 			Controls.Add(PnlDisplay);
 			Controls.Add(statusStrip1);
 			Controls.Add(toolStrip1);
 			Name = "Tile8x8Editor";
-			StartPosition = FormStartPosition.CenterParent;
+			StartPosition = FormStartPosition.CenterScreen;
 			ResumeLayout(false);
 			PerformLayout();
 		}
