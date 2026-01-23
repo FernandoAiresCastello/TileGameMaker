@@ -22,6 +22,7 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 	{
 		InitializeComponent();
 
+		Stretch = true;
 		Board = new TileBoard(cols, rows);
 		Charset = charset;
 		Palette = palette;

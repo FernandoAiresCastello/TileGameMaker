@@ -41,8 +41,22 @@ public partial class PixelCanvasDisplay : UserControl
 
 	public int GetSnappedX(int x) => x / (Zoom * 8) * 8;
 	public int GetSnappedY(int y) => y / (Zoom * 8) * 8;
-	public int GetTileX(int x) => x / (Zoom * 8);
-	public int GetTileY(int y) => y / (Zoom * 8);
+
+	public int GetTileX(int x)
+	{
+		if (Stretch)
+			return x / (ClientRectangle.Width / (canvas.Width / 8));
+
+		return x / (Zoom * 8);
+	}
+
+	public int GetTileY(int y)
+	{
+		if (Stretch)
+			return y / (ClientRectangle.Height / (canvas.Height / 8));
+
+		return y / (Zoom * 8);
+	}
 
 	protected override void OnPaint(PaintEventArgs e)
 	{
@@ -56,7 +70,7 @@ public partial class PixelCanvasDisplay : UserControl
 		else
 			e.Graphics.DrawImage(canvas.GetBitmap(), 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
 
-		if (ShowGrid && !Stretch)
+		if (ShowGrid)
 		{
 			DrawGrid();
 
@@ -65,7 +79,10 @@ public partial class PixelCanvasDisplay : UserControl
 			e.Graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
 			e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
 
-			e.Graphics.DrawImage(gridBitmap, 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
+			if (Stretch)
+				e.Graphics.DrawImage(gridBitmap, ClientRectangle);
+			else
+				e.Graphics.DrawImage(gridBitmap, 0, 0, Zoom * canvas.Width, Zoom * canvas.Height);
 		}
 	}
 
