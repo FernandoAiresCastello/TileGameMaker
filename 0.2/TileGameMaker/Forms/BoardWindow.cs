@@ -1,18 +1,21 @@
 using TileGameLib.Controls;
 using TileGameLib.Core;
 
-namespace TileGameMaker;
+namespace TileGameMaker.Forms;
 
-public partial class MainWindow : Form
+public partial class BoardWindow : Form
 {
 	private readonly Palette palette;
 	private readonly Charset charset;
+	private readonly Workspace workspace;
 
 	private readonly TileBoardDisplay display;
 
-	public MainWindow()
+	public BoardWindow(Workspace workspace)
 	{
 		InitializeComponent();
+
+		this.workspace = workspace;
 		DoubleBuffered = true;
 
 		palette = new();
@@ -20,8 +23,7 @@ public partial class MainWindow : Form
 		charset = new();
 		charset.Load("charset.dat");
 
-		display = new TileBoardDisplay(160 / 8, 144 / 8, charset, palette, 100, PnlBoard);
-		display.Zoom = 3;
+		display = new TileBoardDisplay(160 / 8, 144 / 8, charset, palette, 200, PnlBoard);
 		display.Board.BackColor = 0xffffff;
 
 		display.MouseMove += Display_MouseMove;
@@ -50,6 +52,6 @@ public partial class MainWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		display.Board.SetTile(new Tile('X', 15, 0), x, y);
+		display.Board.SetTile(workspace.CurrentTile, x, y);
 	}
 }

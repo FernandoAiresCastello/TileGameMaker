@@ -13,10 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Tile8x8Editor.cs">
+    <Compile Update="Forms\Tile8x8Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="TilePixels8x8Display.cs">
+    <Compile Update="Controls\TilePixels8x8Display.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

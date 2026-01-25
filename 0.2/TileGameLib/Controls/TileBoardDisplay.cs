@@ -35,7 +35,7 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 		animationTimer.Start();
 	}
 
-	private void DrawTiles()
+	public void DrawTiles()
 	{
 		canvas.Clear(Board.BackColor);
 

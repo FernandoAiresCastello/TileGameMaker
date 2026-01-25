@@ -1,7 +1,7 @@
 ﻿using TileGameLib.Controls;
 using TileGameLib.Core;
 
-namespace TileGameMaker;
+namespace TileGameMaker.Controls;
 
 public partial class TilePixels8x8Display : PixelCanvasDisplay
 {

@@ -1,6 +1,6 @@
-﻿namespace TileGameMaker
+﻿namespace TileGameMaker.Forms
 {
-	partial class Tile8x8Editor
+	partial class WorkspaceWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,55 +28,45 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			toolStrip1 = new ToolStrip();
+			menuStrip1 = new MenuStrip();
 			statusStrip1 = new StatusStrip();
-			PnlDisplay = new Panel();
 			SuspendLayout();
 			// 
-			// toolStrip1
+			// menuStrip1
 			// 
-			toolStrip1.Location = new Point(0, 0);
-			toolStrip1.Name = "toolStrip1";
-			toolStrip1.Size = new Size(297, 25);
-			toolStrip1.TabIndex = 0;
-			toolStrip1.Text = "toolStrip1";
+			menuStrip1.Location = new Point(0, 0);
+			menuStrip1.Name = "menuStrip1";
+			menuStrip1.Size = new Size(1004, 24);
+			menuStrip1.TabIndex = 1;
+			menuStrip1.Text = "menuStrip1";
 			// 
 			// statusStrip1
 			// 
-			statusStrip1.Location = new Point(0, 324);
+			statusStrip1.Location = new Point(0, 641);
 			statusStrip1.Name = "statusStrip1";
-			statusStrip1.Size = new Size(297, 22);
-			statusStrip1.SizingGrip = false;
-			statusStrip1.TabIndex = 1;
+			statusStrip1.Size = new Size(1004, 22);
+			statusStrip1.TabIndex = 2;
 			statusStrip1.Text = "statusStrip1";
 			// 
-			// PnlDisplay
-			// 
-			PnlDisplay.BorderStyle = BorderStyle.Fixed3D;
-			PnlDisplay.Dock = DockStyle.Fill;
-			PnlDisplay.Location = new Point(0, 25);
-			PnlDisplay.Name = "PnlDisplay";
-			PnlDisplay.Size = new Size(297, 299);
-			PnlDisplay.TabIndex = 2;
-			// 
-			// Tile8x8Editor
+			// WorkspaceWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(297, 346);
-			Controls.Add(PnlDisplay);
+			ClientSize = new Size(1004, 663);
 			Controls.Add(statusStrip1);
-			Controls.Add(toolStrip1);
-			Name = "Tile8x8Editor";
+			Controls.Add(menuStrip1);
+			IsMdiContainer = true;
+			MainMenuStrip = menuStrip1;
+			Name = "WorkspaceWindow";
 			StartPosition = FormStartPosition.CenterScreen;
+			Text = "Tile Game Maker";
 			ResumeLayout(false);
 			PerformLayout();
 		}
 
 		#endregion
 
-		private ToolStrip toolStrip1;
+		private MenuStrip menuStrip1;
 		private StatusStrip statusStrip1;
-		private Panel PnlDisplay;
 	}
 }

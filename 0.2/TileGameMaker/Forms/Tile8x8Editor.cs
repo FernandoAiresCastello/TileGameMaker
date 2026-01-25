@@ -1,6 +1,7 @@
 ﻿using TileGameLib.Core;
+using TileGameMaker.Controls;
 
-namespace TileGameMaker;
+namespace TileGameMaker.Forms;
 
 public partial class Tile8x8Editor : Form
 {

@@ -1,6 +1,6 @@
-﻿namespace TileGameMaker
+﻿namespace TileGameMaker.Forms
 {
-    partial class MainWindow
+    partial class BoardWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,20 +33,20 @@
 			// 
 			// PnlBoard
 			// 
+			PnlBoard.BorderStyle = BorderStyle.FixedSingle;
 			PnlBoard.Dock = DockStyle.Fill;
 			PnlBoard.Location = new Point(0, 0);
-			PnlBoard.Margin = new Padding(0);
 			PnlBoard.Name = "PnlBoard";
-			PnlBoard.Size = new Size(581, 517);
-			PnlBoard.TabIndex = 0;
+			PnlBoard.Size = new Size(534, 511);
+			PnlBoard.TabIndex = 1;
 			// 
-			// MainWindow
+			// BoardWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(581, 517);
+			ClientSize = new Size(534, 511);
 			Controls.Add(PnlBoard);
-			Name = "MainWindow";
+			Name = "BoardWindow";
 			StartPosition = FormStartPosition.CenterScreen;
 			ResumeLayout(false);
 		}

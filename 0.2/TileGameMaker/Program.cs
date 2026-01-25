@@ -1,3 +1,5 @@
+using TileGameMaker.Forms;
+
 namespace TileGameMaker;
 
 internal static class Program
@@ -6,6 +8,6 @@ internal static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        Application.Run(new MainWindow());
+        Application.Run(new WorkspaceWindow());
     }
 }

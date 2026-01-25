@@ -45,7 +45,7 @@ public partial class PixelCanvasDisplay : UserControl
 	public int GetTileX(int x)
 	{
 		if (Stretch)
-			return x / (ClientRectangle.Width / (canvas.Width / 8));
+			return (x - 4) / (ClientRectangle.Width / (canvas.Width / 8));
 
 		return x / (Zoom * 8);
 	}
@@ -53,7 +53,7 @@ public partial class PixelCanvasDisplay : UserControl
 	public int GetTileY(int y)
 	{
 		if (Stretch)
-			return y / (ClientRectangle.Height / (canvas.Height / 8));
+			return (y - 4) / (ClientRectangle.Height / (canvas.Height / 8));
 
 		return y / (Zoom * 8);
 	}

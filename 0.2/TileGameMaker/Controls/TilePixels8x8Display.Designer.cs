@@ -1,4 +1,4 @@
-﻿namespace TileGameMaker
+﻿namespace TileGameMaker.Controls
 {
 	partial class TilePixels8x8Display
 	{
