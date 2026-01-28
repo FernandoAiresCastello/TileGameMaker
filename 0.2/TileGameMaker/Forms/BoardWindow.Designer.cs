@@ -33,7 +33,6 @@
 			// 
 			// PnlBoard
 			// 
-			PnlBoard.BorderStyle = BorderStyle.FixedSingle;
 			PnlBoard.Dock = DockStyle.Fill;
 			PnlBoard.Location = new Point(0, 0);
 			PnlBoard.Name = "PnlBoard";
@@ -48,6 +47,7 @@
 			Controls.Add(PnlBoard);
 			Name = "BoardWindow";
 			StartPosition = FormStartPosition.CenterScreen;
+			Text = "Board";
 			ResumeLayout(false);
 		}
 

@@ -22,6 +22,11 @@ public class Palette
 		return colors[index];
 	}
 
+	public void SetColor(int index, int rgb)
+	{
+		colors[index] = rgb;
+	}
+
 	public void Load(string path)
 	{
 		string[] lines = File.ReadAllLines(path);

@@ -31,7 +31,7 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 
 		animationTimer = new();
 		animationTimer.Interval = animationInterval;
-		animationTimer.Tick += (sender, e) => DrawTiles();
+		animationTimer.Tick += (sender, e) => Animate();
 		animationTimer.Start();
 	}
 
@@ -56,8 +56,12 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 			}
 		}
 
-		animationIndex++;
-
 		Invalidate();
+	}
+
+	private void Animate()
+	{
+		DrawTiles();
+		animationIndex++;
 	}
 }

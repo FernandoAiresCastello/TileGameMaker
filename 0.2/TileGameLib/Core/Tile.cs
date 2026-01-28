@@ -7,7 +7,7 @@ public class Tile
 
 	public List<TileChar> Chars { get; set; } = [];
 	public bool HasAnyChar => Chars.Count > 0;
-	public TileData Data { get; set; }
+	public TileData Data { get; set; } = new();
 
 	public bool Transparent { get; set; } = false;
 
