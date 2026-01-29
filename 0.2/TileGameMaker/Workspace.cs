@@ -7,22 +7,16 @@ public class Workspace
 {
 	public Palette Palette { get; set; } = new();
 	public Charset Charset { get; set; } = new();
-
 	public Tile CurrentTile { get; set; } = new Tile('?', 0, 15);
-
-	private readonly WorkspaceWindow workspaceWindow;
+	public WorkspaceWindow WorkspaceWindow { get; set; }
 
 	public Workspace(WorkspaceWindow workspaceWindow)
 	{
-		this.workspaceWindow = workspaceWindow;
+		WorkspaceWindow = workspaceWindow;
 
 		Palette.Load("palette.dat");
 		Charset.Load("charset.dat");
-	}
 
-	public void SetCurrentTile(Tile tile)
-	{
-		CurrentTile.SetEqual(tile);
-		workspaceWindow.CharsetWindow.DrawChars();
+		CurrentTile.Data.Set("Test Data", "12345");
 	}
 }

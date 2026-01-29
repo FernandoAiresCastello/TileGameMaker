@@ -36,14 +36,14 @@
 			PnlPalette.Dock = DockStyle.Fill;
 			PnlPalette.Location = new Point(0, 0);
 			PnlPalette.Name = "PnlPalette";
-			PnlPalette.Size = new Size(435, 450);
+			PnlPalette.Size = new Size(435, 286);
 			PnlPalette.TabIndex = 0;
 			// 
 			// PaletteWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(435, 450);
+			ClientSize = new Size(435, 286);
 			Controls.Add(PnlPalette);
 			Name = "PaletteWindow";
 			StartPosition = FormStartPosition.CenterScreen;

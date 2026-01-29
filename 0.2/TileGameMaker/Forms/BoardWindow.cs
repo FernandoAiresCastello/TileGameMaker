@@ -44,8 +44,11 @@ public partial class BoardWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		display.Board.GetTile(x, y).SetEqual(workspace.CurrentTile);
-		display.DrawTiles();
+		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
+		{
+			display.Board.GetTile(x, y).SetEqual(workspace.CurrentTile);
+			display.DrawTiles();
+		}
 	}
 
 	private void GrabTile(MouseEventArgs e)
@@ -55,6 +58,7 @@ public partial class BoardWindow : Form
 
 		Tile tile = display.Board.GetTile(x, y);
 
-		workspace.SetCurrentTile(tile);
+		workspace.CurrentTile.SetEqual(tile);
+		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
 	}
 }

@@ -36,10 +36,7 @@ public partial class CharsetWindow : Form
 			int x = i % 16;
 			int y = i / 16;
 
-			if (workspace.CurrentTile.Chars.Count > 0 && i == workspace.CurrentTile.Chars[0].Index)
-				display.Board.SetTile(new Tile(i, 1, 2), x, y);
-			else
-				display.Board.SetTile(new Tile(i, 0, 1), x, y);
+			display.Board.SetTile(new Tile(i, 0, 1), x, y);
 		}
 
 		display.DrawTiles();
@@ -58,6 +55,6 @@ public partial class CharsetWindow : Form
 		workspace.CurrentTile.Chars.Clear();
 		workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
 
-		DrawChars();
+		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
 	}
 }

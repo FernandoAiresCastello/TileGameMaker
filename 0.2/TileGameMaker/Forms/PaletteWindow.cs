@@ -62,5 +62,7 @@ public partial class PaletteWindow : Form
 			workspace.CurrentTile.Chars.Clear();
 			workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
 		}
+
+		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
 	}
 }
