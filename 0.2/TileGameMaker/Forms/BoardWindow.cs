@@ -86,4 +86,40 @@ public partial class BoardWindow : Form
 		display.ShowGrid = BtnGridToggle.Checked;
 		display.Invalidate();
 	}
+
+	private void BtnLoad_Click(object sender, EventArgs e)
+	{
+		OpenFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		LoadBoard(dialog.FileName);
+	}
+
+	private void BtnSave_Click(object sender, EventArgs e)
+	{
+		SaveFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		SaveBoard(dialog.FileName);
+	}
+
+	private void LoadBoard(string path)
+	{
+		TileBoard board = display.Board;
+		Palette palette = workspace.Palette;
+		Charset charset = workspace.Charset;
+
+		BoardFile.Load(path, board, palette, charset);
+	}
+
+	private void SaveBoard(string path)
+	{
+		TileBoard board = display.Board;
+		Palette palette = workspace.Palette;
+		Charset charset = workspace.Charset;
+
+		BoardFile.Save(path, board, palette, charset);
+	}
 }

@@ -29,9 +29,9 @@
 		private void InitializeComponent()
 		{
 			toolStrip1 = new ToolStrip();
-			PnlPalette = new Panel();
 			BtnLoad = new ToolStripButton();
 			BtnSave = new ToolStripButton();
+			PnlPalette = new Panel();
 			toolStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -43,14 +43,6 @@
 			toolStrip1.Size = new Size(435, 25);
 			toolStrip1.TabIndex = 1;
 			toolStrip1.Text = "toolStrip1";
-			// 
-			// PnlPalette
-			// 
-			PnlPalette.Dock = DockStyle.Fill;
-			PnlPalette.Location = new Point(0, 25);
-			PnlPalette.Name = "PnlPalette";
-			PnlPalette.Size = new Size(435, 261);
-			PnlPalette.TabIndex = 2;
 			// 
 			// BtnLoad
 			// 
@@ -72,11 +64,19 @@
 			BtnSave.Text = "Save";
 			BtnSave.Click += BtnSave_Click;
 			// 
+			// PnlPalette
+			// 
+			PnlPalette.Dock = DockStyle.Fill;
+			PnlPalette.Location = new Point(0, 25);
+			PnlPalette.Name = "PnlPalette";
+			PnlPalette.Size = new Size(435, 338);
+			PnlPalette.TabIndex = 2;
+			// 
 			// PaletteWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(435, 286);
+			ClientSize = new Size(435, 363);
 			ControlBox = false;
 			Controls.Add(PnlPalette);
 			Controls.Add(toolStrip1);

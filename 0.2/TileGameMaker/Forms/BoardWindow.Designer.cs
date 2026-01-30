@@ -29,27 +29,22 @@
 		private void InitializeComponent()
 		{
 			toolStrip1 = new ToolStrip();
-			PnlBoard = new Panel();
 			BtnGridToggle = new ToolStripButton();
+			PnlBoard = new Panel();
+			BtnLoad = new ToolStripButton();
+			BtnSave = new ToolStripButton();
+			toolStripSeparator1 = new ToolStripSeparator();
 			toolStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
 			toolStrip1.TabIndex = 0;
 			toolStrip1.Text = "toolStrip1";
-			// 
-			// PnlBoard
-			// 
-			PnlBoard.Dock = DockStyle.Fill;
-			PnlBoard.Location = new Point(0, 25);
-			PnlBoard.Name = "PnlBoard";
-			PnlBoard.Size = new Size(732, 606);
-			PnlBoard.TabIndex = 1;
 			// 
 			// BtnGridToggle
 			// 
@@ -63,6 +58,39 @@
 			BtnGridToggle.Size = new Size(23, 22);
 			BtnGridToggle.Text = "Toggle grid";
 			BtnGridToggle.Click += BtnGridToggle_Click;
+			// 
+			// PnlBoard
+			// 
+			PnlBoard.Dock = DockStyle.Fill;
+			PnlBoard.Location = new Point(0, 25);
+			PnlBoard.Name = "PnlBoard";
+			PnlBoard.Size = new Size(732, 606);
+			PnlBoard.TabIndex = 1;
+			// 
+			// BtnLoad
+			// 
+			BtnLoad.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnLoad.Image = Properties.Resources.folder;
+			BtnLoad.ImageTransparentColor = Color.Magenta;
+			BtnLoad.Name = "BtnLoad";
+			BtnLoad.Size = new Size(23, 22);
+			BtnLoad.Text = "Load";
+			BtnLoad.Click += BtnLoad_Click;
+			// 
+			// BtnSave
+			// 
+			BtnSave.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnSave.Image = Properties.Resources.diskette;
+			BtnSave.ImageTransparentColor = Color.Magenta;
+			BtnSave.Name = "BtnSave";
+			BtnSave.Size = new Size(23, 22);
+			BtnSave.Text = "Save";
+			BtnSave.Click += BtnSave_Click;
+			// 
+			// toolStripSeparator1
+			// 
+			toolStripSeparator1.Name = "toolStripSeparator1";
+			toolStripSeparator1.Size = new Size(6, 25);
 			// 
 			// BoardWindow
 			// 
@@ -87,5 +115,8 @@
 		private ToolStrip toolStrip1;
 		private Panel PnlBoard;
 		private ToolStripButton BtnGridToggle;
+		private ToolStripButton BtnLoad;
+		private ToolStripButton BtnSave;
+		private ToolStripSeparator toolStripSeparator1;
 	}
 }

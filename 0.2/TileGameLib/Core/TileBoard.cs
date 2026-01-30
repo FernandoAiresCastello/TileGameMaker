@@ -2,6 +2,8 @@
 
 public class TileBoard
 {
+	public string Name { get; set; } = "Untitled";
+
 	public int Cols { get; }
 	public int Rows { get; }
 
@@ -32,5 +34,11 @@ public class TileBoard
 	{
 		for (int i = 0; i < tiles.Count; i++)
 			tiles[i] = tile;
+	}
+
+	public void Clear()
+	{
+		for (int i = 0; i < tiles.Count; i++)
+			tiles[i] = new Tile();
 	}
 }
