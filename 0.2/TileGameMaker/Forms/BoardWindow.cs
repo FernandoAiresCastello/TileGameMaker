@@ -20,6 +20,13 @@ public partial class BoardWindow : Form
 
 		display.MouseMove += Display_MouseMove;
 		display.MouseDown += Display_MouseDown;
+		display.MouseUp += Display_MouseUp;
+	}
+
+	private void Display_MouseUp(object sender, MouseEventArgs e)
+	{
+		if (e.Button == MouseButtons.Middle)
+			InsertTile(e);
 	}
 
 	private void Display_MouseDown(object sender, MouseEventArgs e)
@@ -51,6 +58,18 @@ public partial class BoardWindow : Form
 		}
 	}
 
+	private void InsertTile(MouseEventArgs e)
+	{
+		int x = display.GetTileX(e.X);
+		int y = display.GetTileY(e.Y);
+
+		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
+		{
+			display.Board.GetTile(x, y).AddChars(workspace.CurrentTile);
+			display.DrawTiles();
+		}
+	}
+
 	private void GrabTile(MouseEventArgs e)
 	{
 		int x = display.GetTileX(e.X);
@@ -60,5 +79,11 @@ public partial class BoardWindow : Form
 
 		workspace.CurrentTile.SetEqual(tile);
 		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
+	}
+
+	private void BtnGridToggle_Click(object sender, EventArgs e)
+	{
+		display.ShowGrid = BtnGridToggle.Checked;
+		display.Invalidate();
 	}
 }

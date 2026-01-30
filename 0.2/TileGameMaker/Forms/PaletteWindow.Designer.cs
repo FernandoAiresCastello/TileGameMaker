@@ -28,31 +28,73 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			toolStrip1 = new ToolStrip();
 			PnlPalette = new Panel();
+			BtnLoad = new ToolStripButton();
+			BtnSave = new ToolStripButton();
+			toolStrip1.SuspendLayout();
 			SuspendLayout();
+			// 
+			// toolStrip1
+			// 
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave });
+			toolStrip1.Location = new Point(0, 0);
+			toolStrip1.Name = "toolStrip1";
+			toolStrip1.Size = new Size(435, 25);
+			toolStrip1.TabIndex = 1;
+			toolStrip1.Text = "toolStrip1";
 			// 
 			// PnlPalette
 			// 
 			PnlPalette.Dock = DockStyle.Fill;
-			PnlPalette.Location = new Point(0, 0);
+			PnlPalette.Location = new Point(0, 25);
 			PnlPalette.Name = "PnlPalette";
-			PnlPalette.Size = new Size(435, 286);
-			PnlPalette.TabIndex = 0;
+			PnlPalette.Size = new Size(435, 261);
+			PnlPalette.TabIndex = 2;
+			// 
+			// BtnLoad
+			// 
+			BtnLoad.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnLoad.Image = Properties.Resources.folder;
+			BtnLoad.ImageTransparentColor = Color.Magenta;
+			BtnLoad.Name = "BtnLoad";
+			BtnLoad.Size = new Size(23, 22);
+			BtnLoad.Text = "Load";
+			BtnLoad.Click += BtnLoad_Click;
+			// 
+			// BtnSave
+			// 
+			BtnSave.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnSave.Image = Properties.Resources.diskette;
+			BtnSave.ImageTransparentColor = Color.Magenta;
+			BtnSave.Name = "BtnSave";
+			BtnSave.Size = new Size(23, 22);
+			BtnSave.Text = "Save";
+			BtnSave.Click += BtnSave_Click;
 			// 
 			// PaletteWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(435, 286);
+			ControlBox = false;
 			Controls.Add(PnlPalette);
+			Controls.Add(toolStrip1);
+			MaximizeBox = false;
 			Name = "PaletteWindow";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Palette";
+			toolStrip1.ResumeLayout(false);
+			toolStrip1.PerformLayout();
 			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion
 
+		private ToolStrip toolStrip1;
 		private Panel PnlPalette;
+		private ToolStripButton BtnLoad;
+		private ToolStripButton BtnSave;
 	}
 }

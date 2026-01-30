@@ -21,8 +21,15 @@ public class Tile
 	}
 
 	public TileChar GetChar(int index) => Chars[index % Chars.Count];
+	
 	public void AddChar(TileChar tileChar) => Chars.Add(tileChar);
 	public void AddChar(int index, int foreColor, int backColor) => Chars.Add(new TileChar(index, foreColor, backColor));
+
+	public void AddChars(Tile other)
+	{
+		foreach (var ch in other.Chars)
+			Chars.Add(new(ch.Index, ch.ForeColor, ch.BackColor));
+	}
 
 	public void SetEqual(Tile other)
 	{

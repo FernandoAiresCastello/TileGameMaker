@@ -65,4 +65,24 @@ public partial class PaletteWindow : Form
 
 		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
 	}
+
+	private void BtnLoad_Click(object sender, EventArgs e)
+	{
+		OpenFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		workspace.Palette.Load(dialog.FileName);
+
+		DrawColors();
+	}
+
+	private void BtnSave_Click(object sender, EventArgs e)
+	{
+		SaveFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		workspace.Palette.Save(dialog.FileName);
+	}
 }

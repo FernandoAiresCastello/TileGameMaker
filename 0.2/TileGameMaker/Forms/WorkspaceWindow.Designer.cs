@@ -29,16 +29,27 @@
 		private void InitializeComponent()
 		{
 			menuStrip1 = new MenuStrip();
+			fileToolStripMenuItem = new ToolStripMenuItem();
 			statusStrip1 = new StatusStrip();
+			BtnQuit = new ToolStripMenuItem();
+			menuStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// menuStrip1
 			// 
+			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
 			menuStrip1.Location = new Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
 			menuStrip1.Size = new Size(1004, 24);
 			menuStrip1.TabIndex = 1;
 			menuStrip1.Text = "menuStrip1";
+			// 
+			// fileToolStripMenuItem
+			// 
+			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BtnQuit });
+			fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+			fileToolStripMenuItem.Size = new Size(37, 20);
+			fileToolStripMenuItem.Text = "File";
 			// 
 			// statusStrip1
 			// 
@@ -47,6 +58,13 @@
 			statusStrip1.Size = new Size(1004, 22);
 			statusStrip1.TabIndex = 2;
 			statusStrip1.Text = "statusStrip1";
+			// 
+			// BtnQuit
+			// 
+			BtnQuit.Name = "BtnQuit";
+			BtnQuit.Size = new Size(180, 22);
+			BtnQuit.Text = "Quit";
+			BtnQuit.Click += BtnQuit_Click;
 			// 
 			// WorkspaceWindow
 			// 
@@ -60,6 +78,8 @@
 			Name = "WorkspaceWindow";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Tile Game Maker";
+			menuStrip1.ResumeLayout(false);
+			menuStrip1.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -68,5 +88,7 @@
 
 		private MenuStrip menuStrip1;
 		private StatusStrip statusStrip1;
+		private ToolStripMenuItem fileToolStripMenuItem;
+		private ToolStripMenuItem BtnQuit;
 	}
 }

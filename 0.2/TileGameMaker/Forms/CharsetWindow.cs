@@ -9,6 +9,10 @@ public partial class CharsetWindow : Form
 	private readonly Workspace workspace;
 	private readonly TileBoardDisplay display;
 
+	private int FirstChar = 0;
+	private const int CharsPerRow = 16;
+	private const int CharsPerCol = 16;
+
 	public CharsetWindow(Workspace workspace)
 	{
 		InitializeComponent();
@@ -19,24 +23,49 @@ public partial class CharsetWindow : Form
 		palette = new Palette();
 		palette.SetColor(0, 0x000000);
 		palette.SetColor(1, 0xffffff);
-		palette.SetColor(2, 0x0000ff);
 
-		display = new TileBoardDisplay(16, 16, workspace.Charset, palette, 200, PnlCharset);
+		display = new TileBoardDisplay(CharsPerRow, CharsPerCol, workspace.Charset, palette, 200, PnlCharset);
 		display.Board.BackColor = palette.GetColor(1);
 
 		display.MouseDown += Display_MouseDown;
+		display.MouseWheel += Display_MouseWheel;
+
+		DrawChars();
+	}
+
+	private void Display_MouseWheel(object sender, MouseEventArgs e)
+	{
+		if (e.Delta > 0)
+		{
+			FirstChar -= CharsPerRow;
+			if (FirstChar < 0)
+				FirstChar = 0;
+		}
+		else
+		{
+			FirstChar += CharsPerRow;
+			if (FirstChar >= Charset.Size - CharsPerRow * CharsPerCol)
+				FirstChar = Charset.Size - CharsPerRow * CharsPerCol;
+		}
 
 		DrawChars();
 	}
 
 	public void DrawChars()
 	{
-		for (int i = 0; i < 256; i++)
-		{
-			int x = i % 16;
-			int y = i / 16;
+		int x = 0;
+		int y = 0;
 
+		for (int i = FirstChar; i < FirstChar + 256; i++)
+		{
 			display.Board.SetTile(new Tile(i, 0, 1), x, y);
+
+			x++;
+			if (x >= CharsPerRow)
+			{
+				x = 0;
+				y++;
+			}
 		}
 
 		display.DrawTiles();
@@ -56,5 +85,27 @@ public partial class CharsetWindow : Form
 		workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
 
 		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
+	}
+
+	private void BtnLoad_Click(object sender, EventArgs e)
+	{
+		OpenFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		workspace.Charset.Load(dialog.FileName);
+
+		FirstChar = 0;
+
+		DrawChars();
+	}
+
+	private void BtnSave_Click(object sender, EventArgs e)
+	{
+		SaveFileDialog dialog = new();
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		workspace.Charset.Save(dialog.FileName);
 	}
 }

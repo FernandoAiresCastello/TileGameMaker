@@ -42,4 +42,14 @@ public class Charset
 		while (chars.Count != Size)
 			AddChar(BlankChar);
 	}
+
+	public void Save(string path)
+	{
+		List<string> lines = [];
+
+		foreach (string charData in chars)
+			lines.Add(charData);
+
+		File.WriteAllLines(path, lines);
+	}
 }

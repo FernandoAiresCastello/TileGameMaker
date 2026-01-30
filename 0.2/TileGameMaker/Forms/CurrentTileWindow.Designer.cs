@@ -37,7 +37,6 @@
 			// 
 			// PnlTile
 			// 
-			PnlTile.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 			PnlTile.BorderStyle = BorderStyle.FixedSingle;
 			PnlTile.Location = new Point(86, 13);
 			PnlTile.Name = "PnlTile";
@@ -75,11 +74,13 @@
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(277, 403);
+			ControlBox = false;
 			Controls.Add(DataGrid);
 			Controls.Add(PnlTile);
+			MaximizeBox = false;
 			Name = "CurrentTileWindow";
 			StartPosition = FormStartPosition.CenterScreen;
-			Text = "Current Tile";
+			Text = "Tile Template";
 			((System.ComponentModel.ISupportInitialize)DataGrid).EndInit();
 			ResumeLayout(false);
 		}

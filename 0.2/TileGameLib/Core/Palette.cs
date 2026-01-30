@@ -39,4 +39,14 @@ public class Palette
 		while (colors.Count != Size)
 			AddColor(0x000000);
 	}
+
+	public void Save(string path)
+	{
+		List<string> lines = [];
+
+		foreach (int color in colors)
+			lines.Add($"{color:X6}");
+
+		File.WriteAllLines(path, lines);
+	}
 }

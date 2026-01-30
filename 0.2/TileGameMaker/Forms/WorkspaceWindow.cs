@@ -20,27 +20,12 @@ public partial class WorkspaceWindow : Form
 		InitializeComponent();
 		WindowState = FormWindowState.Maximized;
 
-		workspace = new Workspace(this);
+		workspace = new Workspace(this, "scratchpad");
 
-		BoardWindow = new(workspace)
-		{
-			MdiParent = this
-		};
-
-		CharsetWindow = new(workspace)
-		{
-			MdiParent = this
-		};
-
-		PaletteWindow = new(workspace)
-		{
-			MdiParent = this
-		};
-
-		CurTileWindow = new(workspace)
-		{
-			MdiParent = this
-		};
+		BoardWindow = new(workspace) { MdiParent = this };
+		CharsetWindow = new(workspace) { MdiParent = this };
+		PaletteWindow = new(workspace) { MdiParent = this };
+		CurTileWindow = new(workspace) { MdiParent = this };
 
 		BoardWindow.StartPosition = FormStartPosition.Manual;
 		BoardWindow.Location = new Point(800, 0);
@@ -58,5 +43,10 @@ public partial class WorkspaceWindow : Form
 		CharsetWindow.Show();
 		PaletteWindow.Show();
 		CurTileWindow.Show();
+	}
+
+	private void BtnQuit_Click(object sender, EventArgs e)
+	{
+		Close();
 	}
 }

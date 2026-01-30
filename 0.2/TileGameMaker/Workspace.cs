@@ -9,14 +9,14 @@ public class Workspace
 	public Charset Charset { get; set; } = new();
 	public Tile CurrentTile { get; set; } = new Tile('?', 0, 15);
 	public WorkspaceWindow WorkspaceWindow { get; set; }
+	public string FilesPath { get; set; }
 
-	public Workspace(WorkspaceWindow workspaceWindow)
+	public Workspace(WorkspaceWindow workspaceWindow, string filesPath)
 	{
 		WorkspaceWindow = workspaceWindow;
+		FilesPath = Path.Combine("projects", filesPath);
 
-		Palette.Load("palette.dat");
-		Charset.Load("charset.dat");
-
-		CurrentTile.Data.Set("Test Data", "12345");
+		Palette.Load(Path.Combine(FilesPath, "palette.dat"));
+		Charset.Load(Path.Combine(FilesPath, "charset.dat"));
 	}
 }
