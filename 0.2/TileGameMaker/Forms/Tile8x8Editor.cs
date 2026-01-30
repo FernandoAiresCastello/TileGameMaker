@@ -15,7 +15,7 @@ public partial class Tile8x8Editor : Form
 		InitializeComponent();
 
 		display = new TilePixels8x8Display(PnlDisplay);
-		display.Zoom = 4;
+		display.Stretch = true;
 
 		this.charset = charset;
 		this.charIndex = charIndex;
@@ -44,16 +44,19 @@ public partial class Tile8x8Editor : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
+		if (x < 0 || x >= Tile.Width || y < 0 || y >= Tile.Height)
+			return;
+
 		int pixelIndex = y * Tile.Width + x;
 
-		char[] pixels = charset.GetChar(1).ToCharArray();
+		char[] pixels = charset.GetChar(charIndex).ToCharArray();
 
 		if (e.Button == MouseButtons.Left)
 			pixels[pixelIndex] = '1';
 		else if (e.Button == MouseButtons.Right)
 			pixels[pixelIndex] = '0';
 
-		charset.SetChar(1, new string(pixels));
+		charset.SetChar(charIndex, new string(pixels));
 
 		display.DrawTilePixels(charset, charIndex);
 		display.Invalidate();

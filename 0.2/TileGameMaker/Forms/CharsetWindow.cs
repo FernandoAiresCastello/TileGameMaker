@@ -77,14 +77,23 @@ public partial class CharsetWindow : Form
 		int y = display.GetTileY(e.Y);
 
 		Tile tile = display.Board.GetTile(x, y);
-		int tileChar = tile.Chars[0].Index;
-		int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 15;
-		int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 0;
 
-		workspace.CurrentTile.Chars.Clear();
-		workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
+		if (e.Button == MouseButtons.Left)
+		{
+			int tileChar = tile.Chars[0].Index;
+			int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 15;
+			int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 0;
 
-		workspace.WorkspaceWindow.CurTileWindow.DrawTile();
+			workspace.CurrentTile.Chars.Clear();
+			workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
+
+			workspace.WorkspaceWindow.CurTileWindow.DrawTile();
+		}
+		else if (e.Button == MouseButtons.Middle)
+		{
+			Tile8x8Editor editor = new(workspace.Charset, tile.Chars[0].Index);
+			editor.ShowDialog(this);
+		}
 	}
 
 	private void BtnLoad_Click(object sender, EventArgs e)
