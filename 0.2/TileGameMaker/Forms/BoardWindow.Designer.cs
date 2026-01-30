@@ -29,43 +29,25 @@
 		private void InitializeComponent()
 		{
 			toolStrip1 = new ToolStrip();
-			BtnGridToggle = new ToolStripButton();
-			PnlBoard = new Panel();
 			BtnLoad = new ToolStripButton();
 			BtnSave = new ToolStripButton();
 			toolStripSeparator1 = new ToolStripSeparator();
+			BtnPencil = new ToolStripButton();
+			BtnEraser = new ToolStripButton();
+			toolStripSeparator2 = new ToolStripSeparator();
+			BtnGridToggle = new ToolStripButton();
+			PnlBoard = new Panel();
 			toolStrip1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, toolStripSeparator2, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
 			toolStrip1.TabIndex = 0;
 			toolStrip1.Text = "toolStrip1";
-			// 
-			// BtnGridToggle
-			// 
-			BtnGridToggle.Checked = true;
-			BtnGridToggle.CheckOnClick = true;
-			BtnGridToggle.CheckState = CheckState.Checked;
-			BtnGridToggle.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			BtnGridToggle.Image = Properties.Resources.layouts_four_grid;
-			BtnGridToggle.ImageTransparentColor = Color.Magenta;
-			BtnGridToggle.Name = "BtnGridToggle";
-			BtnGridToggle.Size = new Size(23, 22);
-			BtnGridToggle.Text = "Toggle grid";
-			BtnGridToggle.Click += BtnGridToggle_Click;
-			// 
-			// PnlBoard
-			// 
-			PnlBoard.Dock = DockStyle.Fill;
-			PnlBoard.Location = new Point(0, 25);
-			PnlBoard.Name = "PnlBoard";
-			PnlBoard.Size = new Size(732, 606);
-			PnlBoard.TabIndex = 1;
 			// 
 			// BtnLoad
 			// 
@@ -91,6 +73,56 @@
 			// 
 			toolStripSeparator1.Name = "toolStripSeparator1";
 			toolStripSeparator1.Size = new Size(6, 25);
+			// 
+			// BtnPencil
+			// 
+			BtnPencil.Checked = true;
+			BtnPencil.CheckOnClick = true;
+			BtnPencil.CheckState = CheckState.Checked;
+			BtnPencil.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnPencil.Image = Properties.Resources.pencil;
+			BtnPencil.ImageTransparentColor = Color.Magenta;
+			BtnPencil.Name = "BtnPencil";
+			BtnPencil.Size = new Size(23, 22);
+			BtnPencil.Text = "Draw";
+			BtnPencil.Click += BtnPencil_Click;
+			// 
+			// BtnEraser
+			// 
+			BtnEraser.CheckOnClick = true;
+			BtnEraser.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnEraser.Image = Properties.Resources.draw_eraser;
+			BtnEraser.ImageTransparentColor = Color.Magenta;
+			BtnEraser.Name = "BtnEraser";
+			BtnEraser.Size = new Size(23, 22);
+			BtnEraser.Text = "Eraser";
+			BtnEraser.Click += BtnEraser_Click;
+			// 
+			// toolStripSeparator2
+			// 
+			toolStripSeparator2.Name = "toolStripSeparator2";
+			toolStripSeparator2.Size = new Size(6, 25);
+			// 
+			// BtnGridToggle
+			// 
+			BtnGridToggle.Checked = true;
+			BtnGridToggle.CheckOnClick = true;
+			BtnGridToggle.CheckState = CheckState.Checked;
+			BtnGridToggle.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnGridToggle.Image = Properties.Resources.layouts_four_grid;
+			BtnGridToggle.ImageTransparentColor = Color.Magenta;
+			BtnGridToggle.Name = "BtnGridToggle";
+			BtnGridToggle.Size = new Size(23, 22);
+			BtnGridToggle.Text = "Toggle grid";
+			BtnGridToggle.Click += BtnGridToggle_Click;
+			// 
+			// PnlBoard
+			// 
+			PnlBoard.Dock = DockStyle.Fill;
+			PnlBoard.Location = new Point(0, 25);
+			PnlBoard.Name = "PnlBoard";
+			PnlBoard.Size = new Size(732, 606);
+			PnlBoard.TabIndex = 1;
 			// 
 			// BoardWindow
 			// 
@@ -118,5 +150,8 @@
 		private ToolStripButton BtnLoad;
 		private ToolStripButton BtnSave;
 		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripButton BtnEraser;
+		private ToolStripButton BtnPencil;
+		private ToolStripSeparator toolStripSeparator2;
 	}
 }

@@ -15,6 +15,11 @@ public class Charset
 			AddChar(BlankChar);
 	}
 
+	public List<string> GetAll()
+	{
+		return chars;
+	}
+
 	public void AddChar(string bits)
 	{
 		chars.Add(bits);

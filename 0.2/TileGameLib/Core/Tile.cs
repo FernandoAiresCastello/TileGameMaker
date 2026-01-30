@@ -40,4 +40,11 @@ public class Tile
 		Data.CopyFrom(other.Data);
 		Transparent = other.Transparent;
 	}
+
+	public void Clear()
+	{
+		Chars.Clear();
+		Data.Clear();
+		Transparent = false;
+	}
 }

@@ -10,7 +10,12 @@ public class BoardFile
 		file.OpenToWrite(path);
 
 		file.Write(board.Name);
-		file.Write(board.BackColor);
+
+		foreach (var color in palette.GetAll())
+			file.Write(color);
+
+		foreach (var chara in charset.GetAll())
+			file.Write(chara);
 
 		for (int y = 0; y < board.Rows; y++)
 		{
@@ -44,10 +49,21 @@ public class BoardFile
 		RecordFile file = new();
 		file.OpenToRead(path);
 
-		board.Name = file.Read();
-		board.BackColor = file.ReadInt();
-
 		board.Clear();
+
+		board.Name = file.Read();
+
+		for (int i = 0; i < Palette.Size; i++)
+		{
+			int color = file.ReadInt();
+			palette.SetColor(i, color);
+		}
+
+		for (int i = 0; i < Charset.Size; i++)
+		{
+			string chara = file.Read();
+			charset.SetChar(i, chara);
+		}
 
 		for (int y = 0; y < board.Rows; y++)
 		{

@@ -12,6 +12,11 @@ public class Palette
 			AddColor(0x000000);
 	}
 
+	public List<int> GetAll()
+	{
+		return colors;
+	}
+
 	public void AddColor(int rgb)
 	{
 		colors.Add(rgb);

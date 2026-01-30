@@ -25,16 +25,27 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseUp(object sender, MouseEventArgs e)
 	{
-		if (e.Button == MouseButtons.Middle)
-			InsertTile(e);
+		if (BtnPencil.Checked)
+		{
+			if (e.Button == MouseButtons.Middle)
+				InsertTile(e);
+		}
 	}
 
 	private void Display_MouseDown(object sender, MouseEventArgs e)
 	{
-		if (e.Button == MouseButtons.Left)
-			PutTile(e);
-		else if (e.Button == MouseButtons.Right)
-			GrabTile(e);
+		if (BtnPencil.Checked)
+		{
+			if (e.Button == MouseButtons.Left)
+				PutTile(e);
+			else if (e.Button == MouseButtons.Right)
+				GrabTile(e);
+		}
+		else if (BtnEraser.Checked)
+		{
+			if (e.Button == MouseButtons.Left)
+				DeleteTile(e);
+		}
 	}
 
 	private void Display_MouseMove(object sender, MouseEventArgs e)
@@ -42,8 +53,16 @@ public partial class BoardWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		if (e.Button == MouseButtons.Left)
-			PutTile(e);
+		if (BtnPencil.Checked)
+		{
+			if (e.Button == MouseButtons.Left)
+				PutTile(e);
+		}
+		else if (BtnEraser.Checked)
+		{
+			if (e.Button == MouseButtons.Left)
+				DeleteTile(e);
+		}
 	}
 
 	private void PutTile(MouseEventArgs e)
@@ -54,6 +73,18 @@ public partial class BoardWindow : Form
 		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
 		{
 			display.Board.GetTile(x, y).SetEqual(workspace.CurrentTile);
+			display.DrawTiles();
+		}
+	}
+
+	private void DeleteTile(MouseEventArgs e)
+	{
+		int x = display.GetTileX(e.X);
+		int y = display.GetTileY(e.Y);
+
+		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
+		{
+			display.Board.GetTile(x, y).Clear();
 			display.DrawTiles();
 		}
 	}
@@ -121,5 +152,15 @@ public partial class BoardWindow : Form
 		Charset charset = workspace.Charset;
 
 		BoardFile.Save(path, board, palette, charset);
+	}
+
+	private void BtnPencil_Click(object sender, EventArgs e)
+	{
+		BtnEraser.Checked = false;
+	}
+
+	private void BtnEraser_Click(object sender, EventArgs e)
+	{
+		BtnPencil.Checked = false;
 	}
 }
