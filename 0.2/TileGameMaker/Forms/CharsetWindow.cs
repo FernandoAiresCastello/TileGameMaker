@@ -81,8 +81,8 @@ public partial class CharsetWindow : Form
 		if (e.Button == MouseButtons.Left)
 		{
 			int tileChar = tile.Chars[0].Index;
-			int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 15;
-			int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 0;
+			int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 0;
+			int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 15;
 
 			workspace.CurrentTile.Chars.Clear();
 			workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));

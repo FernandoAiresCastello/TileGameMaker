@@ -50,9 +50,6 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseMove(object sender, MouseEventArgs e)
 	{
-		int x = display.GetTileX(e.X);
-		int y = display.GetTileY(e.Y);
-
 		if (BtnPencil.Checked)
 		{
 			if (e.Button == MouseButtons.Left)

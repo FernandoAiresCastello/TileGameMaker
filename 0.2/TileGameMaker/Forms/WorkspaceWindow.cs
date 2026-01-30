@@ -20,7 +20,7 @@ public partial class WorkspaceWindow : Form
 		InitializeComponent();
 		WindowState = FormWindowState.Maximized;
 
-		workspace = new Workspace(this, "scratchpad");
+		workspace = new Workspace(this);
 
 		BoardWindow = new(workspace) { MdiParent = this };
 		CharsetWindow = new(workspace) { MdiParent = this };
