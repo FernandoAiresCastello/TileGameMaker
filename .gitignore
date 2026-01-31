@@ -12,7 +12,6 @@ debug
 *.ilk
 *.pdb
 *.idb
-*.map
 *.exp
 *.dia
 *.dia~
