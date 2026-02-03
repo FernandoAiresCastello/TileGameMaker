@@ -27,6 +27,8 @@ public partial class BoardWindow : Form
 
 		LbName.Text = "";
 		LbName.MouseClick += LbName_MouseClick;
+
+		LbLayer.Text = "Base";
 	}
 
 	private void LbName_MouseClick(object sender, MouseEventArgs e)
@@ -189,5 +191,19 @@ public partial class BoardWindow : Form
 		display.Board.SouthFilename = dialog.SouthFilename;
 		display.Board.EastFilename = dialog.EastFilename;
 		display.Board.WestFilename = dialog.WestFilename;
+	}
+
+	private void BtnLayer_Click(object sender, EventArgs e)
+	{
+		if (BtnLayer.Checked)
+		{
+			layer = TileBoard.Layer.Top;
+			LbLayer.Text = "Top";
+		}
+		else
+		{
+			layer = TileBoard.Layer.Base;
+			LbLayer.Text = "Base";
+		}
 	}
 }

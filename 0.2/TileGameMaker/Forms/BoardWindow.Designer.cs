@@ -34,13 +34,16 @@
 			toolStripSeparator1 = new ToolStripSeparator();
 			BtnPencil = new ToolStripButton();
 			BtnEraser = new ToolStripButton();
+			BtnDirections = new ToolStripButton();
 			toolStripSeparator2 = new ToolStripSeparator();
 			BtnGridToggle = new ToolStripButton();
+			BtnLayer = new ToolStripButton();
 			PnlBoard = new Panel();
 			tableLayoutPanel1 = new TableLayoutPanel();
 			panel1 = new Panel();
 			LbName = new Label();
-			BtnDirections = new ToolStripButton();
+			LbLayer = new ToolStripLabel();
+			toolStripSeparator3 = new ToolStripSeparator();
 			toolStrip1.SuspendLayout();
 			tableLayoutPanel1.SuspendLayout();
 			panel1.SuspendLayout();
@@ -48,7 +51,7 @@
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, toolStripSeparator2, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
@@ -104,6 +107,16 @@
 			BtnEraser.Text = "Eraser";
 			BtnEraser.Click += BtnEraser_Click;
 			// 
+			// BtnDirections
+			// 
+			BtnDirections.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnDirections.Image = Properties.Resources.direction;
+			BtnDirections.ImageTransparentColor = Color.Magenta;
+			BtnDirections.Name = "BtnDirections";
+			BtnDirections.Size = new Size(23, 22);
+			BtnDirections.Text = "Directions";
+			BtnDirections.Click += BtnDirections_Click;
+			// 
 			// toolStripSeparator2
 			// 
 			toolStripSeparator2.Name = "toolStripSeparator2";
@@ -121,6 +134,17 @@
 			BtnGridToggle.Size = new Size(23, 22);
 			BtnGridToggle.Text = "Toggle grid";
 			BtnGridToggle.Click += BtnGridToggle_Click;
+			// 
+			// BtnLayer
+			// 
+			BtnLayer.CheckOnClick = true;
+			BtnLayer.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnLayer.Image = Properties.Resources.layer_arrange;
+			BtnLayer.ImageTransparentColor = Color.Magenta;
+			BtnLayer.Name = "BtnLayer";
+			BtnLayer.Size = new Size(23, 22);
+			BtnLayer.Text = "Switch layer";
+			BtnLayer.Click += BtnLayer_Click;
 			// 
 			// PnlBoard
 			// 
@@ -166,15 +190,16 @@
 			LbName.TabIndex = 0;
 			LbName.Text = "Board Name";
 			// 
-			// BtnDirections
+			// LbLayer
 			// 
-			BtnDirections.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			BtnDirections.Image = Properties.Resources.direction;
-			BtnDirections.ImageTransparentColor = Color.Magenta;
-			BtnDirections.Name = "BtnDirections";
-			BtnDirections.Size = new Size(23, 22);
-			BtnDirections.Text = "Directions";
-			BtnDirections.Click += BtnDirections_Click;
+			LbLayer.Name = "LbLayer";
+			LbLayer.Size = new Size(35, 22);
+			LbLayer.Text = "Layer";
+			// 
+			// toolStripSeparator3
+			// 
+			toolStripSeparator3.Name = "toolStripSeparator3";
+			toolStripSeparator3.Size = new Size(6, 25);
 			// 
 			// BoardWindow
 			// 
@@ -211,5 +236,8 @@
 		private Panel panel1;
 		private Label LbName;
 		private ToolStripButton BtnDirections;
+		private ToolStripButton BtnLayer;
+		private ToolStripLabel LbLayer;
+		private ToolStripSeparator toolStripSeparator3;
 	}
 }
