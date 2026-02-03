@@ -14,7 +14,10 @@ public class TileBoard
 	public string SouthFilename { get; set; }
 	public string WestFilename { get; set; }
 
-	private readonly List<Tile> tiles = [];
+	public enum Layer { Base, Top }
+
+	private readonly List<Tile> baseTiles = [];
+	private readonly List<Tile> topTiles = [];
 
 	public TileBoard(int cols, int rows)
 	{
@@ -22,28 +25,47 @@ public class TileBoard
 		Rows = rows;
 
 		for (int i = 0; i < cols * rows; i++)
-			tiles.Add(new Tile());
+		{
+			baseTiles.Add(new Tile());
+			topTiles.Add(new Tile());
+		}
 	}
 
-	public void SetTile(Tile tile, int x, int y)
+	public void SetTile(Tile tile, int x, int y, Layer layer)
 	{
-		tiles[y * Cols + x] = tile;
+		if (layer == Layer.Base)
+			baseTiles[y * Cols + x] = tile;
+		else
+			topTiles[y * Cols + x] = tile;
 	}
 
-	public Tile GetTile(int x, int y)
+	public Tile GetTile(int x, int y, Layer layer)
 	{
-		return tiles[y * Cols + x];
+		if (layer == Layer.Base)
+			return baseTiles[y * Cols + x];
+
+		return topTiles[y * Cols + x];
 	}
 
-	public void Fill(Tile tile)
+	public void Fill(Tile tile, Layer layer)
 	{
-		for (int i = 0; i < tiles.Count; i++)
-			tiles[i] = tile;
+		for (int i = 0; i < baseTiles.Count; i++)
+		{
+			if (layer == Layer.Base)
+				baseTiles[i] = tile;
+			else
+				topTiles[i] = tile;
+		}
 	}
 
-	public void Clear()
+	public void Clear(Layer layer)
 	{
-		for (int i = 0; i < tiles.Count; i++)
-			tiles[i] = new Tile();
+		for (int i = 0; i < baseTiles.Count; i++)
+		{
+			if (layer == Layer.Base)
+				baseTiles[i] = new Tile();
+			else
+				topTiles[i] = new Tile();
+		}
 	}
 }

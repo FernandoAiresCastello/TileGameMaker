@@ -1,4 +1,5 @@
 ﻿using TileGameLib.Controls;
+using TileGameLib.Core;
 
 namespace TileGameMaker.Forms;
 
@@ -39,7 +40,7 @@ public partial class CurrentTileWindow : Form
 
 	public void DrawTile()
 	{
-		display.Board.SetTile(workspace.CurrentTile, 0, 0);
+		display.Board.SetTile(workspace.CurrentTile, 0, 0, TileBoard.Layer.Base);
 		display.DrawTiles();
 
 		DataGrid.Rows.Clear();

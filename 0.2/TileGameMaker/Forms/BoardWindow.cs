@@ -9,6 +9,8 @@ public partial class BoardWindow : Form
 	private readonly Workspace workspace;
 	private readonly TileBoardDisplay display;
 
+	private TileBoard.Layer layer = TileBoard.Layer.Base;
+
 	public BoardWindow(Workspace workspace)
 	{
 		InitializeComponent();
@@ -83,7 +85,7 @@ public partial class BoardWindow : Form
 
 		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
 		{
-			display.Board.GetTile(x, y).SetEqual(workspace.CurrentTile);
+			display.Board.GetTile(x, y, layer).SetEqual(workspace.CurrentTile);
 			display.DrawTiles();
 		}
 	}
@@ -95,7 +97,7 @@ public partial class BoardWindow : Form
 
 		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
 		{
-			display.Board.GetTile(x, y).Clear();
+			display.Board.GetTile(x, y, layer).Clear();
 			display.DrawTiles();
 		}
 	}
@@ -107,7 +109,7 @@ public partial class BoardWindow : Form
 
 		if (x >= 0 && y >= 0 && x < display.Board.Cols && y < display.Board.Rows)
 		{
-			display.Board.GetTile(x, y).AddChars(workspace.CurrentTile);
+			display.Board.GetTile(x, y, layer).AddChars(workspace.CurrentTile);
 			display.DrawTiles();
 		}
 	}
@@ -117,7 +119,7 @@ public partial class BoardWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		Tile tile = display.Board.GetTile(x, y);
+		Tile tile = display.Board.GetTile(x, y, layer);
 
 		workspace.CurrentTile.SetEqual(tile);
 		workspace.WorkspaceWindow.CurTileWindow.DrawTile();

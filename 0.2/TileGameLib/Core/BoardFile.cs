@@ -1,6 +1,4 @@
-﻿using TileGameLib.Core;
-
-namespace TileGameMaker;
+﻿namespace TileGameLib.Core;
 
 public class BoardFile
 {
@@ -17,11 +15,37 @@ public class BoardFile
 		foreach (var chara in charset.GetAll())
 			file.Write(chara);
 
+		// BASE
 		for (int y = 0; y < board.Rows; y++)
 		{
 			for (int x = 0; x < board.Cols; x++)
 			{
-				Tile tile = board.GetTile(x, y);
+				Tile tile = board.GetTile(x, y, TileBoard.Layer.Base);
+				file.Write(tile.Chars.Count);
+
+				foreach (var ch in tile.Chars)
+				{
+					file.Write(ch.Index);
+					file.Write(ch.ForeColor);
+					file.Write(ch.BackColor);
+				}
+
+				file.Write(tile.Data.GetAll().Count);
+
+				foreach (var data in tile.Data.GetAll())
+				{
+					file.Write(data.Key);
+					file.Write(data.Value);
+				}
+			}
+		}
+
+		// TOP
+		for (int y = 0; y < board.Rows; y++)
+		{
+			for (int x = 0; x < board.Cols; x++)
+			{
+				Tile tile = board.GetTile(x, y, TileBoard.Layer.Top);
 				file.Write(tile.Chars.Count);
 
 				foreach (var ch in tile.Chars)
@@ -54,7 +78,8 @@ public class BoardFile
 		RecordFile file = new();
 		file.OpenToRead(path);
 
-		board.Clear();
+		board.Clear(TileBoard.Layer.Base);
+		board.Clear(TileBoard.Layer.Top);
 
 		board.Name = file.Read();
 
@@ -70,11 +95,41 @@ public class BoardFile
 			charset.SetChar(i, chara);
 		}
 
+		// BASE
 		for (int y = 0; y < board.Rows; y++)
 		{
 			for (int x = 0; x < board.Cols; x++)
 			{
-				Tile tile = board.GetTile(x, y);
+				Tile tile = board.GetTile(x, y, TileBoard.Layer.Base);
+				int charCount = file.ReadInt();
+
+				for (int i = 0; i < charCount; i++)
+				{
+					int index = file.ReadInt();
+					int foreColor = file.ReadInt();
+					int backColor = file.ReadInt();
+
+					tile.AddChar(index, foreColor, backColor);
+				}
+
+				int dataCount = file.ReadInt();
+
+				for (int i = 0; i < dataCount; i++)
+				{
+					string key = file.Read();
+					string value = file.Read();
+
+					tile.Data.Set(key, value);
+				}
+			}
+		}
+
+		// TOP
+		for (int y = 0; y < board.Rows; y++)
+		{
+			for (int x = 0; x < board.Cols; x++)
+			{
+				Tile tile = board.GetTile(x, y, TileBoard.Layer.Top);
 				int charCount = file.ReadInt();
 
 				for (int i = 0; i < charCount; i++)

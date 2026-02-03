@@ -32,7 +32,7 @@ public partial class PaletteWindow : Form
 			int x = i % 16;
 			int y = i / 16;
 
-			display.Board.SetTile(new Tile(0, i, i), x, y);
+			display.Board.SetTile(new Tile(0, i, i), x, y, TileBoard.Layer.Base);
 		}
 
 		display.DrawTiles();
@@ -43,7 +43,7 @@ public partial class PaletteWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		Tile tile = display.Board.GetTile(x, y);
+		Tile tile = display.Board.GetTile(x, y, TileBoard.Layer.Base);
 		int tileChar = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].Index : 0;
 
 		if (e.Button == MouseButtons.Left)

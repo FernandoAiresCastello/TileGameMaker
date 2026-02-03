@@ -43,16 +43,27 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 		{
 			for (int x = 0; x < Board.Cols; x++)
 			{
-				Tile tile = Board.GetTile(x, y);
-				if (!tile.HasAnyChar)
-					continue;
+				Tile baseTile = Board.GetTile(x, y, TileBoard.Layer.Base);
+				if (baseTile.HasAnyChar)
+				{
+					TileChar tileChar = baseTile.GetChar(animationIndex);
 
-				TileChar tileChar = tile.GetChar(animationIndex);
+					if (baseTile.Transparent)
+						canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor);
+					else
+						canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor, tileChar.BackColor);
+				}
 
-				if (tile.Transparent)
-					canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor);
-				else
-					canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor, tileChar.BackColor);
+				Tile topTile = Board.GetTile(x, y, TileBoard.Layer.Top);
+				if (topTile.HasAnyChar)
+				{
+					TileChar tileChar = topTile.GetChar(animationIndex);
+
+					if (topTile.Transparent)
+						canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor);
+					else
+						canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, x, y, tileChar.ForeColor, tileChar.BackColor);
+				}
 			}
 		}
 

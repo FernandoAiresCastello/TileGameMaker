@@ -58,7 +58,7 @@ public partial class CharsetWindow : Form
 
 		for (int i = FirstChar; i < FirstChar + 256; i++)
 		{
-			display.Board.SetTile(new Tile(i, 0, 1), x, y);
+			display.Board.SetTile(new Tile(i, 0, 1), x, y, TileBoard.Layer.Base);
 
 			x++;
 			if (x >= CharsPerRow)
@@ -76,7 +76,7 @@ public partial class CharsetWindow : Form
 		int x = display.GetTileX(e.X);
 		int y = display.GetTileY(e.Y);
 
-		Tile tile = display.Board.GetTile(x, y);
+		Tile tile = display.Board.GetTile(x, y, TileBoard.Layer.Base);
 
 		if (e.Button == MouseButtons.Left)
 		{
