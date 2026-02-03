@@ -1,5 +1,6 @@
 using TileGameLib.Controls;
 using TileGameLib.Core;
+using TileGameMaker.Dialogs;
 
 namespace TileGameMaker.Forms;
 
@@ -15,12 +16,25 @@ public partial class BoardWindow : Form
 		this.workspace = workspace;
 		DoubleBuffered = true;
 
-		display = new TileBoardDisplay(160 / 8, 144 / 8, workspace.Charset, workspace.Palette, 200, PnlBoard);
+		display = new TileBoardDisplay(160 / 8, 144 / 8, workspace.Charset, workspace.Palette, 400, PnlBoard);
 		display.Board.BackColor = 0xffffff;
 
 		display.MouseMove += Display_MouseMove;
 		display.MouseDown += Display_MouseDown;
 		display.MouseUp += Display_MouseUp;
+
+		LbName.Text = "";
+		LbName.MouseClick += LbName_MouseClick;
+	}
+
+	private void LbName_MouseClick(object sender, MouseEventArgs e)
+	{
+		LineInputDialog dialog = new("Enter board name:", display.Board.Name);
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		display.Board.Name = dialog.Value;
+		LbName.Text = display.Board.Name;
 	}
 
 	private void Display_MouseUp(object sender, MouseEventArgs e)
@@ -140,6 +154,8 @@ public partial class BoardWindow : Form
 		Charset charset = workspace.Charset;
 
 		BoardFile.Load(path, board, palette, charset);
+
+		LbName.Text = board.Name;
 	}
 
 	private void SaveBoard(string path)
@@ -159,5 +175,17 @@ public partial class BoardWindow : Form
 	private void BtnEraser_Click(object sender, EventArgs e)
 	{
 		BtnPencil.Checked = false;
+	}
+
+	private void BtnDirections_Click(object sender, EventArgs e)
+	{
+		DirectionsDialog dialog = new(display.Board);
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		display.Board.NorthFilename = dialog.NorthFilename;
+		display.Board.SouthFilename = dialog.SouthFilename;
+		display.Board.EastFilename = dialog.EastFilename;
+		display.Board.WestFilename = dialog.WestFilename;
 	}
 }

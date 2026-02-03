@@ -37,12 +37,18 @@
 			toolStripSeparator2 = new ToolStripSeparator();
 			BtnGridToggle = new ToolStripButton();
 			PnlBoard = new Panel();
+			tableLayoutPanel1 = new TableLayoutPanel();
+			panel1 = new Panel();
+			LbName = new Label();
+			BtnDirections = new ToolStripButton();
 			toolStrip1.SuspendLayout();
+			tableLayoutPanel1.SuspendLayout();
+			panel1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, toolStripSeparator2, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, toolStripSeparator2, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
@@ -119,10 +125,56 @@
 			// PnlBoard
 			// 
 			PnlBoard.Dock = DockStyle.Fill;
-			PnlBoard.Location = new Point(0, 25);
+			PnlBoard.Location = new Point(0, 30);
+			PnlBoard.Margin = new Padding(0);
 			PnlBoard.Name = "PnlBoard";
-			PnlBoard.Size = new Size(732, 606);
+			PnlBoard.Size = new Size(732, 576);
 			PnlBoard.TabIndex = 1;
+			// 
+			// tableLayoutPanel1
+			// 
+			tableLayoutPanel1.ColumnCount = 1;
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Controls.Add(PnlBoard, 0, 1);
+			tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+			tableLayoutPanel1.Dock = DockStyle.Fill;
+			tableLayoutPanel1.Location = new Point(0, 25);
+			tableLayoutPanel1.Margin = new Padding(0);
+			tableLayoutPanel1.Name = "tableLayoutPanel1";
+			tableLayoutPanel1.RowCount = 2;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Size = new Size(732, 606);
+			tableLayoutPanel1.TabIndex = 2;
+			// 
+			// panel1
+			// 
+			panel1.Controls.Add(LbName);
+			panel1.Dock = DockStyle.Fill;
+			panel1.Location = new Point(0, 0);
+			panel1.Margin = new Padding(0);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(732, 30);
+			panel1.TabIndex = 2;
+			// 
+			// LbName
+			// 
+			LbName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+			LbName.Location = new Point(7, 2);
+			LbName.Name = "LbName";
+			LbName.Size = new Size(713, 23);
+			LbName.TabIndex = 0;
+			LbName.Text = "Board Name";
+			// 
+			// BtnDirections
+			// 
+			BtnDirections.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnDirections.Image = Properties.Resources.direction;
+			BtnDirections.ImageTransparentColor = Color.Magenta;
+			BtnDirections.Name = "BtnDirections";
+			BtnDirections.Size = new Size(23, 22);
+			BtnDirections.Text = "Directions";
+			BtnDirections.Click += BtnDirections_Click;
 			// 
 			// BoardWindow
 			// 
@@ -130,7 +182,7 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(732, 631);
 			ControlBox = false;
-			Controls.Add(PnlBoard);
+			Controls.Add(tableLayoutPanel1);
 			Controls.Add(toolStrip1);
 			MaximizeBox = false;
 			Name = "BoardWindow";
@@ -138,6 +190,8 @@
 			Text = "Board";
 			toolStrip1.ResumeLayout(false);
 			toolStrip1.PerformLayout();
+			tableLayoutPanel1.ResumeLayout(false);
+			panel1.ResumeLayout(false);
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -153,5 +207,9 @@
 		private ToolStripButton BtnEraser;
 		private ToolStripButton BtnPencil;
 		private ToolStripSeparator toolStripSeparator2;
+		private TableLayoutPanel tableLayoutPanel1;
+		private Panel panel1;
+		private Label LbName;
+		private ToolStripButton BtnDirections;
 	}
 }

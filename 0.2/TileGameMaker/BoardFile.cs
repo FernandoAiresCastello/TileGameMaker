@@ -41,6 +41,11 @@ public class BoardFile
 			}
 		}
 
+		file.Write(board.NorthFilename);
+		file.Write(board.EastFilename);
+		file.Write(board.SouthFilename);
+		file.Write(board.WestFilename);
+
 		file.Save();
 	}
 
@@ -92,5 +97,10 @@ public class BoardFile
 				}
 			}
 		}
+
+		board.NorthFilename = file.Read();
+		board.EastFilename = file.Read();
+		board.SouthFilename = file.Read();
+		board.WestFilename = file.Read();
 	}
 }

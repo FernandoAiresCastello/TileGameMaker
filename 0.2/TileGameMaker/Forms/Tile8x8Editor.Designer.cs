@@ -59,6 +59,7 @@
 			MaximizeBox = false;
 			Name = "Tile8x8Editor";
 			StartPosition = FormStartPosition.CenterScreen;
+			Text = "Tile Editor";
 			ResumeLayout(false);
 			PerformLayout();
 		}

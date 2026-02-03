@@ -9,6 +9,11 @@ public class TileBoard
 
 	public int BackColor { get; set; } = 0xffffff;
 
+	public string NorthFilename { get; set; }
+	public string EastFilename { get; set; }
+	public string SouthFilename { get; set; }
+	public string WestFilename { get; set; }
+
 	private readonly List<Tile> tiles = [];
 
 	public TileBoard(int cols, int rows)
