@@ -11,10 +11,7 @@ public class Tile
 
 	public bool Transparent { get; set; } = false;
 
-	public Tile()
-	{
-	}
-
+	public Tile() {}
 	public Tile(int index, int foreColor, int backColor)
 	{
 		Chars.Add(new TileChar(index, foreColor, backColor));

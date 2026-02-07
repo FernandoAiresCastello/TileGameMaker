@@ -67,6 +67,20 @@ public partial class TileBoardDisplay : PixelCanvasDisplay
 			}
 		}
 
+		foreach (Entity entity in Board.Entities)
+		{
+			Tile tile = entity.Tile;
+			if (!tile.HasAnyChar)
+				continue;
+
+			TileChar tileChar = tile.GetChar(animationIndex);
+
+			if (tile.Transparent)
+				canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, entity.Pos.X, entity.Pos.Y, tileChar.ForeColor);
+			else
+				canvas.DrawPixelBlock(Charset, Palette, tileChar.Index, entity.Pos.X, entity.Pos.Y, tileChar.ForeColor, tileChar.BackColor);
+		}
+
 		Invalidate();
 	}
 

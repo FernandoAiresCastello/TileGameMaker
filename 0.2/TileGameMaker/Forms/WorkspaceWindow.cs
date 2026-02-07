@@ -28,7 +28,7 @@ public partial class WorkspaceWindow : Form
 		CurTileWindow = new(workspace) { MdiParent = this };
 
 		BoardWindow.StartPosition = FormStartPosition.Manual;
-		BoardWindow.Location = new Point(800, 0);
+		BoardWindow.Location = new Point(500, 0);
 
 		CharsetWindow.StartPosition = FormStartPosition.Manual;
 		CharsetWindow.Location = new Point(0, 0);
@@ -37,7 +37,7 @@ public partial class WorkspaceWindow : Form
 		PaletteWindow.Location = new Point(0, 500);
 
 		CurTileWindow.StartPosition = FormStartPosition.Manual;
-		CurTileWindow.Location = new Point(500, 0);
+		CurTileWindow.Location = new Point(1260, 0);
 
 		BoardWindow.Show();
 		CharsetWindow.Show();

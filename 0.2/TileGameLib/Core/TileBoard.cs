@@ -8,6 +8,8 @@ public class TileBoard
 	public int Rows { get; }
 
 	public int BackColor { get; set; } = 0xffffff;
+	public Color AccentForeColor { get; set; } = Color.White;
+	public Color AccentBackColor { get; set; } = Color.Black;
 
 	public string NorthFilename { get; set; }
 	public string EastFilename { get; set; }
@@ -15,6 +17,8 @@ public class TileBoard
 	public string WestFilename { get; set; }
 
 	public enum Layer { Base, Top }
+
+	public List<Entity> Entities { get; set; } = [];
 
 	private readonly List<Tile> baseTiles = [];
 	private readonly List<Tile> topTiles = [];
@@ -67,5 +71,44 @@ public class TileBoard
 			else
 				topTiles[i] = new Tile();
 		}
+	}
+
+	public void DeleteTile(int x, int y, Layer layer)
+	{
+		GetTile(x, y, layer).Clear();
+	}
+
+	public Tile FindWithData(Layer layer, string key, string value)
+	{
+		for (int i = 0; i < baseTiles.Count; i++)
+		{
+			if (layer == Layer.Base)
+			{
+				if (baseTiles[i].Data.Has(key, value))
+					return baseTiles[i];
+			}
+			else
+			{
+				if (topTiles[i].Data.Has(key, value))
+					return topTiles[i];
+			}
+		}
+
+		return null;
+	}
+
+	public TilePosition FindPosWithData(Layer layer, string key, string value)
+	{
+		for (int y = 0; y < Rows; y++)
+		{
+			for (int x = 0; x < Cols; x++)
+			{
+				Tile tile = GetTile(x, y, layer);
+				if (tile.Data.Has(key, value))
+					return new TilePosition(x, y, layer);
+			}
+		}
+
+		return null;
 	}
 }
