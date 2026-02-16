@@ -70,9 +70,6 @@ public class BoardFile
 		file.Write(board.SouthFilename);
 		file.Write(board.WestFilename);
 
-		file.Write(board.AccentForeColor.ToArgb());
-		file.Write(board.AccentBackColor.ToArgb());
-
 		file.Save();
 	}
 
@@ -160,8 +157,5 @@ public class BoardFile
 		board.EastFilename = file.Read();
 		board.SouthFilename = file.Read();
 		board.WestFilename = file.Read();
-
-		board.AccentForeColor = Color.FromArgb(file.ReadInt());
-		board.AccentBackColor = Color.FromArgb(file.ReadInt());
 	}
 }

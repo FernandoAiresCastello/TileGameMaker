@@ -48,11 +48,19 @@ public partial class PaletteWindow : Form
 
 		if (e.Button == MouseButtons.Left)
 		{
-			int foreColor = tile.Chars[0].ForeColor;
-			int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 0;
+			if (ModifierKeys == Keys.Control)
+			{
+				ColorEditor editor = new(workspace.Palette, tile.Chars[0].ForeColor);
+				editor.ShowDialog(this);
+			}
+			else
+			{
+				int foreColor = tile.Chars[0].ForeColor;
+				int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 0;
 
-			workspace.CurrentTile.Chars.Clear();
-			workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
+				workspace.CurrentTile.Chars.Clear();
+				workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
+			}
 		}
 		else if (e.Button == MouseButtons.Right)
 		{

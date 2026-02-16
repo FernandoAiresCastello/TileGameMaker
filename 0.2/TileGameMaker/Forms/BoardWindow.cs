@@ -26,8 +26,6 @@ public partial class BoardWindow : Form
 		display.MouseUp += Display_MouseUp;
 
 		LbName.Text = display.Board.Name;
-		PnlTitle.ForeColor = display.Board.AccentForeColor;
-		PnlTitle.BackColor = display.Board.AccentBackColor;
 
 		LbLayer.Text = "Base";
 	}
@@ -36,13 +34,16 @@ public partial class BoardWindow : Form
 	{
 		if (BtnPencil.Checked)
 		{
-			if (e.Button == MouseButtons.Middle)
+			if (e.Button == MouseButtons.Left && ModifierKeys == Keys.Control)
 				InsertTile(e);
 		}
 	}
 
 	private void Display_MouseDown(object sender, MouseEventArgs e)
 	{
+		if (ModifierKeys == Keys.Control)
+			return;
+
 		if (BtnPencil.Checked)
 		{
 			if (e.Button == MouseButtons.Left)
@@ -59,6 +60,9 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseMove(object sender, MouseEventArgs e)
 	{
+		if (ModifierKeys == Keys.Control)
+			return;
+
 		if (BtnPencil.Checked)
 		{
 			if (e.Button == MouseButtons.Left)
@@ -151,8 +155,6 @@ public partial class BoardWindow : Form
 		BoardFile.Load(path, board, palette, charset);
 
 		LbName.Text = board.Name;
-		PnlTitle.ForeColor = board.AccentForeColor;
-		PnlTitle.BackColor = board.AccentBackColor;
 	}
 
 	private void SaveBoard(string path)
@@ -202,16 +204,12 @@ public partial class BoardWindow : Form
 
 	private void BtnProperties_Click(object sender, EventArgs e)
 	{
-		MapPropertiesDialog dialog = new(display.Board.Name, display.Board.AccentForeColor, display.Board.AccentBackColor);
+		MapPropertiesDialog dialog = new(display.Board.Name);
 		if (dialog.ShowDialog() != DialogResult.OK)
 			return;
 
 		display.Board.Name = dialog.Title;
-		display.Board.AccentBackColor = dialog.AccentBackColor;
-		display.Board.AccentForeColor = dialog.AccentForeColor;
 
 		LbName.Text = display.Board.Name;
-		PnlTitle.BackColor = dialog.AccentBackColor;
-		PnlTitle.ForeColor = dialog.AccentForeColor;
 	}
 }

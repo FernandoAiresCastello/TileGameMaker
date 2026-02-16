@@ -8,8 +8,6 @@ public class TileBoard
 	public int Rows { get; }
 
 	public int BackColor { get; set; } = 0xffffff;
-	public Color AccentForeColor { get; set; } = Color.White;
-	public Color AccentBackColor { get; set; } = Color.Black;
 
 	public string NorthFilename { get; set; }
 	public string EastFilename { get; set; }

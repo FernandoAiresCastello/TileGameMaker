@@ -80,19 +80,22 @@ public partial class CharsetWindow : Form
 
 		if (e.Button == MouseButtons.Left)
 		{
-			int tileChar = tile.Chars[0].Index;
-			int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 0;
-			int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 15;
+			if (ModifierKeys == Keys.Control)
+			{
+				Tile8x8Editor editor = new(workspace.Charset, tile.Chars[0].Index);
+				editor.ShowDialog(this);
+			}
+			else
+			{
+				int tileChar = tile.Chars[0].Index;
+				int foreColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].ForeColor : 0;
+				int backColor = workspace.CurrentTile.Chars.Count > 0 ? workspace.CurrentTile.Chars[0].BackColor : 15;
 
-			workspace.CurrentTile.Chars.Clear();
-			workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
+				workspace.CurrentTile.Chars.Clear();
+				workspace.CurrentTile.Chars.Add(new TileChar(tileChar, foreColor, backColor));
 
-			workspace.WorkspaceWindow.CurTileWindow.DrawTile();
-		}
-		else if (e.Button == MouseButtons.Middle)
-		{
-			Tile8x8Editor editor = new(workspace.Charset, tile.Chars[0].Index);
-			editor.ShowDialog(this);
+				workspace.WorkspaceWindow.CurTileWindow.DrawTile();
+			}
 		}
 	}
 

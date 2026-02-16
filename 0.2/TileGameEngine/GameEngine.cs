@@ -170,7 +170,5 @@ public class GameEngine
 
 	private void Say(string message)
 	{
-		TextWindow wnd = new(message, Board.AccentForeColor, Board.AccentBackColor);
-		wnd.ShowDialog();
 	}
 }

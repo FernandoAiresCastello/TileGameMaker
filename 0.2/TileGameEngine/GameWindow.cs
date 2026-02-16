@@ -25,8 +25,6 @@ public partial class GameWindow : Form
 		BoardFile.Load("test/start.map", Display.Board, Palette, Charset);
 		
 		LbTitle.Text = Display.Board.Name;
-		LbTitle.BackColor = Display.Board.AccentBackColor;
-		LbTitle.ForeColor = Display.Board.AccentForeColor;
 
 		Engine.OnGameLoaded(Display.Board);
 	}
