@@ -4,7 +4,7 @@ namespace TileGameLib.Core;
 
 public class RecordFile
 {
-	public const string RecordSeparator = "§";
+	public const string RecordSeparator = "|";
 	
 	private StringBuilder contents;
 	private int readIndex = 0;
@@ -42,7 +42,7 @@ public class RecordFile
 
 	public void Save()
 	{
-		File.WriteAllText(path, contents.ToString());
+		File.WriteAllText(path, contents.ToString(), Encoding.UTF8);
 	}
 
 	public void OpenToRead(string path)
@@ -53,7 +53,7 @@ public class RecordFile
 		isOpen = true;
 		readIndex = 0;
 
-		string rawContents = File.ReadAllText(path);
+		string rawContents = File.ReadAllText(path, Encoding.UTF8);
 		readBuffer = [.. rawContents.Split(RecordSeparator)];
 	}
 

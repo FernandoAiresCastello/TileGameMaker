@@ -45,6 +45,7 @@
 			tableLayoutPanel1 = new TableLayoutPanel();
 			PnlTitle = new Panel();
 			LbName = new Label();
+			BtnClear = new ToolStripButton();
 			toolStrip1.SuspendLayout();
 			tableLayoutPanel1.SuspendLayout();
 			PnlTitle.SuspendLayout();
@@ -52,7 +53,7 @@
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnClear, BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
@@ -214,6 +215,16 @@
 			LbName.Text = "Board Name";
 			LbName.TextAlign = ContentAlignment.MiddleCenter;
 			// 
+			// BtnClear
+			// 
+			BtnClear.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnClear.Image = Properties.Resources.page_white;
+			BtnClear.ImageTransparentColor = Color.Magenta;
+			BtnClear.Name = "BtnClear";
+			BtnClear.Size = new Size(23, 22);
+			BtnClear.Text = "Clear";
+			BtnClear.Click += BtnClear_Click;
+			// 
 			// BoardWindow
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -253,5 +264,6 @@
 		private ToolStripLabel LbLayer;
 		private ToolStripSeparator toolStripSeparator3;
 		private ToolStripButton BtnProperties;
+		private ToolStripButton BtnClear;
 	}
 }

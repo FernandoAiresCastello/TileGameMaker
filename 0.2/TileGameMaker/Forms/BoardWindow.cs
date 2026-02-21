@@ -32,6 +32,9 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseUp(object sender, MouseEventArgs e)
 	{
+		if (!Enabled)
+			return;
+
 		if (BtnPencil.Checked)
 		{
 			if (e.Button == MouseButtons.Left && ModifierKeys == Keys.Control)
@@ -41,6 +44,9 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseDown(object sender, MouseEventArgs e)
 	{
+		if (!Enabled)
+			return;
+
 		if (ModifierKeys == Keys.Control)
 			return;
 
@@ -60,6 +66,9 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseMove(object sender, MouseEventArgs e)
 	{
+		if (!Enabled)
+			return;
+
 		if (ModifierKeys == Keys.Control)
 			return;
 
@@ -209,6 +218,22 @@ public partial class BoardWindow : Form
 			return;
 
 		display.Board.Name = dialog.Title;
+
+		LbName.Text = display.Board.Name;
+	}
+
+	private void BtnClear_Click(object sender, EventArgs e)
+	{
+		DialogResult result = MessageBox.Show(this, "Are you sure you want to clear the board?", 
+			"Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+		if (result != DialogResult.Yes)
+			return;
+
+		display.Board.Clear(TileBoard.Layer.Base);
+		display.Board.Clear(TileBoard.Layer.Top);
+
+		display.Board.Name = "Untitled";
 
 		LbName.Text = display.Board.Name;
 	}

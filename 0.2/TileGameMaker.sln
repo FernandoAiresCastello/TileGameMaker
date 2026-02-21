@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameMaker", "TileGameMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameLib", "TileGameLib\TileGameLib.csproj", "{63114010-4733-436E-A8F5-A9A10A0A6D40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameEngine", "TileGameEngine\TileGameEngine.csproj", "{30361996-1544-4A9C-993B-3FE021FDC71C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{63114010-4733-436E-A8F5-A9A10A0A6D40} = {63114010-4733-436E-A8F5-A9A10A0A6D40}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,10 +21,6 @@ Global
 		{63114010-4733-436E-A8F5-A9A10A0A6D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63114010-4733-436E-A8F5-A9A10A0A6D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63114010-4733-436E-A8F5-A9A10A0A6D40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30361996-1544-4A9C-993B-3FE021FDC71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30361996-1544-4A9C-993B-3FE021FDC71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30361996-1544-4A9C-993B-3FE021FDC71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30361996-1544-4A9C-993B-3FE021FDC71C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
