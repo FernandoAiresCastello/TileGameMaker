@@ -36,9 +36,9 @@ public class TileBoard
 	public void SetTile(Tile tile, int x, int y, Layer layer)
 	{
 		if (layer == Layer.Base)
-			baseTiles[y * Cols + x] = tile;
+			baseTiles[y * Cols + x].SetEqual(tile);
 		else
-			topTiles[y * Cols + x] = tile;
+			topTiles[y * Cols + x].SetEqual(tile);
 	}
 
 	public Tile GetTile(int x, int y, Layer layer)
@@ -54,9 +54,9 @@ public class TileBoard
 		for (int i = 0; i < baseTiles.Count; i++)
 		{
 			if (layer == Layer.Base)
-				baseTiles[i] = tile;
+				baseTiles[i].SetEqual(tile);
 			else
-				topTiles[i] = tile;
+				topTiles[i].SetEqual(tile);
 		}
 	}
 

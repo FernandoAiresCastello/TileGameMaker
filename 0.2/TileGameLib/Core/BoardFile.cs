@@ -65,10 +65,10 @@ public class BoardFile
 			}
 		}
 
-		file.Write(board.NorthFilename);
-		file.Write(board.EastFilename);
-		file.Write(board.SouthFilename);
-		file.Write(board.WestFilename);
+		file.Write(board.NorthFilename ?? "");
+		file.Write(board.EastFilename ?? "");
+		file.Write(board.SouthFilename ?? "");
+		file.Write(board.WestFilename ?? "");
 
 		file.Save();
 	}

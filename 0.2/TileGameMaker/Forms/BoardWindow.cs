@@ -224,7 +224,7 @@ public partial class BoardWindow : Form
 
 	private void BtnClear_Click(object sender, EventArgs e)
 	{
-		DialogResult result = MessageBox.Show(this, "Are you sure you want to clear the board?", 
+		DialogResult result = MessageBox.Show(this, "Are you sure you want to clear the board?",
 			"Confirm Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
 		if (result != DialogResult.Yes)
@@ -236,5 +236,16 @@ public partial class BoardWindow : Form
 		display.Board.Name = "Untitled";
 
 		LbName.Text = display.Board.Name;
+	}
+
+	private void BtnFill_Click(object sender, EventArgs e)
+	{
+		DialogResult result = MessageBox.Show(this, "Are you sure you want to fill the current layer?",
+			"Confirm Fill", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+		if (result != DialogResult.Yes)
+			return;
+
+		display.Board.Fill(workspace.CurrentTile, layer);
 	}
 }

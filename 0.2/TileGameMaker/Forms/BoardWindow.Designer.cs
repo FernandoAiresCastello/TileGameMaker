@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			toolStrip1 = new ToolStrip();
+			BtnClear = new ToolStripButton();
 			BtnLoad = new ToolStripButton();
 			BtnSave = new ToolStripButton();
 			toolStripSeparator1 = new ToolStripSeparator();
@@ -45,7 +46,7 @@
 			tableLayoutPanel1 = new TableLayoutPanel();
 			PnlTitle = new Panel();
 			LbName = new Label();
-			BtnClear = new ToolStripButton();
+			BtnFill = new ToolStripButton();
 			toolStrip1.SuspendLayout();
 			tableLayoutPanel1.SuspendLayout();
 			PnlTitle.SuspendLayout();
@@ -53,12 +54,22 @@
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnClear, BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnClear, BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnFill, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
 			toolStrip1.TabIndex = 0;
 			toolStrip1.Text = "toolStrip1";
+			// 
+			// BtnClear
+			// 
+			BtnClear.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnClear.Image = Properties.Resources.page_white;
+			BtnClear.ImageTransparentColor = Color.Magenta;
+			BtnClear.Name = "BtnClear";
+			BtnClear.Size = new Size(23, 22);
+			BtnClear.Text = "Clear";
+			BtnClear.Click += BtnClear_Click;
 			// 
 			// BtnLoad
 			// 
@@ -215,15 +226,15 @@
 			LbName.Text = "Board Name";
 			LbName.TextAlign = ContentAlignment.MiddleCenter;
 			// 
-			// BtnClear
+			// BtnFill
 			// 
-			BtnClear.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			BtnClear.Image = Properties.Resources.page_white;
-			BtnClear.ImageTransparentColor = Color.Magenta;
-			BtnClear.Name = "BtnClear";
-			BtnClear.Size = new Size(23, 22);
-			BtnClear.Text = "Clear";
-			BtnClear.Click += BtnClear_Click;
+			BtnFill.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnFill.Image = Properties.Resources.paintcan;
+			BtnFill.ImageTransparentColor = Color.Magenta;
+			BtnFill.Name = "BtnFill";
+			BtnFill.Size = new Size(23, 22);
+			BtnFill.Text = "Fill";
+			BtnFill.Click += BtnFill_Click;
 			// 
 			// BoardWindow
 			// 
@@ -265,5 +276,6 @@
 		private ToolStripSeparator toolStripSeparator3;
 		private ToolStripButton BtnProperties;
 		private ToolStripButton BtnClear;
+		private ToolStripButton BtnFill;
 	}
 }
