@@ -32,9 +32,6 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseUp(object sender, MouseEventArgs e)
 	{
-		if (!Enabled)
-			return;
-
 		if (BtnPencil.Checked)
 		{
 			if (e.Button == MouseButtons.Left && ModifierKeys == Keys.Control)
@@ -44,9 +41,6 @@ public partial class BoardWindow : Form
 
 	private void Display_MouseDown(object sender, MouseEventArgs e)
 	{
-		if (!Enabled)
-			return;
-
 		if (ModifierKeys == Keys.Control)
 			return;
 
@@ -62,13 +56,15 @@ public partial class BoardWindow : Form
 			if (e.Button == MouseButtons.Left)
 				DeleteTile(e);
 		}
+		else if (BtnAddText.Checked)
+		{
+			if (e.Button == MouseButtons.Left)
+				AddText(e);
+		}
 	}
 
 	private void Display_MouseMove(object sender, MouseEventArgs e)
 	{
-		if (!Enabled)
-			return;
-
 		if (ModifierKeys == Keys.Control)
 			return;
 
@@ -82,6 +78,23 @@ public partial class BoardWindow : Form
 			if (e.Button == MouseButtons.Left)
 				DeleteTile(e);
 		}
+	}
+
+	private void AddText(MouseEventArgs e)
+	{
+		int x = display.GetTileX(e.X);
+		int y = display.GetTileY(e.Y);
+		Tile tile = display.Board.GetTile(x, y, layer);
+
+		string text = "";
+		if (tile.Data.Has("text"))
+			text = tile.Data.Get("text");
+
+		TextInputDialog dialog = new(text);
+		if (dialog.ShowDialog() != DialogResult.OK)
+			return;
+
+		tile.Data.Set("text", dialog.GetText());
 	}
 
 	private void PutTile(MouseEventArgs e)
@@ -178,11 +191,19 @@ public partial class BoardWindow : Form
 	private void BtnPencil_Click(object sender, EventArgs e)
 	{
 		BtnEraser.Checked = false;
+		BtnAddText.Checked = false;
 	}
 
 	private void BtnEraser_Click(object sender, EventArgs e)
 	{
 		BtnPencil.Checked = false;
+		BtnAddText.Checked = false;
+	}
+
+	private void BtnAddText_Click(object sender, EventArgs e)
+	{
+		BtnPencil.Checked = false;
+		BtnEraser.Checked = false;
 	}
 
 	private void BtnDirections_Click(object sender, EventArgs e)

@@ -35,6 +35,7 @@
 			toolStripSeparator1 = new ToolStripSeparator();
 			BtnPencil = new ToolStripButton();
 			BtnEraser = new ToolStripButton();
+			BtnFill = new ToolStripButton();
 			BtnDirections = new ToolStripButton();
 			BtnProperties = new ToolStripButton();
 			toolStripSeparator2 = new ToolStripSeparator();
@@ -46,7 +47,7 @@
 			tableLayoutPanel1 = new TableLayoutPanel();
 			PnlTitle = new Panel();
 			LbName = new Label();
-			BtnFill = new ToolStripButton();
+			BtnAddText = new ToolStripButton();
 			toolStrip1.SuspendLayout();
 			tableLayoutPanel1.SuspendLayout();
 			PnlTitle.SuspendLayout();
@@ -54,7 +55,7 @@
 			// 
 			// toolStrip1
 			// 
-			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnClear, BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnFill, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
+			toolStrip1.Items.AddRange(new ToolStripItem[] { BtnClear, BtnLoad, BtnSave, toolStripSeparator1, BtnPencil, BtnEraser, BtnAddText, BtnFill, BtnDirections, BtnProperties, toolStripSeparator2, BtnLayer, LbLayer, toolStripSeparator3, BtnGridToggle });
 			toolStrip1.Location = new Point(0, 0);
 			toolStrip1.Name = "toolStrip1";
 			toolStrip1.Size = new Size(732, 25);
@@ -119,6 +120,16 @@
 			BtnEraser.Size = new Size(23, 22);
 			BtnEraser.Text = "Eraser";
 			BtnEraser.Click += BtnEraser_Click;
+			// 
+			// BtnFill
+			// 
+			BtnFill.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnFill.Image = Properties.Resources.paintcan;
+			BtnFill.ImageTransparentColor = Color.Magenta;
+			BtnFill.Name = "BtnFill";
+			BtnFill.Size = new Size(23, 22);
+			BtnFill.Text = "Fill";
+			BtnFill.Click += BtnFill_Click;
 			// 
 			// BtnDirections
 			// 
@@ -226,15 +237,16 @@
 			LbName.Text = "Board Name";
 			LbName.TextAlign = ContentAlignment.MiddleCenter;
 			// 
-			// BtnFill
+			// BtnAddText
 			// 
-			BtnFill.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			BtnFill.Image = Properties.Resources.paintcan;
-			BtnFill.ImageTransparentColor = Color.Magenta;
-			BtnFill.Name = "BtnFill";
-			BtnFill.Size = new Size(23, 22);
-			BtnFill.Text = "Fill";
-			BtnFill.Click += BtnFill_Click;
+			BtnAddText.CheckOnClick = true;
+			BtnAddText.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			BtnAddText.Image = Properties.Resources.text_large_cap;
+			BtnAddText.ImageTransparentColor = Color.Magenta;
+			BtnAddText.Name = "BtnAddText";
+			BtnAddText.Size = new Size(23, 22);
+			BtnAddText.Text = "Add text";
+			BtnAddText.Click += BtnAddText_Click;
 			// 
 			// BoardWindow
 			// 
@@ -277,5 +289,6 @@
 		private ToolStripButton BtnProperties;
 		private ToolStripButton BtnClear;
 		private ToolStripButton BtnFill;
+		private ToolStripButton BtnAddText;
 	}
 }
